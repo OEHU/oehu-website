@@ -1,0 +1,64 @@
+@charset "utf-8";
+@import "~bulma/sass/utilities/initial-variables";
+
+$yellow: #f7ef02;
+$green: #D2F898;
+$white: #FCFCFC;
+$gray: #2F2F2F;
+$black: #000000;
+
+$family-sans-serif: sans-serif;
+$primary: $yellow;
+$link: darken($yellow, 5);
+
+@import "~bulma/bulma";
+
+/**
+General
+ */
+.content {
+  text-align: center;
+  padding: 20px 0;
+  max-width: 600px;
+}
+
+
+
+/**
+Hero
+ */
+.hero.is-primary {
+  margin-bottom: 30px;
+  .title, .subtitle {
+    color: black !important;
+    text-align: left;
+  }
+  .tabs li {
+      &.router-link-exact-active {
+      color: $white;
+      background: $black;
+    }
+    color: $black;
+  }
+}
+
+/**
+Social
+ */
+.box {
+  background: $primary;
+  width: 65%;
+  margin: 0 auto;
+
+  #mc_embed_signup {
+    margin-top: 20px;
+  }
+
+  #mc-embedded-subscribe {
+    margin-top: 10px;
+  }
+
+  .social-icon a {
+    color: $black;
+  }
+}
