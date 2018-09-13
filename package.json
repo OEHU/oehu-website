@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --dest build && cd build && git commit -a -m 'new build'",
+    "online": "",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
