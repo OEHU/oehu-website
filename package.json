@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --dest build && cd build && git commit -a -m 'new build'",
+    "build": "vue-cli-service build --dest build && cd build && git commit -a -m 'new build' && git push",
     "online": "",
     "lint": "vue-cli-service lint"
   },
