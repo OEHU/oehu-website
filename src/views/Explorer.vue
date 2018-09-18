@@ -4,23 +4,38 @@
         <div class="explorer-list">
             <div class="flex row header-row">
                 <div>DEVICE ID</div>
-                <div>LAST ACTIVE</div>
-                <div>KWH IN LAST WEEK</div>
+                <div>KWH RECEIVED</div>
+                <div>KWH DELIVERED</div>
             </div>
-            <div class="flex row">
-                <div>1</div>
-                <div>2018-09-10</div>
-                <div>202</div>
+            <div v-for="data in output" :key="data.id" class="flex row">
+                <div>{{data.id}}</div>
+                <div>{{data.data.electricityReceived.total}}</div>
+                <div>{{data.data.electricityDelivered.total}}</div>
             </div>
-            <div class="flex row">
-                <div>1</div>
-                <div>2018-09-10</div>
-                <div>202</div>
-            </div>
+
         </div>
 
     </div>
 </template>
+
+<script>
+    import axios from 'axios';
+
+    export default {
+        data() {
+            return {
+                output: []
+            }
+        },
+        mounted() {
+            axios.get('/output.json')
+                .then((response) => {
+                    console.log(response.data);
+                    this.output = response.data;
+                });
+        }
+    }
+</script>
 
 <style lang="scss">
     .explorer-list {
