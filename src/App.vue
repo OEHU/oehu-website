@@ -41,7 +41,7 @@ h1.tagline {
     font-size: 22px;
     font-family: serif;
 }
-@min-width(480px) {
+@media(min-width: 480px) {
     h1 {
         font-size: 40px;
         font-family: serif;

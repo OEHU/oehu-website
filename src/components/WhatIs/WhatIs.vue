@@ -57,6 +57,12 @@
         left: -15%;
     }
 }
+@media(min-width: 1200px) {
+    .WhatIs-text {
+        left: 0%;
+        max-width: 540px;
+    }
+}
 
 .PhoneMockup {
     min-width: 300px;

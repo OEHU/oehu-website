@@ -35,7 +35,7 @@
 <style scoped lang="scss">
 
 .NewsletterSubscribe {
-    margin: 25px;
+    margin: 30px 25px 30px;
 }
 
 #mce-EMAIL {

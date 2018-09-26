@@ -31,6 +31,7 @@
 }
 
 img {
+    width: 480px;
     max-width: 70%;
     padding: 30px 60px 15px 60px;
     display: inline-block;
