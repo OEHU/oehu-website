@@ -4,25 +4,26 @@
         <h1>Join our community!</h1>
 
         <p>
-            Stay up to date on OEHU's developments by subscribing to our newsletter or follow us on one of the channels below
+            Stay up to date on OEHU's developments by subscribing to our newsletter or follow us on one of the channels
+            below
         </p>
 
-        <NewsletterSubscribe />
+        <NewsletterSubscribe/>
 
         <div class="social-icons flex center">
             <span class="social-icon">
                 <a href="https://twitter.com/oehu_project" target="_blank">
-                    <img src="./Social/Twitter.png" />
+                    <img src="./Social/Twitter.png"/>
                 </a>
             </span>
             <span class="social-icon">
                 <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                    <img src="./Social/LinkedIn.png" />
+                    <img src="./Social/LinkedIn.png"/>
                 </a>
             </span>
             <span class="social-icon">
                 <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                    <img src="./Social/Telegram.png" />
+                    <img src="./Social/Telegram.png"/>
                 </a>
             </span>
         </div>
@@ -40,23 +41,26 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.Social {
-    background: #fff;
-    color: #333;
-    text-align: center;
-    padding: 25px 0;
-}
-.Social h1 {
-    font-size: 40px;
-    font-family: serif;
-}
-.Social h1,
-.Social p {
-    max-width: 65vw;
-    margin: 0 auto;
-}
-.social-icon {
-    max-width: 60px;
-    margin: 5px;
-}
+    .Social {
+        background: #fff;
+        color: #333;
+        text-align: center;
+        padding: 25px 0;
+    }
+
+    .Social h1 {
+        font-size: 40px;
+        font-family: serif;
+    }
+
+    .Social h1,
+    .Social p {
+        max-width: 65vw;
+        margin: 0 auto;
+    }
+
+    .social-icon {
+        max-width: 60px;
+        margin: 5px;
+    }
 </style>

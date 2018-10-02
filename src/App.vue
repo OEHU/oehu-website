@@ -10,7 +10,7 @@
 
 <script>
     import Hero from '@/components/Hero.vue'
-    import Logo from '@/components/Logo/Logo.vue'
+    import Logo from '@/components/Logo.vue'
 
     export default {
         components: {Logo, Hero},
