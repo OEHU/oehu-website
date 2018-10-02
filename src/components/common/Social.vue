@@ -1,5 +1,5 @@
 <template>
-    <div class="Social">
+    <div class="social">
 
         <h1>Join our community!</h1>
 
@@ -41,26 +41,22 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    .Social {
+    .social {
         background: #fff;
         color: #333;
         text-align: center;
         padding: 25px 0;
-    }
-
-    .Social h1 {
-        font-size: 40px;
-        font-family: serif;
-    }
-
-    .Social h1,
-    .Social p {
-        max-width: 65vw;
-        margin: 0 auto;
-    }
-
-    .social-icon {
-        max-width: 60px;
-        margin: 5px;
+        h1 {
+            font-size: 40px;
+            font-family: serif;
+        }
+        h1, p {
+            max-width: 65vw;
+            margin: 0 auto;
+        }
+        .social-icon {
+            max-width: 60px;
+            margin: 5px;
+        }
     }
 </style>

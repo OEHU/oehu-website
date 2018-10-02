@@ -2,9 +2,9 @@
     <div class="logo">
         <HeadCutout/>
         <img src="../assets/images/logo/Logo.png" />
-        <h1 class="tagline">
+        <h2 class="tagline is-size-1">
             Sharing energy data for the better
-        </h1>
+        </h2>
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="App" id="app">
+    <div class="app" id="app">
 
         <Logo />
 
@@ -9,11 +9,10 @@
 </template>
 
 <script>
-    import Hero from '@/components/Hero.vue'
     import Logo from '@/components/Logo.vue'
 
     export default {
-        components: {Logo, Hero},
+        components: {Logo},
         head() {
             return {
                 title: 'OEHU'
