@@ -14,8 +14,7 @@
                         dashboard,
                         detailed datasets from all contributors and cloud-based data analysis tools.
                     </p>
-                    <Button title="Learn more">
-                    </Button>
+                    <Button title="Learn more" />
                 </div>
                 <div class="column">
                     <PhoneMockup/>
@@ -30,16 +29,11 @@
 <script>
     import Button from '@/components/common/Button.vue'
     import PhoneMockup from '@/components/home/PhoneMockup.vue'
-    import FlowBackground from '@/components/home/FlowBackground.vue'
+    import FlowBackground from '@/components/home/FlowBackgroundRight.vue'
 
     export default {
         name: 'WhatIs',
         components: {Button, PhoneMockup, FlowBackground},
-        head() {
-            return {
-                title: 'What is OEHU?'
-            }
-        }
     }
 </script>
 

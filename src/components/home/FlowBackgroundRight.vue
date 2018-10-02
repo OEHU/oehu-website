@@ -12,7 +12,7 @@
 
 <script>
     export default {
-        name: 'FlowBackground',
+        name: 'FlowBackgroundRight',
     }
 </script>
 

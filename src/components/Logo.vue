@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import HeadCutout from '@/components/HeadCutout.vue';
+    import HeadCutout from '@/components/header/HeadCutout.vue';
 
     export default {
         components: {HeadCutout},

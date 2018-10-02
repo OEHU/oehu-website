@@ -89,16 +89,11 @@
         position: relative;
 
         &-phone {
-            max-width: 285px;
+            max-width: 250px;
+            padding: 40px 0;
             position: relative;
-            left: 10%;
+            left: 50%;
             z-index: 2;
-        }
-        &-background {
-            position: absolute;
-            right: 0;
-            bottom: -15%;
-            z-index: 1;
         }
     }
 </style>
