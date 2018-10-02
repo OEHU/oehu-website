@@ -13,17 +13,17 @@
         <div class="social-icons flex center">
             <span class="social-icon">
                 <a href="https://twitter.com/oehu_project" target="_blank">
-                    <img src="./Social/Twitter.png"/>
+                    <img src="../../assets/images/social/Twitter.png"/>
                 </a>
             </span>
             <span class="social-icon">
                 <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                    <img src="./Social/LinkedIn.png"/>
+                    <img src="../../assets/images/social/LinkedIn.png"/>
                 </a>
             </span>
             <span class="social-icon">
                 <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                    <img src="./Social/Telegram.png"/>
+                    <img src="../../assets/images/social/Telegram.png"/>
                 </a>
             </span>
         </div>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import NewsletterSubscribe from '@/components/NewsletterSubscribe.vue';
+    import NewsletterSubscribe from '@/components/common/NewsletterSubscribe.vue';
 
     export default {
         components: {NewsletterSubscribe},

@@ -1,5 +1,5 @@
 <template>
-    <svg width="100%" viewBox="0 0 1444 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg class="head-cutout" width="100%" viewBox="0 0 1444 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="Desktop-HD-Home-01" fill="#000000">
                 <path d="M1.13686838e-13,2.13162821e-14 C1.13686838e-13,2.13162821e-14 601.669931,360 1444,2.13162821e-14 C1444,2.13162821e-14 1.13686838e-13,2.13162821e-14 1.13686838e-13,2.13162821e-14 Z" id="Path-2"></path>
@@ -16,5 +16,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+    .head-cutout {
+        max-height: 150px;
+    }
 </style>

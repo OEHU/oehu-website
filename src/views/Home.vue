@@ -1,5 +1,5 @@
 <template>
-    <div class="Home">
+    <div class="home">
 
         <WhatIs />
 
@@ -9,8 +9,8 @@
 </template>
 
 <script>
-    import WhatIs from '@/components/WhatIs/WhatIs.vue';
-    import Social from '@/components/Social.vue';
+    import WhatIs from '@/components/home/WhatIs.vue';
+    import Social from '@/components/common/Social.vue';
 
     export default {
         name: 'home',
