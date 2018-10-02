@@ -1,14 +1,22 @@
 <template>
-    <div class="container content">
-        <p>This is a project that is related to energy data and decentralized ledger technology.</p>
+    <div class="Home">
+
+        <WhatIs />
+
+        <Social />
+
     </div>
 </template>
 
 <script>
-    // @ is an alias to /src
-    // import HelloWorld from '@/components/HelloWorld.vue'
+    import WhatIs from '@/components/WhatIs/WhatIs.vue';
+    import Social from '@/components/Social.vue';
+
     export default {
         name: 'home',
-        components: {}
+        components: {WhatIs, Social},
     }
 </script>
+
+<style scoped lang="scss">
+</style>
