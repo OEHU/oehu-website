@@ -1,14 +1,26 @@
 @charset "utf-8";
 @import "~bulma/sass/utilities/initial-variables";
 
+@font-face {
+  font-family: YoungSerif;
+  src: url('../fonts/YoungSerif-Regular.otf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: WorkSerif;
+  src: url('../fonts/WorkSans-Regular.otf');
+  font-weight: 400;
+}
+
 $blue: #0086ff;
 $green: #D2F898;
 $white: #FCFCFC;
 $gray: #2F2F2F;
 $black: #000000;
 
-$family-sans-serif: sans-serif;
-$family-serif: serif;
+$family-sans-serif: WorkSans, Helvetica, Arial, sans-serif;;
+$family-serif: YoungSerif, serif;
 $primary: $blue;
 $link: darken($yellow, 5);
 
