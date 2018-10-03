@@ -1,9 +1,12 @@
 <template>
     <div class="how-it-works">
         <div class="container">
+           
             <div class="how-it-works-columns columns is-gapless">
                 <div class="column">
+
                 </div>
+                 <img class="oehu_home" src="../../assets/images/oehu_home.png"/>
                 <div class="column content">
                     <h1 class="title">
                         How it works
@@ -14,7 +17,8 @@
                         energy usage dashboard, detailed datasets from all contributors, and cloud-based data analysis
                         tools.
                     </p>
-                    <Button title="Get Started!" />
+                    <Button class="get_started" title="Get Started!" />
+                    <span class="space"></span>
                     <Button title="How Can I Contribute?" />
                 </div>
             </div>
@@ -41,6 +45,21 @@
 
         .columns {
             padding: 60px 0;
+        }
+        .title {
+            color: #ffffff;
+        }
+        .oehu_home{
+            width: 257px;
+            height: 263px;
+        }
+        .get_started{
+            background-color: #ffde00;
+            color: black;
+            border-color: #ffde00;            
+        }
+        .space{
+            margin-left: 15px;
         }
     }
 </style>

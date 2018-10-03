@@ -14,7 +14,7 @@
                         dashboard,
                         detailed datasets from all contributors and cloud-based data analysis tools.
                     </p>
-                    <Button title="Learn more" />
+                    <Button title="read more" />
                 </div>
                 <div class="column">
                     <PhoneMockup/>
@@ -51,6 +51,11 @@
             .content {
                 padding-top: 10% !important;
             }
+        }
+
+        .title {
+            color: #ffffff;
+            font-weight: 400;
         }
     }
 
