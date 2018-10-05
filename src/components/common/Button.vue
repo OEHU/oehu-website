@@ -1,6 +1,6 @@
 <template>
     <button>
-        {{this.title}}
+        <span>{{this.title}}</span>
     </button>
 </template>
 
@@ -18,6 +18,16 @@ button {
     border: solid #fff 1px;
     padding: 8px 12px;
     color: #fff;
+    height: 80px;
+    border: 4px solid #ffffff;
+    white-space: nowrap;
+    cursor: pointer;
 }
+
+span {
+    font-size: 24px;
+    font-weight: 600;
+}
+
 
 </style>

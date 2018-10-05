@@ -26,31 +26,38 @@
 </template>
 
 <script>
-    export default {
-        name: 'NewsletterSubscribe',
-    }
+export default {
+  name: "NewsletterSubscribe"
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
 .NewsletterSubscribe {
-    margin: 30px 25px 30px;
+  margin: 30px 25px 30px;
 }
 
 #mce-EMAIL {
-    background: #e3e3e3;
-    color: #9d9d9b;
-    border-radius: 0;
-    box-shadow: none;
-    max-width: 40vw;
+  color: #9d9d9b;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: 40vw;
+  width: 500px;
+  height: 80px;
+  background-color: #f3f3f3;
 }
 
 #mc-embedded-subscribe {
-    margin-left: 15px;
-    background: #ffde00;
-    border-radius: 0;
-    color: #333;
+  margin-left: 15px;
+  background: #ffde00;
+  border-radius: 0;
+  color: #333;
+  width: 200px;
+  height: 80px;
 }
 
+input {
+  font-size: 24px;
+  font-weight: 600;
+}
 </style>

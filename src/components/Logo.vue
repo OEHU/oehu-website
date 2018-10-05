@@ -32,6 +32,7 @@
         max-width: 70%;
         padding: 30px 60px 15px 60px;
         display: inline-block;
+        margin-left: 170px;
     }
     @media(min-width: 480px) {
         img {

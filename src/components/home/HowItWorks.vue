@@ -1,12 +1,11 @@
 <template>
     <div class="how-it-works">
         <div class="container">
-           
             <div class="how-it-works-columns columns is-gapless">
                 <div class="column">
-
+                  <img class="oehu_home_image" src="../../assets/images/oehu_home.png"/>
                 </div>
-                 <img class="oehu_home" src="../../assets/images/oehu_home.png"/>
+                 
                 <div class="column content">
                     <h1 class="title">
                         How it works
@@ -19,7 +18,7 @@
                     </p>
                     <Button class="get_started" title="Get Started!" />
                     <span class="space"></span>
-                    <Button title="How Can I Contribute?" />
+                    <Button class="contribute" title="How Can I Contribute?" />
                 </div>
             </div>
         </div>
@@ -29,37 +28,46 @@
 </template>
 
 <script>
-    import Button from '@/components/common/Button.vue'
-    import FlowBackground from '@/components/home/FlowBackgroundLeft.vue'
+import Button from "@/components/common/Button.vue";
+import FlowBackground from "@/components/home/FlowBackgroundLeft.vue";
 
-    export default {
-        name: 'WhatIs',
-        components: {Button, FlowBackground},
-    }
+export default {
+  name: "HowItWorks",
+  components: { Button, FlowBackground }
+};
 </script>
 
 <style scoped lang="scss">
-    .how-it-works {
-        overflow: hidden;
-        position: relative;
-
-        .columns {
-            padding: 60px 0;
-        }
-        .title {
-            color: #ffffff;
-        }
-        .oehu_home{
-            width: 257px;
-            height: 263px;
-        }
-        .get_started{
-            background-color: #ffde00;
-            color: black;
-            border-color: #ffde00;            
-        }
-        .space{
-            margin-left: 15px;
-        }
-    }
+.how-it-works {
+  position: relative;
+  overflow: hidden;
+}
+.columns {
+  padding: 60px 0;
+}
+.title {
+  color: #ffffff;
+  font-size: 64px;
+  font-weight: 400;
+  font-family: YoungSerif;
+}
+.oehu_home_image {
+  position: absolute;
+  left: 115px;
+  top: 220px;
+  z-index: 2;
+}
+.get_started {
+  background-color: #ffde00;
+  color: black;
+  border-color: #ffde00;
+}
+.space {
+  margin-left: 35px;
+}
+.content p {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: WorkSerif;
+}
 </style>

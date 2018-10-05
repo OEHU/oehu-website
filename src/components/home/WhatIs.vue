@@ -7,14 +7,11 @@
                         What is OEHU?
                     </h1>
                     <p>
-                        Rotterdam The Hague Open Energy Hub/OEHU is a public, open-source, distributed database for
-                        smart
-                        meter
-                        data. Users can contribute their data and in return gain access to a personal energy usage
-                        dashboard,
-                        detailed datasets from all contributors and cloud-based data analysis tools.
+                    The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart meter data. 
+                    Users can contribute their data dit is een Hyperlinks style to a personal energy usage dashboard, detailed datasets from all contributors, 
+                    and cloud-based data analysis tools. 
                     </p>
-                    <Button title="read more" />
+                    <Button class="readmore" title="read more" />
                 </div>
                 <div class="column">
                     <PhoneMockup/>
@@ -27,36 +24,50 @@
 </template>
 
 <script>
-    import Button from '@/components/common/Button.vue'
-    import PhoneMockup from '@/components/home/PhoneMockup.vue'
-    import FlowBackground from '@/components/home/FlowBackgroundRight.vue'
+import Button from "@/components/common/Button.vue";
+import PhoneMockup from "@/components/home/PhoneMockup.vue";
+import FlowBackground from "@/components/home/FlowBackgroundRight.vue";
 
-    export default {
-        name: 'WhatIs',
-        components: {Button, PhoneMockup, FlowBackground},
-    }
+export default {
+  name: "WhatIs",
+  components: { Button, PhoneMockup, FlowBackground }
+};
 </script>
 
 <style scoped lang="scss">
+.what-is {
+  overflow: hidden;
+  position: relative;
 
-    .what-is {
-        overflow: hidden;
-        position: relative;
-
-        .columns {
-            padding-left: 10%;
-
-            margin-bottom: 0 !important;
-
-            .content {
-                padding-top: 10% !important;
-            }
-        }
-
-        .title {
-            color: #ffffff;
-            font-weight: 400;
-        }
+  .columns {
+    padding-left: 10%;
+    margin-bottom: 0 !important;
+    height: 700px;
+    .content {
+      padding-top: 10% !important;
     }
+    .content p {
+      font-size: 32px;
+      font-weight: 400;
+      width: 720px;
+      height: 283px;
+      font-family: WorkSerif;
+    }
+  }
 
+  .title {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 64px;
+    letter-spacing: -0.15px;
+    font-family: YoungSerif;
+    position: relative;
+    bottom: 30px;
+  }
+}
+
+.readmore{
+    position: relative;
+    top: 50px;
+}
 </style>
