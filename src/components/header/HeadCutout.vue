@@ -7,7 +7,9 @@
             </g>
         </g>
     </svg>
-    <Button class="login" title="log in" />
+    <router-link :to="{name: 'login'}">
+        <Button  class="login" title="log in" />
+    </router-link>
     <div class="menu_button"><input @click="openNav()" type="submit" name="" value=""></div>
         <div ref="menu" class="overlay">
             <a class="closebtn" @click="closeNav()">&times;</a>

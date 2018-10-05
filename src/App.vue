@@ -1,10 +1,6 @@
 <template>
     <div class="app" id="app">
-
-        <Logo />
-
         <router-view/>
-
     </div>
 </template>
 

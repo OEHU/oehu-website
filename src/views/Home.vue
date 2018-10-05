@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <Logo />
         <WhatIs />
         <Social />
         <HowItWorks />
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import Logo from '@/components/Logo.vue'
 import WhatIs from "@/components/home/WhatIs.vue";
 import Social from "@/components/common/Social.vue";
 import HowItWorks from "@/components/home/HowItWorks.vue";
@@ -24,6 +26,7 @@ import FooterClosing from "@/components/footer/FooterClosing.vue";
 export default {
   name: "home",
   components: {
+    Logo,
     DevicesConnected,
     WhatIs,
     Social,
