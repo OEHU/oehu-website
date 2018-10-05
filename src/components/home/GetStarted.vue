@@ -2,7 +2,7 @@
     <div class="get-started">
         <div class="container">
             <div class="get-started-columns columns is-gapless">
-                <div class="column content">
+                <div class="column content is-three-fifths">
                     <h1 class="title">
                         Get Started & sign up for a dashboard
                     </h1>
@@ -14,9 +14,10 @@
                         dashboard,
                         detailed datasets from all contributors and cloud-based data analysis tools.
                     </p>
-                    <Button class="started" title="Get Started!" />
-                    <span class="space"></span>
-                    <Button class="faq" title="FAQ" />
+                    <div class="buttons">
+                        <Button class="oehu-btn-primary" title="Get Started!"/>
+                        <Button class="faq" title="FAQ"/>
+                    </div>
                 </div>
                 <div class="column">
                     <img class="smart_oehu_image" src="../../assets/images/smart_oehu.png"/>
@@ -29,76 +30,52 @@
 </template>
 
 <script>
-import Button from "@/components/common/Button.vue";
-import PhoneMockup from "@/components/home/PhoneMockup.vue";
-import FlowBackground from "@/components/home/FlowBackgroundRight.vue";
+    import Button from "@/components/common/Button.vue";
+    import PhoneMockup from "@/components/home/PhoneMockup.vue";
+    import FlowBackground from "@/components/home/FlowBackgroundRight.vue";
 
-export default {
-  name: "WhatIs",
-  components: { Button, PhoneMockup, FlowBackground }
-};
+    export default {
+        name: "WhatIs",
+        components: {Button, PhoneMockup, FlowBackground}
+    };
 </script>
 
 <style scoped lang="scss">
-.get-started {
-  overflow: hidden;
-  position: relative;
-  .columns {
-    padding-left: 10%;
-    margin-bottom: 0 !important;
-    position: relative;
-    bottom: 100px;
-    .content {
-      padding-top: 10% !important;
+    @import '../../assets/sass/mix.scss';
+
+    .get-started {
+        overflow: hidden;
+        position: relative;
+        .columns {
+            .content {
+                padding-top: 10% !important;
+                padding-bottom: 10% !important;
+            }
+        }
+
+        .title {
+            color: #ffffff;
+            /*line-height: 80px;*/
+        }
+
+        .buttons {
+            margin-bottom: 40px;
+        }
     }
-  }
 
-  .title {
-    color: #ffffff;
-    font-size: 64px;
-    font-weight: 400;
-    line-height: 80px;
-    font-family: YoungSerif;
-  }
-}
+    .smart_oehu_image {
+        position: relative;
+        z-index: 2;
+        width: 80%;
+        top: 30%    ;
+        left: 30%;
 
-.phone-mockup {
-  overflow: hidden;
-  position: relative;
+        @include tablet() {
+            left: 15%;
+        }
+        @include mobile() {
+            display: none;
+        }
+    }
 
-  &-phone {
-    max-width: 250px;
-    padding: 40px 0;
-    position: relative;
-    left: 50%;
-    z-index: 2;
-  }
-}
-
-.started {
-  background-color: #ffde00;
-  color: black;
-  border-color: #ffde00;
-}
-.space {
-  margin-left: 15px;
-}
-
-.content p {
-    font-size: 32px;
-    font-weight: 400;
-    width: 750px;
-    font-family: WorkSerif;
-}
-
-.smart_oehu_image {
-    position: relative;
-    top: 150px;
-    left: 100px;
-    z-index: 2;
-}
-
-.faq{
-    width: 132px;
-}
 </style>

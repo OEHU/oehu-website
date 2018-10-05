@@ -2,16 +2,18 @@
     <div class="what-is">
         <div class="container">
             <div class="what-is-columns columns is-gapless">
-                <div class="column content">
+                <div class="column content is-three-fifths is-four-fifths-tablet">
                     <h1 class="title">
                         What is OEHU?
                     </h1>
                     <p>
-                    The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart meter data. 
-                    Users can contribute their data dit is een Hyperlinks style to a personal energy usage dashboard, detailed datasets from all contributors, 
-                    and cloud-based data analysis tools. 
+                        The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart
+                        meter data.
+                        Users can contribute their data dit is een Hyperlinks style to a personal energy usage
+                        dashboard, detailed datasets from all contributors,
+                        and cloud-based data analysis tools.
                     </p>
-                    <Button class="readmore" title="read more" />
+                    <Button class="readmore" title="read more"/>
                 </div>
                 <div class="column">
                     <PhoneMockup/>
@@ -24,50 +26,41 @@
 </template>
 
 <script>
-import Button from "@/components/common/Button.vue";
-import PhoneMockup from "@/components/home/PhoneMockup.vue";
-import FlowBackground from "@/components/home/FlowBackgroundRight.vue";
+    import Button from "@/components/common/Button.vue";
+    import PhoneMockup from "@/components/home/PhoneMockup.vue";
+    import FlowBackground from "@/components/home/FlowBackgroundRight.vue";
 
-export default {
-  name: "WhatIs",
-  components: { Button, PhoneMockup, FlowBackground }
-};
+    export default {
+        name: "WhatIs",
+        components: {Button, PhoneMockup, FlowBackground}
+    };
 </script>
 
 <style scoped lang="scss">
-.what-is {
-  overflow: hidden;
-  position: relative;
+    @import '../../assets/sass/mix.scss';
 
-  .columns {
-    padding-left: 10%;
-    margin-bottom: 0 !important;
-    height: 700px;
-    .content {
-      padding-top: 10% !important;
+    .what-is {
+        position: relative;
+
+        .columns {
+            margin-bottom: 0 !important;
+            .content {
+                padding-top: 10% !important;
+                padding-left: 10% !important;
+
+            }
+        }
+
+        .title {
+            color: #ffffff;
+            letter-spacing: -0.15px;
+            margin-bottom: 30px;
+        }
+
+        .readmore {
+            margin: 50px 0;
+        }
     }
-    .content p {
-      font-size: 32px;
-      font-weight: 400;
-      width: 720px;
-      height: 283px;
-      font-family: WorkSerif;
-    }
-  }
 
-  .title {
-    color: #ffffff;
-    font-weight: 400;
-    font-size: 64px;
-    letter-spacing: -0.15px;
-    font-family: YoungSerif;
-    position: relative;
-    bottom: 30px;
-  }
-}
 
-.readmore{
-    position: relative;
-    top: 50px;
-}
 </style>

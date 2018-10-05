@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@mixin mobile {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet}) and (max-width: #{$desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+@mixin smaller-than-desktop {
+  @media (max-width: #{$desktop}) {
+    @content;
+  }
+}
+@mixin smaller-than-tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin minimum-desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}

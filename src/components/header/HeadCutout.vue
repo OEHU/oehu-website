@@ -7,42 +7,42 @@
             </g>
         </g>
     </svg>
-    <Button class="login" title="log in" />
-    <div class="menu_button"><input @click="openNav()" type="submit" name="" value=""></div>
-        <div ref="menu" class="overlay">
-            <a class="closebtn" @click="closeNav()">&times;</a>
-            <img src="../../assets/images/logo/LogoSmall.png" />
-            <div class="overlay-content">
-                <a href="#">Menu item</a>
-                <a href="#">Menu item</a>
-                <a href="#">Menu item</a>
-                <a href="#">Menu item</a>
+    <!--<Button class="login" title="log in" />-->
+    <!--<div class="menu_button"><input @click="openNav()" type="submit" name="" value=""></div>-->
+        <!--<div ref="menu" class="overlay">-->
+            <!--<a class="closebtn" @click="closeNav()">&times;</a>-->
+            <!--<img src="../../assets/images/logo/LogoSmall.png" />-->
+            <!--<div class="overlay-content">-->
+                <!--<a href="#">Menu item</a>-->
+                <!--<a href="#">Menu item</a>-->
+                <!--<a href="#">Menu item</a>-->
+                <!--<a href="#">Menu item</a>-->
 
-                <span>Follow us on</span>
-                <div class="social-icons flex center">
-                    <span class="social-icon">
-                        <a href="https://github.com/OEHU/" target="_blank">
-                            <img src="../../assets/images/social/Github.png"/>
-                        </a>
-                    </span>
-                    <span class="social-icon">
-                        <a href="https://twitter.com/oehu_project" target="_blank">
-                            <img src="../../assets/images/social/Twitter.png"/>
-                        </a>
-                    </span>
-                    <span class="social-icon">
-                        <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                            <img src="../../assets/images/social/Telegram.png"/>
-                        </a>
-                    </span>            
-                    <span class="social-icon">
-                        <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                            <img src="../../assets/images/social/LinkedIn.png"/>
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </div>
+                <!--<span>Follow us on</span>-->
+                <!--<div class="social-icons flex center">-->
+                    <!--<span class="social-icon">-->
+                        <!--<a href="https://github.com/OEHU/" target="_blank">-->
+                            <!--<img src="../../assets/images/social/Github.png"/>-->
+                        <!--</a>-->
+                    <!--</span>-->
+                    <!--<span class="social-icon">-->
+                        <!--<a href="https://twitter.com/oehu_project" target="_blank">-->
+                            <!--<img src="../../assets/images/social/Twitter.png"/>-->
+                        <!--</a>-->
+                    <!--</span>-->
+                    <!--<span class="social-icon">-->
+                        <!--<a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">-->
+                            <!--<img src="../../assets/images/social/Telegram.png"/>-->
+                        <!--</a>-->
+                    <!--</span>            -->
+                    <!--<span class="social-icon">-->
+                        <!--<a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">-->
+                            <!--<img src="../../assets/images/social/LinkedIn.png"/>-->
+                        <!--</a>-->
+                    <!--</span>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
         float:right;
         bottom: 130px;
         cursor: pointer;
-        background:url("../../assets/images/menu.png") no-repeat;
+        background: url("../../assets/images/menu.png") no-repeat; //TODO: HTML
         border: none;
         width: 100px;
         height: 50px;
@@ -89,12 +89,11 @@ export default {
         height: 100%;
         width: 0;
         position: fixed;
-        z-index: 1;
+        z-index: 10;
         left:0;
         top:0;
         background-color: white;
         overflow-x: hidden;
-        z-index: 3;
     }
 
     .overlay-content{
@@ -159,13 +158,13 @@ export default {
         bottom: 185px;
     }
 
-    @media screen and (max-height: 450px) {
-        .overlay a {font-size: 20px}
-        .overlay .closebtn {
-            font-size: 40px;
-            top: 15px;
-            right: 35px;
-        }
-    }
+    /*@media screen and (max-height: 450px) {*/
+        /*.overlay a {font-size: 20px}*/
+        /*.overlay .closebtn {*/
+            /*font-size: 40px;*/
+            /*top: 15px;*/
+            /*right: 35px;*/
+        /*}*/
+    /*}*/
 
 </style>

@@ -84,8 +84,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+    @import '../../assets/sass/mix.scss';
+
     .phone-mockup {
-        overflow: hidden;
         position: relative;
 
         &-phone {
@@ -94,6 +95,11 @@
             position: relative;
             left: 50%;
             z-index: 1;
+
+            @include smaller-than-desktop {
+                left: 10%;
+            }
+
         }
     }
 </style>

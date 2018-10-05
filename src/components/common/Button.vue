@@ -16,12 +16,13 @@
 button {
     background: transparent;
     border: solid #fff 1px;
-    padding: 8px 12px;
+    padding: 18px 28px;
     color: #fff;
-    height: 80px;
+    /*height: 80px;*/
     border: 4px solid #ffffff;
     white-space: nowrap;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 span {

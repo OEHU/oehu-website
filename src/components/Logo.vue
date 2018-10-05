@@ -1,7 +1,10 @@
 <template>
     <div class="logo">
         <HeadCutout/>
-        <img src="../assets/images/logo/Logo.png" />
+        <div>
+            <img src="../assets/images/logo/Logo.png"/>
+        </div>
+
         <h2 class="tagline is-size-1">
             Sharing energy data for the better
         </h2>
@@ -18,26 +21,28 @@
 </script>
 
 <style scoped lang="scss">
-.logo {
-    text-align: center;
+    @import '../assets/sass/mix.scss';
 
-    .tagline {
-        margin: 0;
+    .logo {
         text-align: center;
-        color: #000;
-    }
 
-    img {
-        width: 480px;
-        max-width: 70%;
-        padding: 30px 60px 15px 60px;
-        display: inline-block;
-        margin-left: 170px;
-    }
-    @media(min-width: 480px) {
+        .tagline {
+            margin: 0;
+            text-align: center;
+            color: #000;
+        }
+
         img {
-            padding: 60px 60px 30px 60px;
+            max-width: 70%;
+            margin: 40px auto;
+            display: block;
+
+            @include minimum-desktop() {
+                max-width: 480px;
+            }
+            @include tablet() {
+                max-width: 40%;
+            }
         }
     }
-}
 </style>
