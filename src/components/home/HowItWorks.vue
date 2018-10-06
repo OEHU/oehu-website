@@ -16,8 +16,10 @@
                         energy usage dashboard, detailed datasets from all contributors, and cloud-based data analysis
                         tools.
                     </p>
-                    <Button class="oehu-btn-primary" title="Get Started!"/>
-                    <Button class="contribute" title="How Can I Contribute?"/>
+                    <div class="btn-wrapper">
+                        <Button class="oehu-btn oehu-btn-primary" title="Get Started!"/>
+                        <Button class="oehu-btn contribute" title="How Can I Contribute?"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,6 +47,10 @@
 
         &-columns {
             padding: 100px 0;
+
+            @include mobile() {
+                padding: 30px 0;
+            }
         }
 
         .oehu_home_image {
@@ -54,8 +60,45 @@
 
         .content {
             .title {
+                margin: 0 auto 50px auto;
+                max-width: 80vw;
+                line-height: 30px;
+                font-weight: 400;
                 color: #ffffff;
+                font-size: 64px;
+
+                @include mobile() {
+                    margin: 0 auto 24px auto;
+                    font-size: 24px;
+                }
             }
+            p {
+                margin: 0 auto 40px auto;
+                max-width: 80vw;
+                font-weight: 400;
+                font-size: 32px;
+
+                @include mobile() {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .btn-wrapper {
+            max-width: 80vw;
+            margin: 0 auto;
+        }
+
+        .oehu-btn {
+            @include mobile() {
+                display: block;
+                width: 100%;
+                max-width: 80vw;
+                margin: 15px auto;
+                margin-bottom: 15px;
+            }
+        }
+        .oehu-btn-primary {
         }
     }
 </style>

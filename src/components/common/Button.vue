@@ -20,9 +20,12 @@ button {
     white-space: nowrap;
     cursor: pointer;
     margin-right: 20px;
-    padding: 8px 10px;
+    margin-bottom: 20px;
+    padding: 12px 20px;
 
     @media (min-width: 480px) {
+        margin-right: 38px;
+        margin-bottom: 40px;
         padding: 18px 28px;
         border: 4px solid #ffffff;
     }
