@@ -4,7 +4,7 @@
         <WhatIs />
         <Social />
         <HowItWorks />
-        <!--<DevicesConnected />-->
+        <DevicesConnected />
         <Maps/>
         <GetStarted />
         <Footer/>

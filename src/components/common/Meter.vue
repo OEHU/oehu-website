@@ -1,10 +1,14 @@
 <template>
     <div class="meter">
-        <span class="meter-text-above">{{this.textAbove}}</span>
+        <div class="meter-text-above">
+            {{this.textAbove}}
+        </div>
         <div class="circle">
             {{this.value}}
         </div>
-        <span class="meter-text-under">{{this.description}}</span>
+        <span class="meter-text-under">
+            {{this.description}}
+        </span>
     </div>
 
 </template>
@@ -17,31 +21,58 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../assets/sass/mix.scss';
+
     .meter {
+        flex: 1;
+        text-align: center;
+
+        @include mobile() {
+            margin-top: 40px auto;
+            padding: 40px 0 20px 0;
+            max-width: 80vw;
+        }
+
         .circle {
+            margin: 0 auto;
             border: 4px solid #fefefe;
             border-radius: 20px;
-            display: table-cell;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             height: 184px;
             width: 184px;
             text-align: center;
             vertical-align: middle;
             border-radius: 50%;
-            font-size: 44px;
             font-weight: 400;
+            font-size: 22px;
+
+            @media (min-width: 480px) {
+                height: 120px;
+                width: 120px;
+                font-size: 30px;
+            }
+            @media (min-width: 960px) {
+                font-size: 44px;
+                height: 184px;
+                width: 184px;
+            }
         }
         .meter-text-above{
-            margin-left: 50px;
-            position: relative;
-            bottom: 20px;
+            min-height: 20px;
+            margin-bottom: 20px;
         }
         .meter-text-under{
-            margin-left: 33px;
-            margin-top: 20px;
-            max-width: 120px;
-            display: flex;
-            justify-content: center;
+            font-size: 18px;
+            display: block;
             text-align: center; 
+            word-wrap: break-word;
+            width: 88%;
+            margin: 20px auto;
+
+            @include mobile() {
+            }
         }
     }
 </style>
