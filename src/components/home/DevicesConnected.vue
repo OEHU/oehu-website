@@ -2,7 +2,10 @@
     <div class="devices-connected">
         <div class="container">
             <div class="devices-connected-columns ">
-                <h2 class="is-size-1">These OEHU's already connected</h2>
+                <Title
+                    title="These OEHU's already connected"
+                    color="black"
+                    />
                 <div class="meters-wrapper">
                     <Meter class="meter" value="00042" textAbove="" description="Meters connected"/>
                     <Meter class="meter" value="00026" textAbove="Past 24Hr" description="Average KwH usage per household"/>
@@ -18,21 +21,16 @@
 
 <script>
     import Meter from '@/components/common/Meter.vue'
+    import Title from '@/components/common/Title.vue'
 
     export default {
         name: 'DevicesConnected',
-        components: {Meter},
+        components: {Meter, Title},
     }
 </script>
 
 <style scoped lang="scss">
     @import '../../assets/sass/mix.scss';
-
-    h2 {
-        text-align: center;
-        color: black;
-        margin-bottom: 100px;
-    }
 
     .meters-wrapper {
         width: 80vw;

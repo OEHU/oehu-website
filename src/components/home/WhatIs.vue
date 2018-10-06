@@ -2,9 +2,7 @@
     <div class="what-is">
         <div class="what-is-columns columns is-gapless">
             <div class="column content is-three-fifths is-four-fifths-tablet">
-                <h1 class="title">
-                    What is OEHU?
-                </h1>
+                <Title title="What is OEHU?" color="white" />
                 <p>
                     The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart
                     meter data.
@@ -25,12 +23,13 @@
 
 <script>
     import Button from "@/components/common/Button.vue";
+    import Title from "@/components/common/Title.vue";
     import PhoneMockup from "@/components/home/PhoneMockup.vue";
     import FlowBackground from "@/components/home/FlowBackgroundRight.vue";
 
     export default {
         name: "WhatIs",
-        components: {Button, PhoneMockup, FlowBackground}
+        components: {Button, Title, PhoneMockup, FlowBackground}
     };
 </script>
 
@@ -63,21 +62,6 @@
             @media (min-width: 480px) {
                 padding-top: 58px;
                 padding-bottom: 58px;
-            }
-        }
-
-        .title {
-            font-size: 24px;
-            line-height: 30px;
-            font-weight: 400;
-            letter-spacing: -0.1px;
-            color: #fff;
-
-            margin-bottom: 30px;
-
-            @media (min-width: 480px) {
-                font-size: 64px;
-                line-height: 92px;
             }
         }
 

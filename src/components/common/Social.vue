@@ -2,7 +2,7 @@
     <div class="social">
         <div class="container">
 
-            <h1>Join our community!</h1>
+            <Title title="Join our community!" color="black" />
 
             <p>
                 Stay up to date on OEHU's developments by subscribing to our newsletter or follow us on one of the
@@ -41,9 +41,10 @@
 
 <script>
     import NewsletterSubscribe from "@/components/common/NewsletterSubscribe.vue";
+    import Title from "@/components/common/Title.vue";
 
     export default {
-        components: {NewsletterSubscribe},
+        components: {Title, NewsletterSubscribe},
         name: "Social"
     };
 </script>
@@ -79,8 +80,6 @@
 
         }
         h1 {
-            font-size: 4rem;
-            font-weight: 400;
             margin-bottom: 15px;
 
             @include tablet() {
@@ -88,7 +87,6 @@
             }
             @include mobile() {
                 margin-bottom: 10px;
-                font-size: 24px;
                 font-weight: 400;
             }
         }

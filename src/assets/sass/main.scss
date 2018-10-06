@@ -33,16 +33,6 @@ h1, h2, h3, h4, h5, h6, .serif {
 Typography
  */
 .content {
-  .title {
-    font-size: 4rem;
-
-    @include tablet() {
-      font-size: 3rem;
-    }
-    @include mobile() {
-      font-size: 3rem;
-    }
-  }
   p {
     font-size: 2rem;
     margin: 0;

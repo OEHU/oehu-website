@@ -3,9 +3,10 @@
         <div class="container">
             <div class="get-started-columns columns is-gapless">
                 <div class="column content is-three-fifths">
-                    <h1 class="title">
-                        Get Started & sign up for a dashboard
-                    </h1>
+                    <Title
+                        title="Get Started & sign up for a dashboard"
+                        color="#fff"
+                        />
                     <p>
                         Rotterdam The Hague Open Energy Hub/OEHU is a public, open-source, distributed database for
                         smart
@@ -31,12 +32,13 @@
 
 <script>
     import Button from "@/components/common/Button.vue";
+    import Title from "@/components/common/Title.vue";
     import PhoneMockup from "@/components/home/PhoneMockup.vue";
     import FlowBackground from "@/components/home/FlowBackgroundRight.vue";
 
     export default {
         name: "WhatIs",
-        components: {Button, PhoneMockup, FlowBackground}
+        components: {Button, Title, PhoneMockup, FlowBackground}
     };
 </script>
 
@@ -51,11 +53,6 @@
                 padding-top: 10% !important;
                 padding-bottom: 10% !important;
             }
-        }
-
-        .title {
-            color: #ffffff;
-            /*line-height: 80px;*/
         }
 
         .buttons {

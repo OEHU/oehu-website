@@ -7,9 +7,8 @@
                 </div>
 
                 <div class="column content is-four-fifths-tablet is-three-fifths-desktop">
-                    <h1 class="title">
-                        How it works
-                    </h1>
+                <div class="column content is-four-fifths-tablet is-Title-fifths-desktop">
+                    <Title title="How it works" color="white" class="title"/>
                     <p>
                         The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart
                         meters. Users can contribute their data and in return gain access to a personal
@@ -25,16 +24,18 @@
         </div>
         <FlowBackground/>
     </div>
+  </div>
 
 </template>
 
 <script>
     import Button from "@/components/common/Button.vue";
+    import Title from "@/components/common/Title.vue";
     import FlowBackground from "@/components/home/FlowBackgroundLeft.vue";
 
     export default {
         name: "HowItWorks",
-        components: {Button, FlowBackground}
+        components: {Button, Title, FlowBackground}
     };
 </script>
 
@@ -62,14 +63,10 @@
             .title {
                 margin: 0 auto 50px auto;
                 max-width: 80vw;
-                line-height: 30px;
                 font-weight: 400;
-                color: #ffffff;
-                font-size: 64px;
 
                 @include mobile() {
                     margin: 0 auto 24px auto;
-                    font-size: 24px;
                 }
             }
             p {
