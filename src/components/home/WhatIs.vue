@@ -1,26 +1,24 @@
 <template>
     <div class="what-is">
-        <div class="container">
-            <div class="what-is-columns columns is-gapless">
-                <div class="column content is-three-fifths is-four-fifths-tablet">
-                    <h1 class="title">
-                        What is OEHU?
-                    </h1>
-                    <p>
-                        The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart
-                        meter data.
-                        Users can contribute their data dit is een Hyperlinks style to a personal energy usage
-                        dashboard, detailed datasets from all contributors,
-                        and cloud-based data analysis tools.
-                    </p>
-                    <Button class="readmore" title="read more"/>
-                </div>
-                <div class="column">
-                    <PhoneMockup/>
-                </div>
+        <div class="what-is-columns columns is-gapless">
+            <div class="column content is-three-fifths is-four-fifths-tablet">
+                <h1 class="title">
+                    What is OEHU?
+                </h1>
+                <p>
+                    The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart
+                    meter data.
+                    Users can contribute their data dit is een Hyperlinks style to a personal energy usage
+                    dashboard, detailed datasets from all contributors,
+                    and cloud-based data analysis tools.
+                </p>
+                <Button class="readmore" title="read more"/>
+            </div>
+            <div class="column">
+                <PhoneMockup class="PhoneMockup" />
             </div>
         </div>
-        <FlowBackground/>
+        <FlowBackground class="FlowBackground" />
     </div>
 
 </template>
@@ -40,27 +38,63 @@
     @import '../../assets/sass/mix.scss';
 
     .what-is {
+
         position: relative;
+        padding: 0 10%;
 
         .columns {
-            margin-bottom: 0 !important;
-            .content {
-                padding-top: 10% !important;
-                padding-left: 10% !important;
+            margin-top: 30px;
 
+            @media (min-width: 480px) {
+                .content {
+                    margin-top: 125px;
+                    padding-right: 10%;
+                    padding-left: 10%;
+                }
+            }
+        }
+
+        .what-is-columns {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 30px;
+            padding-bottom: 30px;
+
+            @media (min-width: 480px) {
+                padding-top: 58px;
+                padding-bottom: 58px;
             }
         }
 
         .title {
-            color: #ffffff;
-            letter-spacing: -0.15px;
+            font-size: 24px;
+            line-height: 30px;
+            font-weight: 400;
+            letter-spacing: -0.1px;
+            color: #fff;
+
             margin-bottom: 30px;
+
+            @media (min-width: 480px) {
+                font-size: 64px;
+                line-height: 92px;
+            }
         }
 
         .readmore {
-            margin: 50px 0;
+            margin: 12px 0;
+            @media (min-width: 480px) {
+                margin: 24px 0;
+            }
         }
-    }
 
+        p {
+            font-size: 18px;
+            @media (min-width: 480px) {
+                font-size: 1.6rem;
+            }
+        }
+
+    }
 
 </style>

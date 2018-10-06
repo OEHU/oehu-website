@@ -15,14 +15,24 @@
 
 button {
     background: transparent;
-    border: solid #fff 1px;
-    padding: 18px 28px;
+    border: solid #fff 2px;
     color: #fff;
-    /*height: 80px;*/
-    border: 4px solid #ffffff;
     white-space: nowrap;
     cursor: pointer;
     margin-right: 20px;
+    padding: 8px 10px;
+
+    @media (min-width: 480px) {
+        padding: 18px 28px;
+        border: 4px solid #ffffff;
+    }
+
+    span {
+        font-size: 16px;
+        @media (min-width: 480px) {
+            font-size: 24px;
+        }
+    }
 }
 
 span {

@@ -40,6 +40,11 @@
             width: 280px;
             max-width: 100%;
 
+            @media (min-width: 374px) {
+                font-size: 28px;
+                line-height: 44px;
+            }
+
             @media (min-width: 480px) {
                 font-size: 3rem;
                 line-height: 4rem;
