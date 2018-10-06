@@ -1,5 +1,5 @@
 <template>
-    <img src="../../assets/images/maps.png">
+
 </template>
 
 <script>
