@@ -12,26 +12,28 @@
             <NewsletterSubscribe/>
 
             <div class="social-icons flex center">
-            <span class="social-icon">
-                <a href="https://github.com/OEHU/" target="_blank">
-                    <img src="../../assets/images/social/Github.png"/>
-                </a>
-            </span>
+
                 <span class="social-icon">
-                <a href="https://twitter.com/oehu_project" target="_blank">
-                    <img src="../../assets/images/social/Twitter.png"/>
-                </a>
-            </span>
+                    <a href="https://github.com/OEHU/" target="_blank">
+                        <img src="../../assets/images/social/Github.png"/>
+                    </a>
+                </span>
                 <span class="social-icon">
-                <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                    <img src="../../assets/images/social/Telegram.png"/>
-                </a>
-            </span>
+                    <a href="https://twitter.com/oehu_project" target="_blank">
+                        <img src="../../assets/images/social/Twitter.png"/>
+                    </a>
+                </span>
                 <span class="social-icon">
-                <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                    <img src="../../assets/images/social/LinkedIn.png"/>
-                </a>
-            </span>
+                    <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
+                        <img src="../../assets/images/social/Telegram.png"/>
+                    </a>
+                </span>
+                <span class="social-icon">
+                    <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
+                        <img src="../../assets/images/social/LinkedIn.png"/>
+                    </a>
+                </span>
+
             </div>
         </div>
     </div>
@@ -54,28 +56,47 @@
         background: #fff;
         color: #333;
         text-align: center;
-        padding: 25px 0;
+        padding: 30px 0;
+
+        @include mobile() {
+            padding: 25px 0;
+        }
+
         p {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: 400;
+            margin: 15px auto;
+            width: 1100px;
+            max-width: 80%;
 
             @include tablet() {
                 font-size: 1.6rem;
             }
             @include mobile() {
-                font-size: 1.3rem;
+                margin-top: 10px;
+                font-size: 18px;
             }
+
         }
         h1 {
             font-size: 4rem;
             font-weight: 400;
+            margin-bottom: 15px;
 
             @include tablet() {
                 font-size: 3.4rem;
             }
             @include mobile() {
-                font-size: 2.7rem;
+                margin-bottom: 10px;
+                font-size: 24px;
+                font-weight: 400;
             }
+        }
+        .social-icons {
+            @include mobile() {
+                margin-bottom: 20px;
+            }
+            margin-bottom: 50px;
         }
         .social-icon {
             max-width: 60px;

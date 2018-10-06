@@ -8,7 +8,7 @@
                 <div class="response" id="mce-error-response" style="display:none"></div>
                 <div class="response" id="mce-success-response" style="display:none"></div>
             </div>
-            <div class="flex center">
+            <div class="inputWrapper flex center">
                 <div class="mc-field-group">
                     <label for="mce-EMAIL"></label>
                     <input type="email" value="" name="EMAIL" class="required email input"
@@ -33,31 +33,59 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import '../../assets/sass/mix.scss';
+
 .NewsletterSubscribe {
-  margin: 30px 25px 30px;
+  margin: 30px 10% 30px;
+
+  .inputWrapper {
+    flex-wrap: wrap;
+  }
+
+  #mce-EMAIL {
+    width: 500px;
+    max-width: 80vw;
+    height: 80px;
+    border-radius: 0;
+    box-shadow: none;
+
+    color: #9d9d9b;
+    background-color: #f3f3f3;
+
+    margin-bottom: 15px;
+
+    @include mobile() {
+      height: auto;
+      padding: 12px 20px;
+
+      color: #9b9b9b;
+      font-size: 16px;
+      line-height: 17px;
+    }
+  }
+
+  #mc-embedded-subscribe {
+    margin-left: 15px;
+    background: #ffde00;
+    border-radius: 0;
+    color: #333;
+    width: 200px;
+    height: 80px;
+
+    @include mobile() {
+      width: auto;
+      height: auto;
+      font-size: 16px;
+      line-height: 17px;
+      padding: 12px 20px;
+    }
+  }
+
+  input {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
 }
 
-#mce-EMAIL {
-  color: #9d9d9b;
-  border-radius: 0;
-  box-shadow: none;
-  max-width: 40vw;
-  width: 500px;
-  height: 80px;
-  background-color: #f3f3f3;
-}
-
-#mc-embedded-subscribe {
-  margin-left: 15px;
-  background: #ffde00;
-  border-radius: 0;
-  color: #333;
-  width: 200px;
-  height: 80px;
-}
-
-input {
-  font-size: 24px;
-  font-weight: 600;
-}
 </style>
