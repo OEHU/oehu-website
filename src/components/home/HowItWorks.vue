@@ -1,6 +1,6 @@
 <template>
     <div class="how-it-works">
-        <div class="container">
+        <div class="">
             <div class="how-it-works-columns columns">
                 <div class="column">
                     <img class="oehu_home_image" src="../../assets/images/oehu_home.png"/> <!-- //TODO: SVG -->
@@ -8,13 +8,16 @@
 
                 <div class="column content is-four-fifths-tablet is-three-fifths-desktop">
                 <div class="column content is-four-fifths-tablet is-Title-fifths-desktop">
+
                     <Title title="How it works" color="white" class="title"/>
+
                     <p>
                         The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart
                         meters. Users can contribute their data and in return gain access to a personal
                         energy usage dashboard, detailed datasets from all contributors, and cloud-based data analysis
                         tools.
                     </p>
+
                     <div class="btn-wrapper">
                         <Button class="oehu-btn oehu-btn-primary" title="Get Started!"/>
                         <Button class="oehu-btn contribute" title="How Can I Contribute?"/>
@@ -47,7 +50,7 @@
         background: $primary;
 
         &-columns {
-            padding: 100px 0;
+            padding: 100px 0 50px 0;
 
             @include mobile() {
                 padding: 30px 0;
@@ -84,6 +87,10 @@
         .btn-wrapper {
             max-width: 80vw;
             margin: 0 auto;
+
+            @include minimum-desktop() {
+                display: flex;
+            }
         }
 
         .oehu-btn {

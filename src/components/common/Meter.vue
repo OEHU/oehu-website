@@ -28,7 +28,7 @@
         text-align: center;
 
         @include mobile() {
-            margin-top: 40px auto;
+            margin: 0 auto;
             padding: 40px 0 20px 0;
             max-width: 80vw;
         }

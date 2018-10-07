@@ -5,6 +5,7 @@
                 <Title
                     title="These OEHU's already connected"
                     color="black"
+                    class="title"
                     />
                 <div class="meters-wrapper">
                     <Meter class="meter" value="00042" textAbove="" description="Meters connected"/>
@@ -31,9 +32,25 @@
 <style scoped lang="scss">
     @import '../../assets/sass/mix.scss';
 
+    .devices-connected {
+        margin-bottom: 60px;
+        margin-top: 100px;
+
+        @include mobile() {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .title {
+        @include minimum-desktop() {
+            margin-bottom: 70px;
+        }
+    }
+
     .meters-wrapper {
         width: 80vw;
-        margin: 0 auto;
+        margin: -40px auto 0 auto;
 
         @media (min-width: 480px) {
             width: auto;
@@ -53,8 +70,4 @@
         }
     }
 
-    .devices-connected {
-        margin-bottom: 150px;
-        margin-top: 100px;
-    }
 </style>

@@ -4,16 +4,11 @@
             <div class="get-started-columns columns is-gapless">
                 <div class="column content is-three-fifths">
                     <Title
-                        title="Get Started & sign up for a dashboard"
+                        title="Get started & sign up for a dashboard"
                         color="#fff"
                         />
                     <p>
-                        Rotterdam The Hague Open Energy Hub/OEHU is a public, open-source, distributed database for
-                        smart
-                        meter
-                        data. Users can contribute their data and in return gain access to a personal energy usage
-                        dashboard,
-                        detailed datasets from all contributors and cloud-based data analysis tools.
+                        Rotterdam The Hague Open Energy Hub/OEHU is a public, open-source, distributed database for smart meter data. Users can contribute their data and in return gain access to a personal energy usage dashboard, detailed datasets from all contributors and cloud-based data analysis tools.
                     </p>
                     <div class="buttons">
                         <Button class="oehu-btn-primary" title="Get Started!"/>
@@ -58,6 +53,11 @@
         .buttons {
             margin-bottom: 40px;
         }
+    }
+
+    p {
+        font-size: 18px;
+        font-weight: 400;
     }
 
     .smart_oehu_image {
