@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "Footer closing",
+  name: "FooterClosing",
   components: {}
 };
 </script>

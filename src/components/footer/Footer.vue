@@ -88,9 +88,6 @@ export default {
 }
 .contact {
     color: white;
-    position: relative;
-    left: 50px;
-    top: 25px;
 }
 
 .contact:hover {
@@ -104,14 +101,8 @@ export default {
   height: 21px;
 }
 .footer_logo {
-  position: relative;
-  bottom: 220px;
-  left: 50px;
 }
 .footer_menu {
-  position: relative;
-  left: 1750px;
-  bottom: 250px;
 }
 .footer_menu ul li a{
   color: white;

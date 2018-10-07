@@ -14,7 +14,6 @@
                 </div>
             </div>
         </div>
-        <FlowBackground/>
     </div>
 
 </template>
