@@ -1,49 +1,54 @@
 
 <template>
     <div class="footer_container">
-        <div class="social">
-            <div class="social-icons flex center">
-                <span class="social-icon">
-                    <a href="https://github.com/OEHU/" target="_blank">
-                        <img src="../../assets/images/social/github_footer.png"/>
-                    </a>
-                </span>
-                <span class="social-icon">
-                    <a href="https://twitter.com/oehu_project" target="_blank">
-                        <img src="../../assets/images/social/twitter_footer.png"/>
-                    </a>
-                </span>
-                <span class="social-icon">
-                    <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                        <img src="../../assets/images/social/telegram_footer.png"/>
-                    </a>
-                </span>                
-                <span class="social-icon">
-                    <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                        <img src="../../assets/images/social/linkedin_footer.png"/>
-                    </a>
-                </span>
-            </div>
-        </div>
-
-        <a class="contact" href="mailto:contact@oehu.org">contact@oehu.org</a> 
 
         <div class="footer_logo">
             <img src="../../assets/images/oehu_footer.png"/>
         </div>
 
-        <div class="footer_menu">
-            <ul>
-                <li><a href="#">Menu Item</a></li>
-                <li><a href="#">Menu Item</a></li>
-                <li><a href="#">Menu Item</a></li>
-                <li><a href="#">Menu Item</a></li>
-                <li><a href="#">Menu Item</a></li>
-                <li><a href="#">Menu Item</a></li>
-            </ul>
+        <div class="flex">
+
+          <a class="contact" href="mailto:contact@oehu.org">
+          </a> 
+
+          <div class="social">
+              <div class="social-icons flex center">
+                  <span class="social-icon">
+                      <a href="https://github.com/OEHU/" target="_blank">
+                          <img src="../../assets/images/social/github_footer.png"/>
+                      </a>
+                  </span>
+                  <span class="social-icon">
+                      <a href="https://twitter.com/oehu_project" target="_blank">
+                          <img src="../../assets/images/social/twitter_footer.png"/>
+                      </a>
+                  </span>
+                  <span class="social-icon">
+                      <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
+                          <img src="../../assets/images/social/telegram_footer.png"/>
+                      </a>
+                  </span>                
+                  <span class="social-icon">
+                      <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
+                          <img src="../../assets/images/social/linkedin_footer.png"/>
+                      </a>
+                  </span>
+              </div>
+          </div>
+
+          <div class="footer_menu">
+              <ul>
+                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="#">Menu Item</a></li>
+              </ul>
+          </div>
+        
         </div>
 
-        
     </div>
     
 </template>
@@ -57,23 +62,32 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+@import '../../assets/sass/mix.scss';
+
 .footer_container {
   background: black;
-  height: 240px;
   position: relative;
+
+  padding: 30px 0 0 0;
+  @include minimum-desktop() {
+    height: 240px;
+    padding: 0;
+  }
 }
 
 .social {
+  flex: 1;
   background: black;
   color: #333;
   text-align: center;
   padding: 25px 0;
+
   h1 {
     font-size: 40px;
     font-family: serif;
   }
-  h1,
-  p {
+  h1, p {
     max-width: 65vw;
     margin: 0 auto;
   }
@@ -81,38 +95,54 @@ export default {
     max-width: 60px;
     margin: 21px;
   }
-}
-.social-icons {
-  position: relative;
-  top: 120px;
-}
-.contact {
-    color: white;
+  .social-icon a {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+  }
 }
 
-.contact:hover {
-   color: #186dff;
+.social-icons {
+  @include minimum-desktop() {
+    position: relative;
+    top: 120px;
+  }
 }
-.closing {
-  float: right;
-  color: black;
+
+.footer_logo {  
+  @include minimum-desktop() {
+    position: absolute;
+    left: 30px;
+    top: -62px;
+  }
+}
+.footer_logo img {
+  display: block;
+  margin: 0 auto;
+  
+  @include minimum-desktop() {
+    margin: 0;
+  }
+}
+
+.footer_menu {
+  padding: 30px;
+  color: white;
+
+  @include mobile() {
+    display: none;
+  }
+}
+.footer_menu a {
+  color: #fff;
+  display: block;
   font-size: 18px;
   font-weight: 600;
-  height: 21px;
+  line-height: 30px;
 }
-.footer_logo {
-}
-.footer_menu {
-}
-.footer_menu ul li a{
-  color: white;
-}
-.footer_menu ul li a:hover {
-  color: #186dff;
+.footer_menu a:hover {
+  color: #176af8;
   cursor: pointer;
-}
-.hover_item {
-  position: relative;
-  right: 43px;
 }
 </style>
