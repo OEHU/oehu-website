@@ -1,49 +1,57 @@
 <template>
     <div class="header">    
-    <svg class="head-cutout" width="100%" viewBox="0 0 1444 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="Desktop-HD-Home-01" fill="#000000">
-                <path d="M1.13686838e-13,2.13162821e-14 C1.13686838e-13,2.13162821e-14 601.669931,360 1444,2.13162821e-14 C1444,2.13162821e-14 1.13686838e-13,2.13162821e-14 1.13686838e-13,2.13162821e-14 Z" id="Path-2"></path>
+        <svg class="head-cutout" width="100%" viewBox="0 0 1444 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Desktop-HD-Home-01" fill="#000000">
+                    <path d="M1.13686838e-13,2.13162821e-14 C1.13686838e-13,2.13162821e-14 601.669931,360 1444,2.13162821e-14 C1444,2.13162821e-14 1.13686838e-13,2.13162821e-14 1.13686838e-13,2.13162821e-14 Z" id="Path-2"></path>
+                </g>
             </g>
-        </g>
-    </svg>
-    <!--<router-link :to="{name: 'login'}">-->
-        <!--<Button  class="login" title="log in" />-->
-    <!--</router-link>-->
-    <!--<div class="menu_button"><input @click="openNav()" type="submit" name="" value=""></div>-->
-        <!--<div ref="menu" class="overlay">-->
-            <!--<a class="closebtn" @click="closeNav()">&times;</a>-->
-            <!--<img src="../../assets/images/logo/LogoSmall.png" />-->
-            <!--<div class="overlay-content">-->
-                <!--<a href="#">Menu item</a>-->
-                <!--<a href="#">Menu item</a>-->
-                <!--<a href="#">Menu item</a>-->
-                <!--<a href="#">Menu item</a>-->
-                <!--<span>Follow us on</span>-->
-                <!--<div class="social-icons flex center">-->
-                    <!--<span class="social-icon">-->
-                        <!--<a href="https://github.com/OEHU/" target="_blank">-->
-                            <!--<img src="../../assets/images/social/Github.png"/>-->
-                        <!--</a>-->
-                    <!--</span>-->
-                    <!--<span class="social-icon">-->
-                        <!--<a href="https://twitter.com/oehu_project" target="_blank">-->
-                            <!--<img src="../../assets/images/social/Twitter.png"/>-->
-                        <!--</a>-->
-                    <!--</span>-->
-                    <!--<span class="social-icon">-->
-                        <!--<a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">-->
-                            <!--<img src="../../assets/images/social/Telegram.png"/>-->
-                        <!--</a>-->
-                    <!--</span>            -->
-                    <!--<span class="social-icon">-->
-                        <!--<a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">-->
-                            <!--<img src="../../assets/images/social/LinkedIn.png"/>-->
-                        <!--</a>-->
-                    <!--</span>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+        </svg>
+        <div class="Navigation flex">
+            <router-link :to="{name: 'login'}">
+                <Button class="login" title="log in" />
+            </router-link>
+            <div class="menu_button">
+                <div @click="openNav()"/>
+            </div>
+            <div ref="menu" class="overlay">
+                <a class="closebtn" @click="closeNav()">&times;</a>
+                <img src="../../assets/images/logo/LogoSmall.png" />
+                <div class="overlay-content">
+                    <a href="/">Home</a>
+                    <a href="/get-started">Get started</a>
+                    <!-- <a href="/faq">FAQ</a> -->
+                    
+                    <!--
+                     <span>Follow us on</span>
+
+                    <div class="social-icons flex center">
+                        <span class="social-icon">
+                            <a href="https://github.com/OEHU/" target="_blank">
+                                <img src="../../assets/images/social/Github.png"/>
+                            </a>
+                        </span>
+                        <span class="social-icon">
+                            <a href="https://twitter.com/oehu_project" target="_blank">
+                                <img src="../../assets/images/social/Twitter.png"/>
+                            </a>
+                        </span>
+                        <span class="social-icon">
+                            <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
+                                <img src="../../assets/images/social/Telegram.png"/>
+                            </a>
+                        </span>            
+                        <span class="social-icon">
+                            <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
+                                <img src="../../assets/images/social/LinkedIn.png"/>
+                            </a>
+                        </span>
+                    </div>
+                    -->
+
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -64,33 +72,43 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+    @import '../../assets/sass/mix.scss';
+
+    .header {
+        position: relative;
+    }
+
     .head-cutout {
         max-height: 150px;
     }
-    .login {
-        width: 120px;
-        height: 50px;
-        position: relative;
-        float:right;
-        right: 150px;
-        bottom: 130px;
+
+    .Navigation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding: 30px 0;
+        justify-content: flex-end;
+
+        @include mobile() {
+            display: none;
+        }
     }
-    .menu_button input{
-        position: relative;
-        left: 100px;
-        float:right;
+    .menu_button div {
         bottom: 130px;
         cursor: pointer;
-        background: url("../../assets/images/menu.png") no-repeat; //TODO: HTML
+        background: url("../../assets/images/menu.png") no-repeat left 50%;
         border: none;
         width: 100px;
-        height: 50px;
+        height: 75px;
     }
     .overlay{
         height: 100%;
         width: 0;
         position: fixed;
-        z-index: 10;
+        z-index: 20;
         left:0;
         top:0;
         background-color: white;
@@ -98,11 +116,9 @@ export default {
     }
 
     .overlay-content{
-        position: relative;
-        top: 5%;
-        width: 100%;
-        right: 40%;
-        margin-top: 30px;
+        text-align: left;
+        margin-top: 150px;
+        margin-left: 95px;
     }
 
     .overlay span {
@@ -149,14 +165,13 @@ export default {
         font-size: 60px;
     }
 
-    .social-icon{
-        width: 120px;
+    .social-icons{
+        width: 100vw;
+        text-align: center;
     }
 
-    .social-icons{
-        position: relative;
-        left: 70%;
-        bottom: 185px;
+    .social-icon{
+        width: 120px;
     }
 
     /*@media screen and (max-height: 450px) {*/

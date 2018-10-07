@@ -38,12 +38,9 @@
 
           <div class="footer_menu">
               <ul>
-                  <li><a href="#">Menu Item</a></li>
-                  <li><a href="#">Menu Item</a></li>
-                  <li><a href="#">Menu Item</a></li>
-                  <li><a href="#">Menu Item</a></li>
-                  <li><a href="#">Menu Item</a></li>
-                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/get-started">Get started</a></li>
+                  <!-- <li><a href="/faq">FAQ</a></li> -->
               </ul>
           </div>
         
@@ -52,7 +49,6 @@
     </div>
     
 </template>
-
 
 <script>
 export default {
@@ -68,8 +64,8 @@ export default {
 .footer_container {
   background: black;
   position: relative;
-
   padding: 30px 0 0 0;
+
   @include minimum-desktop() {
     height: 240px;
     padding: 0;
@@ -77,7 +73,6 @@ export default {
 }
 
 .social {
-  flex: 1;
   background: black;
   color: #333;
   text-align: center;

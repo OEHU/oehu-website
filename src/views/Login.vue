@@ -1,16 +1,32 @@
 <template>
-<div class="container">
-    <div class="form">
-        <form class="login-form">
-            <input type="text" placeholder="Username"/>
-            <input type="password" placeholder="Password"/>
-            <button>login</button>
-        </form>
+  <div>
+    <Logo />
+    <div class="container">
+      <div class="form">
+          <form class="login-form">
+              <input type="text" placeholder="Username"/>
+              <input type="password" placeholder="Password"/>
+              <button>login</button>
+          </form>
+      </div>
     </div>
-</div>
+    <Footer/>
+    <FooterClosing/>
+  </div>
 </template>
 <script>
-export default {};
+import Logo from '@/components/Logo.vue'
+import Footer from "@/components/footer/Footer.vue";
+import FooterClosing from "@/components/footer/FooterClosing.vue";
+
+export default {
+  name: "login",
+  components: {
+    Logo,
+    Footer,
+    FooterClosing
+  }
+};
 </script>
 <style scoped lang="scss">
 .container {
