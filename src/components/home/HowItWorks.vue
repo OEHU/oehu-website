@@ -19,8 +19,10 @@
                     </p>
 
                     <div class="btn-wrapper">
-                        <Button class="oehu-btn oehu-btn-primary" title="Get Started!"/>
-                        <Button class="oehu-btn contribute" title="How Can I Contribute?"/>
+                        <div v-on:click="getStarted()">
+                            <Button class="oehu-btn oehu-btn-primary" title="Get Started!"/>
+                        </div>
+                        <!-- <Button class="oehu-btn contribute" title="How Can I Contribute?"/> -->
                     </div>
                 </div>
             </div>
@@ -38,7 +40,12 @@
 
     export default {
         name: "HowItWorks",
-        components: {Button, Title, FlowBackground}
+        components: {Button, Title, FlowBackground},
+        methods: {
+            getStarted: function() {
+                document.location = '/get-started';
+            }
+        }
     };
 </script>
 

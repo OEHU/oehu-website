@@ -11,8 +11,10 @@
                         Rotterdam The Hague Open Energy Hub/OEHU is a public, open-source, distributed database for smart meter data. Users can contribute their data and in return gain access to a personal energy usage dashboard, detailed datasets from all contributors and cloud-based data analysis tools.
                     </p>
                     <div class="buttons">
-                        <Button class="oehu-btn-primary" title="Get Started!"/>
-                        <Button class="faq" title="FAQ"/>
+                        <div v-on:click="getStarted()">
+                            <Button class="oehu-btn-primary" title="Get Started!" />
+                        </div>
+                        <!-- <Button class="faq" title="FAQ"/> -->
                     </div>
                 </div>
                 <div class="column">
@@ -33,7 +35,12 @@
 
     export default {
         name: "WhatIs",
-        components: {Button, Title, PhoneMockup, FlowBackground}
+        components: {Button, Title, PhoneMockup, FlowBackground},
+        methods: {
+            getStarted: function() {
+                document.location = '/get-started';
+            }
+        }
     };
 </script>
 

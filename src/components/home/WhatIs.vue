@@ -10,7 +10,7 @@
                     dashboard, detailed datasets from all contributors,
                     and cloud-based data analysis tools.
                 </p>
-                <Button class="readmore" title="Read more"/>
+                <!-- <Button class="readmore" title="Read more"/> -->
             </div>
             <div class="column">
                 <PhoneMockup class="PhoneMockup" />

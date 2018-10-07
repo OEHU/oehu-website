@@ -9,11 +9,11 @@
                 Get Started
             </Title>
 
-            <p>
+            <p style="font-size: 1.1em">
                 So, you want to have full access to your energy data and view nice usage charts. It's takes three steps to be up & running:
             </p>
 
-            <ol>
+            <ol style="font-size: 1.1em">
                 <li>Get the right stuff</li>
                 <li>Connect/prepare your OEHU</li>
                 <li>Configure & go</li>
@@ -31,21 +31,20 @@
 
             <ol>
                 <li>
-                    <a href="https://www.sossolutions.nl/raspberry-pi-3-model-b-plus" target="_blank">Raspberry Pi</a> (Rpi), preferably version 2B and up
+                    <a href="https://www.sossolutions.nl/raspberry-pi-3-model-b-plus" target="_blank"><b>Raspberry Pi</b></a> (Rpi), preferably version 2B and up
                 </li>
                 <li>
-                    Power + micro-usb cable for the Rpi
+                    <b>Power + micro-usb cable</b> for the Rpi
                 </li>
                 <li>
-                    <a href="https://www.sossolutions.nl/slimme-meter-kabel" target="_blank">Smart Meter P1 cable</a>
+                    <a href="https://www.sossolutions.nl/slimme-meter-kabel" target="_blank"><b>Smart Meter P1 cable</b></a>
                 </li>
                 <li>
-                    Micro-SD card of 8GB
+                    <b>Micro-SD card</b> of 8GB
                 </li>
                 <li>
                     Optional: Ethernet cable to connect to your home internet network if your Rpi doesn't have WiFi or you don’t have a WiFi dongle
                 </li>
-
             </ol>
 
             <p>
@@ -82,8 +81,8 @@
                 <li>
                     Get yourself a nice cup of coffee, because the booting will take up to 20 minutes. Just let the Rpi do its thing. You know it is ready when you see either:
                     <ol>
-                        <li>a new WiFi network called OEHU Setup, or,</li>
-                        <li>when WiFi is not available on the Rpi and you use ethernet instead: you see that your Rpi is connected on this website: http://oehu.org/setup;</li>
+                        <li>A new WiFi network called OEHU Setup, or,</li>
+                        <li>When WiFi is not available on the Rpi and you use ethernet instead: you see that your Rpi is connected on this website: http://oehu.org/setup</li>
                     </ol>
                 </li>
             </ol>
@@ -138,6 +137,14 @@
 
             <img src="https://i.imgur.com/lDYx0uu.png" alt="Illustration: It works great!" />
 
+            <p>
+              Congratulations! You're now running your own node. In the future, just go to oehu.org to view your dashboard 😄
+            </p>
+
+            <p>
+                [example screenshot of personal OEHU dashboard]
+            </p>
+
         </div>
 
         <Footer/>
@@ -168,13 +175,16 @@ export default {
 .get-started {
     font-size: 18px;
     font-weight: 400;
-    
+
     .container {
+        width: 680px;
+        max-width: 100vw;
+        margin: 0 auto;
         padding-bottom: 100px;
     }
 
     img {
-        margin: 30px auto;
+        margin: 30px 0;
         display: block;
     }
 }
