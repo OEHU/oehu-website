@@ -1,9 +1,10 @@
 <template>
     <div class="logo">
         <HeadCutout/>
-        <div>
+
+        <a href="/">
             <img src="../assets/images/logo/Logo.png"/>
-        </div>
+        </a>
 
         <h2 class="tagline">
             Sharing energy data for the better
