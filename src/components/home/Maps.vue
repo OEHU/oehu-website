@@ -24,8 +24,6 @@
     import { LMap, LTileLayer, LMarker, LTooltip } from 'vue2-leaflet';
     import L from 'leaflet';
     import axios from 'axios';
-    import markerIcon from '@/assets/images/maps/marker-icon.png';
-    import retinaMarkerIcon from '@/assets/images/maps/marker-icon-2x.png';
 
     export default {
         name: 'Maps',
@@ -39,22 +37,18 @@
         data () {
             return {
                 zoom: 10,
-                markerIcon: markerIcon,
-                retinaMarkerIcon: retinaMarkerIcon,
                 center: {lat: 52.0182305, lng: 4.6910549},
                 url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                 attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                 markers: [],
                 LIcon: L.icon({
-                    iconUrl: this.markerIcon,
-                    iconRetinaUrl: this.retinaMarkerIcon,
-                    shadowUrl: this.markerIcon,
-                    iconSize: [38, 95],
-                    iconAnchor: [22, 94],
-                    popupAnchor: [-3, -76],
-                    shadowSize: [68, 95],
-                    shadowAnchor: [22, 94]
-                }),
+                    iconUrl: '/marker-icon.png',
+                    iconRetinaUrl: '/marker-icon-2x.png',
+                    // shadowUrl: 'https://static.afbeeldinguploaden.nl/1810/478987/xmrMaSzC.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    popupAnchor: [0, 0],
+                })
             };
         },
         methods: {
