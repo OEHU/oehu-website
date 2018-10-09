@@ -21,7 +21,7 @@
             <div ref="menu" class="overlay">
 
                 <div class="overlay-header">
-                    <img src="../../assets/images/logo/LogoSmall.png" />
+                    <img src="../../assets/images/logo/LogoSmall.png" @click="closeNav()" />
                     <a class="closebtn" @click="closeNav()">&times;</a>
                 </div>
 
@@ -41,7 +41,7 @@
 
                         <div class="social-icons flex center">
                             <a href="https://github.com/OEHU/" target="_blank">
-                                <img src="../../assets/images/social/Telegram.png" />
+                                <img src="../../assets/images/social/Github.png" />
                             </a>
                             <a href="https://twitter.com/oehu_project" target="_blank">
                                 <img src="../../assets/images/social/Twitter.png"/>
@@ -109,6 +109,18 @@ export default {
         margin-bottom: 0;
     }
 
+    .login {
+        height: 50px;
+        line-height: 42px;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        @include mobile() {
+            height: 40px;
+            line-height: 40px;
+        }
+    }
+
     .menu_button div {
         cursor: pointer;
         background: url("../../assets/images/menu.png") no-repeat center center;
@@ -174,15 +186,16 @@ export default {
 
     a.closebtn {
         float: right;
-        width: 30px;
-        height: 72px;
+        width: 40px;
+        height: 40px;
         padding: 0;
         background: url('../../assets/images/btn-close.svg') no-repeat center center;
         background-size: contain;
         text-indent: 9999px;
 
         @include mobile() {
-            height: 72px;
+            width: 40px;
+            height: 40px;
         }
     }
 

@@ -6,7 +6,7 @@
             <img src="../assets/images/logo/Logo.png"/>
         </a>
 
-        <h2 class="tagline">
+        <h2 class="tagline" v-if="this.showTagLine">
             Sharing energy data for the better
         </h2>
     </div>
@@ -16,8 +16,9 @@
     import HeadCutout from '@/components/header/HeadCutout.vue';
 
     export default {
-        components: {HeadCutout},
-        name: 'Logo'
+        name: 'Logo',
+        props: ['showTagLine'],
+        components: {HeadCutout}
     }
 </script>
 

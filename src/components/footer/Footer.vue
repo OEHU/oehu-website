@@ -3,7 +3,7 @@
     <div class="footer_container">
 
         <div class="footer_logo">
-            <img src="../../assets/images/oehu_footer.png"/>
+            <img src="../../assets/images/oehu_footer.png" @click="goHome()"/>
         </div>
 
         <div class="flex column-wrapper">
@@ -40,20 +40,24 @@
               <ul>
                   <li><a href="/">Home</a></li>
                   <li><a href="/get-started">Get started</a></li>
-                  <!-- <li><a href="/faq">FAQ</a></li> -->
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/faq">FAQ</a></li>
               </ul>
           </div>
         
         </div>
-
     </div>
-    
 </template>
 
 <script>
 export default {
   name: "Footer",
-  components: {}
+  components: {},
+  methods: {
+      goHome(){
+        document.location = '/';
+      }
+  }
 };
 </script>
 

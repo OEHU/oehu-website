@@ -14,7 +14,7 @@
                         <div v-on:click="getStarted()">
                             <Button class="oehu-btn-primary" title="Get Started!" />
                         </div>
-                        <!-- <Button class="faq" title="FAQ"/> -->
+                        <Button class="faq" title="FAQ"/>
                     </div>
                 </div>
                 <div class="column">
@@ -48,7 +48,6 @@
     @import '../../assets/sass/mix.scss';
 
     .get-started {
-        overflow: hidden;
         position: relative;
         .columns {
             .content {

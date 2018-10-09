@@ -9,11 +9,11 @@
                 Get Started
             </Title>
 
-            <p style="font-size: 1.1em">
+            <p>
                 So, you want to have full access to your energy data and view nice usage charts. It's takes three steps to be up & running:
             </p>
 
-            <ol style="font-size: 1.1em">
+            <ol>
                 <li>Get the right stuff</li>
                 <li>Connect/prepare your OEHU</li>
                 <li>Configure & go</li>
@@ -172,12 +172,14 @@ export default {
 
 <style scoped lang="scss">
 
+@import '../assets/sass/mix.scss';
+
 .get-started {
     font-size: 18px;
     font-weight: 400;
 
     .container {
-        width: 680px;
+        width: 800px;
         max-width: 100vw;
         margin: 0 auto;
         padding-bottom: 100px;
@@ -201,12 +203,23 @@ h2 {
 
 ol {
     margin: 15px 45px;
-    max-width: 700px;
+    max-width: 800px;
+}
+
+li, p {
+    @include tablet() {
+        font-size: 28px;
+        line-height: 1.5;
+    }
+    @include minimum-desktop() {
+        font-size: 28px;
+        line-height: 1.5;
+    }
 }
 
 p {
     margin: 15px 0;
-    max-width: 700px;
+    max-width: 800px;
 }
 
 </style>

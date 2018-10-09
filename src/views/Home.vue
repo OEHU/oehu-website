@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <Logo />
+        <Logo showTagLine={true} />
         <WhatIs />
         <Social />
         <HowItWorks />

@@ -10,7 +10,7 @@
                     dashboard, detailed datasets from all contributors,
                     and cloud-based data analysis tools.
                 </p>
-                <!-- <Button class="readmore" title="Read more"/> -->
+                <Button class="readmore" title="Read more"/>
             </div>
             <div class="column">
                 <PhoneMockup class="PhoneMockup" />
@@ -54,6 +54,9 @@
         }
 
         .what-is-columns {
+            width: 1200px;
+            max-width: 100%;
+
             margin-top: 0;
             margin-bottom: 0;
             padding-top: 30px;

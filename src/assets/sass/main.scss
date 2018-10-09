@@ -18,6 +18,10 @@ $family-serif: YoungSerif, serif;
 
 @import "~bulma/bulma";
 
+*:focus {
+  outline: none;
+}
+
 html, body {
   width: 100%;
   height: 100%;
