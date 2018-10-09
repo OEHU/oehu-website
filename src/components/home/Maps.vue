@@ -12,10 +12,11 @@
                 v-for="marker in markers"
                 :key="marker.id"
                 :lat-lng="marker.position"
-                :icon="marker.icon"
                 @click="alert(marker)">
-            <l-popup :content="marker.tooltip" />
+
+            <!--<l-popup :content="marker.tooltip" />-->
             <l-tooltip :content="marker.tooltip" />
+
         </l-marker>
     </l-map>
 </template>
@@ -48,14 +49,24 @@
             centerUpdate (center) {
                 this.currentCenter = center;
             },
-            retrieveOehuLocations() {
-                axios.get('http://api.oehu.org/data')
-                    .then(function (response) {
-                        console.log(response);
+            async retrieveOehuLocations() {
+                try {
+                    const response = await axios.get('http://api.oehu.org/data');
+                    this.handleDevicesData(response.data);
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            handleDevicesData(devices) {
+                devices.forEach((device) => {
+                    this.markers.push({
+                        id: Math.floor((Math.random() * 1000) + 1),
+                        // id: device.id,
+                        position: {lat: device.device.location.coordinates[0], lng: device.device.location.coordinates[1]},
+                        tooltip: 'Totaal verbruikt: ' + device.device.electricityReceived.total
                     })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                })
+                console.log(markers);
             }
         },
         mounted() {
