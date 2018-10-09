@@ -22,7 +22,7 @@
                         <div v-on:click="getStarted()">
                             <Button class="oehu-btn oehu-btn-primary" title="Get Started!"/>
                         </div>
-                        <Button class="oehu-btn contribute" title="How can I contribute?"/>
+                        <!-- <Button class="oehu-btn contribute" title="How can I contribute?"/> -->
                     </div>
                 </div>
             </div>

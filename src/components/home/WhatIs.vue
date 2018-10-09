@@ -4,13 +4,11 @@
             <div class="column content is-three-fifths is-four-fifths-tablet">
                 <Title title="What is OEHU?" color="white" />
                 <p>
-                    The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart
-                    meter data.
-                    Users can contribute their data dit is een Hyperlinks style to a personal energy usage
-                    dashboard, detailed datasets from all contributors,
-                    and cloud-based data analysis tools.
+                    The Rotterdam Open Energy Hub/<b>OEHU</b> is a public, open-source, distributed database for smart meter data. Users can contribute their data to a personal energy usage dashboard, detailed datasets from all contributors, and cloud-based data analysis tools.
                 </p>
-                <Button class="readmore" title="Read more"/>
+                <div @click="goAbout()">
+                    <Button class="readmore" title="Read more"/>
+                </div>
             </div>
             <div class="column">
                 <PhoneMockup class="PhoneMockup" />
@@ -29,7 +27,12 @@
 
     export default {
         name: "WhatIs",
-        components: {Button, Title, PhoneMockup, FlowBackground}
+        components: {Button, Title, PhoneMockup, FlowBackground},
+        methods: {
+          goAbout(){
+            document.location = '/about';
+          }
+        }
     };
 </script>
 

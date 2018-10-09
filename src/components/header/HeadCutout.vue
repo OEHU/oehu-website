@@ -134,7 +134,7 @@ export default {
         padding: 30px;
         height: 100%;
         position: fixed;
-        z-index: 20;
+        z-index: 99999;
         left:0;
         top:0;
         background-color: white;

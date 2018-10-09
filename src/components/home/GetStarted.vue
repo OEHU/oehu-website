@@ -14,7 +14,9 @@
                         <div v-on:click="getStarted()">
                             <Button class="oehu-btn-primary" title="Get Started!" />
                         </div>
-                        <Button class="faq" title="FAQ"/>
+                        <div v-on:click="goFaq()">
+                            <Button class="faq" title="FAQ"/>
+                        </div>
                     </div>
                 </div>
                 <div class="column">
@@ -39,6 +41,9 @@
         methods: {
             getStarted: function() {
                 document.location = '/get-started';
+            },
+            goFaq: function() {
+                document.location = '/faq';
             }
         }
     };
