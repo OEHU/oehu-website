@@ -6,7 +6,7 @@
             <img src="../../assets/images/oehu_footer.png"/>
         </div>
 
-        <div class="flex">
+        <div class="flex column-wrapper">
 
           <a class="contact" href="mailto:contact@oehu.org">
           </a> 
@@ -72,6 +72,20 @@ export default {
   }
 }
 
+.flex {
+  @include mobile() {
+    display: block;
+  }
+}
+.flex.column-wrapper > * {
+  @include minimum-desktop() {
+    flex: 1;
+  }
+  @include tablet() {
+    flex: 1;
+  }
+}
+
 .social {
   background: black;
   color: #333;
@@ -89,6 +103,11 @@ export default {
   .social-icon {
     max-width: 60px;
     margin: 21px;
+
+    @include mobile() {
+      margin: 21px 15px;
+      display: inline-block;
+    }
   }
   .social-icon a {
     display: flex;
@@ -106,6 +125,11 @@ export default {
 }
 
 .footer_logo {  
+  @include tablet() {
+    position: absolute;
+    left: 30px;
+    top: -62px;
+  }
   @include minimum-desktop() {
     position: absolute;
     left: 30px;
@@ -122,12 +146,15 @@ export default {
 }
 
 .footer_menu {
-  padding: 30px;
   color: white;
+  text-align: right;
 
   @include mobile() {
     display: none;
   }
+}
+.footer_menu ul {
+  padding: 30px;
 }
 .footer_menu a {
   color: #fff;

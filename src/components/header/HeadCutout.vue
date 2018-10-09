@@ -7,47 +7,51 @@
                 </g>
             </g>
         </svg>
+
         <div class="Navigation flex">
+
             <router-link :to="{name: 'login'}">
                 <Button class="login" title="log in" />
             </router-link>
+
             <div class="menu_button">
                 <div @click="openNav()"/>
             </div>
+
             <div ref="menu" class="overlay">
-                <a class="closebtn" @click="closeNav()">&times;</a>
-                <img src="../../assets/images/logo/LogoSmall.png" />
+
+                <div class="overlay-header">
+                    <img src="../../assets/images/logo/LogoSmall.png" />
+                    <a class="closebtn" @click="closeNav()">&times;</a>
+                </div>
+
                 <div class="overlay-content">
-                    <a href="/">Home</a>
-                    <a href="/get-started">Get started</a>
-                    <!-- <a href="/faq">FAQ</a> -->
-                    
-                    <!--
-                     <span>Follow us on</span>
+
+                    <nav>
+                        <a href="/">Home</a>
+                        <a href="/get-started">Get started</a>
+                        <a href="/faq">FAQ</a>
+                        <a href="/contribute">Contribute</a>
+                    </nav>
+
+                    <div class="heading">
+                        Follow us on
+                    </div>
 
                     <div class="social-icons flex center">
-                        <span class="social-icon">
-                            <a href="https://github.com/OEHU/" target="_blank">
-                                <img src="../../assets/images/social/Github.png"/>
-                            </a>
-                        </span>
-                        <span class="social-icon">
-                            <a href="https://twitter.com/oehu_project" target="_blank">
-                                <img src="../../assets/images/social/Twitter.png"/>
-                            </a>
-                        </span>
-                        <span class="social-icon">
-                            <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                                <img src="../../assets/images/social/Telegram.png"/>
-                            </a>
-                        </span>            
-                        <span class="social-icon">
-                            <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                                <img src="../../assets/images/social/LinkedIn.png"/>
-                            </a>
-                        </span>
+                        <a href="https://github.com/OEHU/" target="_blank">
+                            <img src="../../assets/images/social/Telegram.png" />
+                        </a>
+                        <a href="https://twitter.com/oehu_project" target="_blank">
+                            <img src="../../assets/images/social/Twitter.png"/>
+                        </a>
+                        <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
+                            <img src="../../assets/images/social/Telegram.png"/>
+                        </a>
+                        <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
+                            <img src="../../assets/images/social/LinkedIn.png"/>
+                        </a>
                     </div>
-                    -->
 
                 </div>
             </div>
@@ -62,10 +66,10 @@ export default {
   components: {Button},
   methods: {
       closeNav(){
-        this.$refs.menu.style.width = "0%"; 
+        this.$refs.menu.style.display = "none"; 
       },
       openNav(){
-        this.$refs.menu.style.width = "100%"; 
+        this.$refs.menu.style.display = "block"; 
       }
   }
 };
@@ -89,89 +93,104 @@ export default {
         left: 0;
         width: 100%;
         text-align: right;
-        padding: 30px 0;
+        padding: 30px 30px;
         justify-content: flex-end;
 
-        @include mobile() {
-            display: none;
+        @include mobile()  {
+            padding: 15px;
         }
     }
-    .menu_button div {
-        bottom: 130px;
-        cursor: pointer;
-        background: url("../../assets/images/menu.png") no-repeat left 50%;
-        border: none;
-        width: 100px;
-        height: 75px;
+
+    .Navigation > a,
+    .Navigation button {
+        margin-bottom: 0;
     }
-    .overlay{
+
+    .menu_button div {
+        cursor: pointer;
+        background: url("../../assets/images/menu.png") no-repeat center center;
+        background-size: contain;
+        width: 40px;
         height: 100%;
-        width: 0;
+    }
+    .overlay {
+        width: 100%;
+        display: none;
+        padding: 30px;
+        height: 100%;
         position: fixed;
         z-index: 20;
         left:0;
         top:0;
         background-color: white;
         overflow-x: hidden;
+
+        @include mobile() {
+            padding: 15px;
+        }
+    }
+
+    .overlay-header {
+        display: flex;
+        justify-content: space-between;
     }
 
     .overlay-content{
+        padding-top: 16px;
         text-align: left;
-        margin-top: 150px;
-        margin-left: 95px;
     }
 
-    .overlay span {
-        padding: 8px;
-        text-decoration: none;
-        font-size: 36px;
-        color: #000000;
-        display: block;
-        transition: 0.3s;
-        position: relative;
-        top: 75px;
-        left: 16px;
-    }
-
-    .overlay img {
-        padding: 8px;
-        text-decoration: none;
-        font-size: 36px;
-        color: #000000;
-        display: block;
-        transition: 0.3s;
-        position: relative;
-        top: 75px;
-        left: 95px;
+    .overlay a,
+    .heading {
+        text-transform: none;
+        color: #020303;
+        font-family: YoungSerif, serif;
+        font-size: 32px;
+        line-height: 46px;
+        font-weight: 400;
     }
 
     .overlay a {
-        padding: 8px;
         text-decoration: none;
-        font-size: 36px;
-        color: #000000;
         display: block;
         transition: 0.3s;
     }
+
+    .heading {
+        margin-top: 90px;
+    }
     
     .overlay a:hover, .overlay a:focus {
-        color: #186dff;
+        color: #0087ff;
     }
 
-    .overlay .closebtn{
-        position: absolute;
-        top: 20px;
-        right: 45px;
-        font-size: 60px;
+    a.closebtn {
+        float: right;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        background: url('../../assets/images/btn-close.svg') no-repeat center center;
+        background-size: contain;
+        text-indent: 9999px;
     }
 
-    .social-icons{
+    .social-icons.center {
+        margin-top: 15px;
         width: 100vw;
-        text-align: center;
+        justify-content: flex-start;
+        text-align: left;
     }
 
-    .social-icon{
-        width: 120px;
+    .social-icons a {
+        display: block;
+    }
+
+    .social-icons a:first-child img {
+        margin-left: 0;
+    }
+    .social-icons img {
+        width: 37px;
+        margin: 0 5px;
     }
 
     /*@media screen and (max-height: 450px) {*/
