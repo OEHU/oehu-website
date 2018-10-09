@@ -13,6 +13,7 @@ import VueFormGenerator from 'vue-form-generator'
 //Maps
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+
 delete L.Icon.Default.prototype._getIconUrl
 
 L.Icon.Default.mergeOptions({
@@ -26,6 +27,6 @@ Vue.use(VueFormWizard)
 Vue.use(VueFormGenerator)
 
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    render: h => h(App)
 }).$mount('#app')
