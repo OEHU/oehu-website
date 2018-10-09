@@ -8,10 +8,10 @@
                     class="title"
                     />
                 <div class="meters-wrapper">
-                    <Meter class="meter" value="00042" textAbove="" description="Meters connected"/>
-                    <Meter class="meter" value="00026" textAbove="Past 24Hr" description="Average KwH usage per household"/>
-                    <Meter class="meter" value="00004" textAbove="Past 24Hr" description="Average generated per household"/>
-                    <Meter class="meter" value="00038" textAbove="Past 24Hr" description="Average generated per household"/>
+                    <Meter class="meter" :value="metersConnectedCount" textAbove="" description="Meters connected"/>
+                    <Meter class="meter" :value="averageKwHUsage" textAbove="Past 24Hr" description="Average KwH usage per household"/>
+                    <Meter class="meter" :value="averageKwHGenerated" textAbove="Past 24Hr" description="Average KwH generated per household"/>
+                    <Meter class="meter" :value="averagGasUsed8" textAbove="Past 24Hr" description="Gas used per household"/>
                 </div>
             </div>
         </div>
@@ -20,12 +20,41 @@
 </template>
 
 <script>
+    import axios from 'axios'
     import Meter from '@/components/common/Meter.vue'
     import Title from '@/components/common/Title.vue'
 
     export default {
         name: 'DevicesConnected',
         components: {Meter, Title},
+        data () {
+            return {
+                metersConnectedCount: 0,
+                averageKwHUsage: 0,
+                averageKwHGenerated: 0,
+                averagGasUsed: 0,
+            }
+        },
+        methods: {
+            async retrieveOehuLocations() {
+                try {
+                    const response = await axios.get('http://api.oehu.org/data');
+                    this.handleDevicesData(response.data);
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            handleDevicesData(devices) {
+                this.meterConnected(devices);
+            },
+            meterConnected(devices) {
+                console.log(devices.length);
+                this.metersConnectedCount = devices.length;
+            }
+        },
+        mounted() {
+            this.retrieveOehuLocations();
+        }
     }
 </script>
 

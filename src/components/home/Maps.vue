@@ -28,7 +28,6 @@
     export default {
         name: 'Maps',
         components: {
-            L,
             LMap,
             LTileLayer,
             LMarker,
@@ -77,10 +76,7 @@
             }
         },
         mounted() {
-            console.log(this.markerIcon);
-            console.log("http://localhost:8080" + this.markerIcon);
             this.retrieveOehuLocations();
-
         }
     };
 
