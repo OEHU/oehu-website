@@ -29,28 +29,31 @@
 
                     <nav>
                         <a href="/">Home</a>
-                        <a href="/get-started">Get started</a>
+                        <a href="/get-started">Get started<i>!</i></a>
+                        <a href="/faq">About</a>
                         <a href="/faq">FAQ</a>
-                        <a href="/contribute">Contribute</a>
                     </nav>
 
-                    <div class="heading">
-                        Follow us on
-                    </div>
+                    <div class="two-column-on-desktop">
+                        <div class="heading">
+                            Follow us on
+                        </div>
 
-                    <div class="social-icons flex center">
-                        <a href="https://github.com/OEHU/" target="_blank">
-                            <img src="../../assets/images/social/Telegram.png" />
-                        </a>
-                        <a href="https://twitter.com/oehu_project" target="_blank">
-                            <img src="../../assets/images/social/Twitter.png"/>
-                        </a>
-                        <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                            <img src="../../assets/images/social/Telegram.png"/>
-                        </a>
-                        <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                            <img src="../../assets/images/social/LinkedIn.png"/>
-                        </a>
+                        <div class="social-icons flex center">
+                            <a href="https://github.com/OEHU/" target="_blank">
+                                <img src="../../assets/images/social/Telegram.png" />
+                            </a>
+                            <a href="https://twitter.com/oehu_project" target="_blank">
+                                <img src="../../assets/images/social/Twitter.png"/>
+                            </a>
+                            <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
+                                <img src="../../assets/images/social/Telegram.png"/>
+                            </a>
+                            <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
+                                <img src="../../assets/images/social/LinkedIn.png"/>
+                            </a>
+                        </div>
+
                     </div>
 
                 </div>
@@ -136,8 +139,12 @@ export default {
     }
 
     .overlay-content{
-        padding-top: 16px;
+        padding-top: 44px;
         text-align: left;
+
+        @include mobile() {
+            padding-top: 16px;
+        }
     }
 
     .overlay a,
@@ -145,9 +152,15 @@ export default {
         text-transform: none;
         color: #020303;
         font-family: YoungSerif, serif;
-        font-size: 32px;
-        line-height: 46px;
         font-weight: 400;
+
+        font-size: 64px;
+        line-height: 92px;
+
+        @include mobile() {
+            font-size: 32px;
+            line-height: 46px;
+        }
     }
 
     .overlay a {
@@ -155,11 +168,6 @@ export default {
         display: block;
         transition: 0.3s;
     }
-
-    .heading {
-        margin-top: 90px;
-    }
-    
     .overlay a:hover, .overlay a:focus {
         color: #0087ff;
     }
@@ -167,11 +175,48 @@ export default {
     a.closebtn {
         float: right;
         width: 30px;
-        height: 30px;
+        height: 72px;
         padding: 0;
         background: url('../../assets/images/btn-close.svg') no-repeat center center;
         background-size: contain;
         text-indent: 9999px;
+
+        @include mobile() {
+            height: 72px;
+        }
+    }
+
+    .two-column-on-desktop {
+        margin-top: 90px;
+
+        @include tablet() {
+            display: flex;
+            justify-content: space-between;
+        }
+        @include minimum-desktop() {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        > * {
+            flex: 1;
+        }
+
+        @include tablet() {
+            .heading {
+                justify-content: center;
+                flex-direction: column;
+                display: flex;
+            }
+        }
+        @include minimum-desktop() {
+            .heading {
+                justify-content: center;
+                flex-direction: column;
+                display: flex;
+            }
+        }
+
     }
 
     .social-icons.center {
@@ -179,6 +224,13 @@ export default {
         width: 100vw;
         justify-content: flex-start;
         text-align: left;
+
+        @include tablet() {
+            justify-content: flex-end;
+        }
+        @include minimum-desktop() {
+            justify-content: flex-end;
+        }
     }
 
     .social-icons a {
@@ -189,8 +241,13 @@ export default {
         margin-left: 0;
     }
     .social-icons img {
-        width: 37px;
-        margin: 0 5px;
+        margin: 0 11px;
+        width: 74px;
+
+        @include mobile() {
+            margin: 0 5px;
+            width: 37px;
+        }
     }
 
     /*@media screen and (max-height: 450px) {*/
