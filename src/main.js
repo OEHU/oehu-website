@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
 //Sass styling
 import '@/assets/sass/main.scss'
 
@@ -25,6 +27,7 @@ L.Icon.Default.mergeOptions({
 Vue.config.productionTip = false
 Vue.use(VueFormWizard)
 Vue.use(VueFormGenerator)
+Vue.use(VueAxios, axios)
 
 new Vue({
     router,
