@@ -1,30 +1,47 @@
 <template>
 <div class="container">
-        <form-wizard shape="tab" color="#26292d" @on-complete="onComplete" error-color="#a94442">
+        <form-wizard shape="tab" color="#26292d" @on-complete="postData" error-color="#a94442">
 			<h1 slot="title">Setup</h1>
+			<tab-content title="Location">
+					<div class="tab">
+				    <l-map
+							class="oehu-map"
+							:zoom="zoom"
+							:center="center"
+							@update:center="centerUpdate"
+							@update:zoom="zoomUpdate">
+						<l-tile-layer
+								:url="url"
+								:attribution="attribution"/>
+						<l-marker
+								v-for="marker in markers"
+								:key="marker.id"
+								:icon="LIcon"
+								:lat-lng="marker.position">
+							<l-tooltip :content="marker.tooltip" />
 
-      <tab-content title="Location">
-				<div class="tab">
-          <p>Location</p>
-				</div>
-      </tab-content>
+						</l-marker>
+					</l-map>
+					<vue-form-generator :model="model" :schema="selectLocation" :options="formOptions" ref="selectLocation"></vue-form-generator>
+					</div>
+			</tab-content>
 			
-			<tab-content title="Building data" :before-change="validateFirstTab">
+			<tab-content title="Building data" :before-change="validateBuildingTab">
 				<div class="tab">
-               		<vue-form-generator :model="model" :schema="firstTabSchema" :options="formOptions" ref="firstTabForm"></vue-form-generator>
+               		<vue-form-generator :model="model" :schema="selectBuilding" :options="formOptions" ref="selectBuilding"></vue-form-generator>
 				</div>
             </tab-content>
 
-            <tab-content title="Credentials" :before-change="validateSecondTab">
+            <tab-content title="Credentials" :before-change="validateCredentialsTab">
 			   <div class="tab">
-               <vue-form-generator :model="model" :schema="secondTabSchema" :options="formOptions" ref="secondTabForm"></vue-form-generator>
+               		<vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions" ref="credentialsTab"></vue-form-generator>
 			   </div>
             </tab-content>
 
-			<tab-content title="Backup" :before-change="validateThirdTab">
+			<tab-content title="Backup" :before-change="validateBackupTab">
 			   <div class="tab">
 				<p>Please write down the data below!</p>
-               <vue-form-generator :model="model" :schema="thirdTabSchema" :options="formOptions" ref="thirdTabForm"></vue-form-generator>
+               		<vue-form-generator :model="model" :schema="backupTab" :options="formOptions" ref="backupTab"></vue-form-generator>
 			   </div>
             </tab-content>
 
@@ -41,9 +58,31 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg-core.css";
+import { LMap, LTileLayer, LMarker, LTooltip } from "vue2-leaflet";
+import L from "leaflet";
 export default {
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+    LTooltip
+  },
   data: function() {
     return {
+      zoom: 10,
+      center: { lat: 52.0182305, lng: 4.6910549 },
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      markers: [],
+      LIcon: L.icon({
+        iconUrl: "/marker-icon.png",
+        iconRetinaUrl: "/marker-icon-2x.png",
+        // shadowUrl: 'https://static.afbeeldinguploaden.nl/1810/478987/xmrMaSzC.png',
+        iconSize: [50, 50],
+        iconAnchor: [25, 25],
+        popupAnchor: [0, 0]
+      }),
       test: "",
       model: {},
       formOptions: {
@@ -51,7 +90,7 @@ export default {
         validationSuccessClass: "has-success",
         validateAfterChanged: true
       },
-      firstTabSchema: {
+      selectBuilding: {
         fields: [
           {
             type: "select",
@@ -77,7 +116,21 @@ export default {
           }
         ]
       },
-      secondTabSchema: {
+      selectLocation: {
+        fields: [
+          {
+            type: "input",
+            inputType: "number",
+            label: "Location Accuracy",
+            model: "location",
+            min: 100,
+            required: true,
+            validator: VueFormGenerator.validators.string,
+            styleClasses: "col-xs-6"
+          }
+        ]
+      },
+      credentialsTab: {
         fields: [
           {
             type: "input",
@@ -97,7 +150,7 @@ export default {
           }
         ]
       },
-      thirdTabSchema: {
+      backupTab: {
         fields: [
           {
             type: "input",
@@ -128,26 +181,51 @@ export default {
     };
   },
   methods: {
-    onComplete: function() {
-      alert("Yay. Done!");
+    validateBuildingTab: function() {
+      return this.$refs.selectBuilding.validate();
     },
-    validateFirstTab: function() {
-      return this.$refs.firstTabForm.validate();
+    validateCredentialsTab: function() {
+      return this.$refs.credentialsTab.validate();
     },
-    validateSecondTab: function() {
-      return this.$refs.secondTabForm.validate();
+    validateBackupTab: function() {
+      return this.$refs.backupTab.validate();
     },
-    validateThirdTab: function() {
-      return this.$refs.thirdTabForm.validate();
-    },
-    beforeTabSwitch: function() {
+    postData: function() {
       this.axios
-        .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-        .then(response => {
-          this.test = response.data;
+        .post("http://api.oehu.org/account/register", {
+          email: this.model.username,
+          password: this.model.password
         })
-        .catch(error => console.log(error));
-      return true;
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      alert("Send Request");
+    },
+
+    zoomUpdate(zoom) {
+      this.currentZoom = zoom;
+    },
+    centerUpdate(center) {
+      this.currentCenter = center;
+    },
+    handleDevicesData(devices) {
+      devices.forEach(device => {
+        this.markers.push({
+          id: Math.floor(Math.random() * 1000 + 1),
+          position: {
+            lat: device.device.location.coordinates[0],
+            lng: device.device.location.coordinates[1]
+          },
+          tooltip:
+            "Totaal verbruikt: " + device.device.electricityReceived.total
+        });
+      });
+    },
+    mounted() {
+      this.retrieveOehuLocations();
     }
   }
 };
@@ -165,7 +243,7 @@ export default {
 }
 
 .tab {
-  height: 250px;
+  height: 350px;
 }
 </style>
 
