@@ -59,12 +59,12 @@
         img {
             width: 275px;
             max-width: 80%;
-            margin: 40px auto;
+            margin: 70px auto;
             display: block;
 
             @include minimum-desktop() {
                 width: auto;
-                max-width: 480px;
+                max-width: 34vw;
             }
             @include tablet() {
                 width: auto;

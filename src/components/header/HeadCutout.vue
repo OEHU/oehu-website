@@ -88,8 +88,7 @@ export default {
         top: 0;
         left: 0;
         width: 100%;
-        text-align: right;
-        padding: 30px 30px;
+        padding: 30px;
         justify-content: flex-end;
 
         @include mobile()  {
@@ -103,23 +102,47 @@ export default {
     }
 
     .login {
-        height: 50px;
-        line-height: 42px;
+        border-color: #efefef;
+        color: #efefef;
+        height: 40px;
+        line-height: 32px;
+        position: absolute;
+        top: 30px;
+        right: 60px;
         padding-top: 0;
         padding-bottom: 0;
+        z-index: 1000;
+
+        font-size: 18px;
 
         @include mobile() {
             height: 40px;
             line-height: 40px;
         }
     }
+    .login:hover,
+    .login:focus {
+        border-color: #fff;
+        color: #fff;
+    }
+
+    .menu_button {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        z-index: 1000;
+    }
+    .menu_button:hover,
+    .menu_button:focus {
+        filter: brightness(100%);
+    }
 
     .menu_button div {
         cursor: pointer;
-        background: url("../../assets/images/menu.png") no-repeat center center;
+        background: url("../../assets/images/btn-hamburger.svg") no-repeat center center;
         background-size: contain;
         width: 40px;
-        height: 100%;
+        height: 40px;
     }
     .overlay {
         width: 100%;
