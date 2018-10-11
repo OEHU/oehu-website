@@ -179,7 +179,7 @@ export default {
     font-weight: 400;
 
     .container {
-        width: 800px;
+        width: 50vw;
         max-width: 100vw;
         margin: 0 auto;
         padding-bottom: 100px;
@@ -197,9 +197,22 @@ export default {
 
 h2 {
     margin: 30px 0 15px 0;
+    font-size: 38px;
+    line-height: 64px;
+
+    @include mobile() {
+        font-size: 28px;
+        line-height: 44px;
+    }
+}
+
+/*
+h2 {
+    margin: 30px 0 15px 0;
     font-size: 28px;
     line-height: 44px;
 }
+*/
 
 ol {
     margin: 15px 45px;

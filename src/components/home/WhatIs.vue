@@ -1,22 +1,23 @@
 <template>
-    <div class="what-is">
-        <div class="what-is-columns columns is-gapless">
-            <div class="column content is-three-fifths is-four-fifths-tablet">
-                <Title title="What is OEHU?" color="white" />
-                <p>
-                    The Rotterdam Open Energy Hub/<b>OEHU</b> is a public, open-source, distributed database for smart meter data. Users can contribute their data to a personal energy usage dashboard, detailed datasets from all contributors, and cloud-based data analysis tools.
-                </p>
-                <div @click="goAbout()">
-                    <Button class="readmore" title="Read more"/>
+    <div style="position: relative;">
+        <div class="what-is">
+            <div class="what-is-columns columns is-gapless">
+                <div class="column content is-three-fifths is-four-fifths-tablet">
+                    <Title title="What is OEHU?" color="white" />
+                    <p>
+                        The Rotterdam Open Energy Hub/<b>OEHU</b> is a public, open-source, distributed database for smart meter data. Users can contribute their data to a personal energy usage dashboard, detailed datasets from all contributors, and cloud-based data analysis tools.
+                    </p>
+                    <div @click="goAbout()">
+                        <Button class="readmore" title="Read more"/>
+                    </div>
                 </div>
-            </div>
-            <div class="column">
-                <PhoneMockup class="PhoneMockup" />
+                <div class="column" style="justify-content: center; display: flex;">
+                    <PhoneMockup class="PhoneMockup" />
+                </div>
             </div>
         </div>
         <FlowBackground class="FlowBackground" />
     </div>
-
 </template>
 
 <script>
@@ -41,23 +42,36 @@
 
     .what-is {
 
+        width: 1500px;
+        max-width: 100vw;
+
         position: relative;
         padding: 0 10%;
+        margin: 0 auto;
+        margin-top: 125px;
 
         .columns {
             margin-top: 30px;
 
             @media (min-width: 480px) {
                 .content {
-                    margin-top: 125px;
                     padding-right: 10%;
                     padding-left: 10%;
                 }
             }
         }
 
+        .column {
+            flex: 1;
+        }
+
+        @include minimum-desktop() {
+            .column:first-child {
+                flex: 2;
+            }
+        }
+
         .what-is-columns {
-            width: 1200px;
             max-width: 100%;
 
             margin-top: 0;
@@ -81,7 +95,8 @@
         p {
             font-size: 18px;
             @media (min-width: 480px) {
-                font-size: 1.6rem;
+                font-size: 28px;
+                line-height: 48px;
             }
         }
 

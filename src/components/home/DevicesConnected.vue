@@ -72,8 +72,10 @@
     }
 
     .title {
+        text-align: center;
+
         @include minimum-desktop() {
-            margin-bottom: 70px;
+            margin-bottom: 80px;
         }
     }
 

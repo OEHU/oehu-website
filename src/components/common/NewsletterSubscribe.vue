@@ -80,6 +80,10 @@ export default {
       padding: 12px 20px;
     }
   }
+  #mc-embedded-subscribe:hover,
+  #mc-embedded-subscribe:focus {
+    filter: brightness(102%)
+  }
 
   input {
     font-size: 24px;

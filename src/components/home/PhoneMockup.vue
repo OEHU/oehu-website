@@ -88,18 +88,11 @@
 
     .phone-mockup {
         position: relative;
-
-        &-phone {
-            max-width: 250px;
-            padding: 40px 0;
-            position: relative;
-            left: 50%;
-            z-index: 1;
-
-            @include smaller-than-desktop {
-                left: 10%;
-            }
-
-        }
+        z-index: 1;
+        display: flex;
+        align-self: center;
+        flex-direction: column;
+        height: 100%;
+        max-width: 300px;
     }
 </style>

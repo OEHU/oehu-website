@@ -37,4 +37,10 @@ button {
     }
 }
 
+button:hover,
+button:focus {
+    background: #fff;
+    color: #000;
+}
+
 </style>

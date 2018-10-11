@@ -15,22 +15,22 @@
               <div class="social-icons flex center">
                   <span class="social-icon">
                       <a href="https://github.com/OEHU/" target="_blank">
-                          <img src="../../assets/images/social/github_footer.png"/>
+                          <img src="../../assets/images/social/github.svg"/>
                       </a>
                   </span>
                   <span class="social-icon">
                       <a href="https://twitter.com/oehu_project" target="_blank">
-                          <img src="../../assets/images/social/twitter_footer.png"/>
+                          <img src="../../assets/images/social/twitter.svg"/>
                       </a>
                   </span>
                   <span class="social-icon">
                       <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                          <img src="../../assets/images/social/telegram_footer.png"/>
+                          <img src="../../assets/images/social/telegram.svg"/>
                       </a>
                   </span>                
                   <span class="social-icon">
                       <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                          <img src="../../assets/images/social/linkedin_footer.png"/>
+                          <img src="../../assets/images/social/linkedin.svg"/>
                       </a>
                   </span>
               </div>
@@ -106,7 +106,7 @@ export default {
   }
   .social-icon {
     max-width: 60px;
-    margin: 21px;
+    margin: 5px;
 
     @include mobile() {
       margin: 21px 15px;

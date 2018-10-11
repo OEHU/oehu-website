@@ -124,7 +124,7 @@ export default {
     font-weight: 400;
 
     .container {
-        width: 800px;
+        width: 50vw;
         max-width: 100vw;
         margin: 0 auto;
         padding-bottom: 100px;
@@ -164,12 +164,12 @@ h2 {
 
 ol {
     margin: 15px 45px;
-    max-width: 800px;
+    max-width: 50vw;
 }
 
 p {
     margin: 15px 0;
-    max-width: 800px;
+    max-width: 50vw;
 
     @include tablet() {
         font-size: 1.6em;

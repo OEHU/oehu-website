@@ -3,7 +3,7 @@
         <HeadCutout/>
 
         <a href="/">
-            <img src="../assets/images/logo/Logo.png"/>
+            <img src="../assets/images/logo/Logo.svg"/>
         </a>
 
         <h2 class="tagline" v-if="this.showTagLine">

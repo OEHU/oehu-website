@@ -67,8 +67,15 @@
     }
 
     p {
-        font-size: 18px;
-        font-weight: 400;
+
+        font-size: 28px;
+        line-height: 48px;
+
+        @include mobile() {
+            font-size: 18px;
+            line-height: 27px;
+            font-weight: 400;
+        }
     }
 
     .smart_oehu_image {

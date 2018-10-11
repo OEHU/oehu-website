@@ -4,6 +4,8 @@
 
         <div class="Navigation flex">
 
+            <img src="../../assets/images/oehu-logo-small.svg" class="small-logo" />
+
             <router-link :to="{name: 'login'}">
                 <Button class="login" title="log in" />
             </router-link>
@@ -15,7 +17,7 @@
             <div ref="menu" class="overlay">
 
                 <div class="overlay-header">
-                    <img src="../../assets/images/logo/LogoSmall.png" @click="closeNav()" />
+                    <img src="../../assets/images/oehu-logo-small.svg" @click="closeNav()" />
                     <a class="closebtn" @click="closeNav()">&times;</a>
                 </div>
 
@@ -30,21 +32,21 @@
 
                     <div class="two-column-on-desktop">
                         <div class="heading">
-                            Follow us on
+                            Follow us on &raquo;
                         </div>
 
                         <div class="social-icons flex center">
                             <a href="https://github.com/OEHU/" target="_blank">
-                                <img src="../../assets/images/social/Github.png" />
+                                <img src="../../assets/images/social/github.svg" />
                             </a>
                             <a href="https://twitter.com/oehu_project" target="_blank">
-                                <img src="../../assets/images/social/Twitter.png"/>
+                                <img src="../../assets/images/social/twitter.svg"/>
                             </a>
                             <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                                <img src="../../assets/images/social/Telegram.png"/>
+                                <img src="../../assets/images/social/telegram.svg"/>
                             </a>
                             <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                                <img src="../../assets/images/social/LinkedIn.png"/>
+                                <img src="../../assets/images/social/linkedin.svg"/>
                             </a>
                         </div>
 
@@ -78,6 +80,13 @@ export default {
 
     .header {
         position: relative;
+    }
+
+    .small-logo {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        z-index: 1000;
     }
 
     .head-cutout {
