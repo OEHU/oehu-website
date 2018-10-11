@@ -15,7 +15,6 @@
                 :lat-lng="marker.position">
             <!--<l-popup :content="marker.tooltip" />-->
             <l-tooltip :content="marker.tooltip" />
-
         </l-marker>
     </l-map>
 </template>
@@ -37,7 +36,11 @@
             return {
                 zoom: 10,
                 center: {lat: 52.0182305, lng: 4.6910549},
-                url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                // Found some of the map styles below style on https://wiki.openstreetmap.org/wiki/Tiles#Servers
+                // url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                // url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
+                // url: 'https://{s}.tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png',
+                url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
                 attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                 markers: [],
                 LIcon: L.icon({
@@ -59,7 +62,7 @@
             },
             async retrieveOehuLocations() {
                 try {
-                    const response = await axios.get('http://api.oehu.org/data');
+                    const response = await axios.get('https://api.oehu.org/data');
                     this.handleDevicesData(response.data);
                 } catch (error) {
                     console.error(error);
