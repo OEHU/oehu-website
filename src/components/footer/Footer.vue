@@ -3,7 +3,7 @@
     <div class="footer_container">
 
         <div class="footer_logo">
-            <img src="../../assets/images/oehu_footer.png" @click="goHome()"/>
+            <img src="../../assets/images/oehu_footer.svg" @click="goHome()"/>
         </div>
 
         <div class="flex column-wrapper">

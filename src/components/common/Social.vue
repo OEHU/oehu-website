@@ -15,22 +15,22 @@
 
                 <span class="social-icon">
                     <a href="https://github.com/OEHU/" target="_blank">
-                        <img src="../../assets/images/social/Github.png"/>
+                        <img src="../../assets/images/social/github.svg"/>
                     </a>
                 </span>
                 <span class="social-icon">
                     <a href="https://twitter.com/oehu_project" target="_blank">
-                        <img src="../../assets/images/social/Twitter.png"/>
+                        <img src="../../assets/images/social/twitter.svg"/>
                     </a>
                 </span>
                 <span class="social-icon">
                     <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">
-                        <img src="../../assets/images/social/Telegram.png"/>
+                        <img src="../../assets/images/social/telegram.svg"/>
                     </a>
                 </span>
                 <span class="social-icon">
                     <a href="https://www.linkedin.com/company/11865484/admin/overview/" target="_blank">
-                        <img src="../../assets/images/social/LinkedIn.png"/>
+                        <img src="../../assets/images/social/linkedin.svg"/>
                     </a>
                 </span>
 
@@ -104,6 +104,8 @@
                 max-width: 40px;
             }
         }
-
+        .social-icon a {
+            display: block;
+        }
     }
 </style>

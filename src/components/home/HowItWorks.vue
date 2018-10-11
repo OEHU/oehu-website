@@ -5,7 +5,7 @@
 
                 <div class="column">
                     <div>
-                        <img class="oehu_home_image" src="../../assets/images/oehu_home.png"/>
+                        <img class="oehu_home_image" src="../../assets/images/oehu_home.svg"/>
                     </div>
                 </div>
 

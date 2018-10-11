@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="column">
-                        <img class="smart_oehu_image" src="../../assets/images/smart_oehu.png"/>
+                        <img class="smart_oehu_image" src="../../assets/images/smart_oehu.svg"/>
                     </div>
                 </div>
             </div>

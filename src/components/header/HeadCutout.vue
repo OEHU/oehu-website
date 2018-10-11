@@ -4,7 +4,9 @@
 
         <div class="Navigation flex">
 
-            <img src="../../assets/images/oehu-logo-small.svg" class="small-logo" />
+            <a href="/" target="_top" class="small-logo">
+                <img src="../../assets/images/oehu-logo-small.svg" />
+            </a>
 
             <router-link :to="{name: 'login'}">
                 <Button class="login" title="log in" />
@@ -140,7 +142,7 @@ export default {
 .login:hover,
 .login:focus {
     border-color: #fff;
-    color: #fff;
+    color: #000;
 }
 
 .hasScrolled .login {
