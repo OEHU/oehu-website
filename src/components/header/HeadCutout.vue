@@ -60,6 +60,7 @@
 
 <script>
 import Button from "@/components/common/Button.vue";
+
 export default {
   name: "HeadCutOUt",
   components: {Button},
@@ -87,6 +88,13 @@ export default {
         top: 30px;
         left: 30px;
         z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.4s;
+    }
+
+    .hasScrolled .small-logo {
+        opacity: 1;
+        transition: opacity 0.4s;
     }
 
     .head-cutout {
@@ -115,7 +123,7 @@ export default {
         color: #efefef;
         height: 40px;
         line-height: 32px;
-        position: absolute;
+        position: fixed;
         top: 30px;
         right: 60px;
         padding-top: 0;
@@ -128,11 +136,19 @@ export default {
             height: 40px;
             line-height: 40px;
         }
+
+        opacity: 1;
+        transition: opacity 0.4s;
     }
     .login:hover,
     .login:focus {
         border-color: #fff;
         color: #fff;
+    }
+
+    .hasScrolled .login {
+        transition: opacity 0.4s;
+        opacity: 0;
     }
 
     .menu_button {
