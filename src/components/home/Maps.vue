@@ -88,11 +88,18 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../assets/sass/mix.scss';
+
     .oehu-map {
+        margin: 0 auto;
         width: 100%;
         overflow: hidden;
         height: 600px;
         z-index: 8;
         position: relative;
+
+        @include mobile() {
+            width: 90%;
+        }
     }
 </style>
