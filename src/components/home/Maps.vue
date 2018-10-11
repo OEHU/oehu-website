@@ -3,6 +3,7 @@
             class="oehu-map"
             :zoom="zoom"
             :center="center"
+            :options="{zoomControl: true, touchZoom: true, scrollWheelZoom: false, doubleClickZoom: true, boxZoom: true}"
             @update:center="centerUpdate"
             @update:zoom="zoomUpdate">
         <l-tile-layer
@@ -46,8 +47,8 @@
                 LIcon: L.icon({
                     iconUrl: '/marker-icon.png',
                     iconRetinaUrl: '/marker-icon-2x.png',
-                    // shadowUrl: 'https://static.afbeeldinguploaden.nl/1810/478987/xmrMaSzC.png',
-                    iconSize: [50, 50],
+                    // shadowUrl: 'https://static.afbe+eldinguploaden.nl/1810/478987/xmrMaSzC.png',
+                    iconSize: [76, 76],
                     iconAnchor: [25, 25],
                     popupAnchor: [0, 0],
                 })
@@ -62,7 +63,7 @@
             },
             async retrieveOehuLocations() {
                 try {
-                    const response = await axios.get('https://api.oehu.org/data');
+                    const response = await axios.get('http://api.oehu.org/data');
                     this.handleDevicesData(response.data);
                 } catch (error) {
                     console.error(error);
