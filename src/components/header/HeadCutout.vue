@@ -77,240 +77,228 @@ export default {
 
 <style scoped lang="scss">
 
-    @import '../../assets/sass/mix.scss';
+@import '../../assets/sass/mix.scss';
 
-    .header {
-        position: relative;
+.header {
+    position: relative;
+}
+
+.small-logo {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.hasScrolled .small-logo {
+    opacity: 1;
+    transition: opacity 0.4s;
+}
+
+.Navigation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    justify-content: flex-end;
+
+    @include mobile()  {
+        padding: 15px;
     }
+}
 
-    .small-logo {
-        position: fixed;
-        top: 30px;
-        left: 30px;
-        z-index: 1000;
-        opacity: 0;
-        transition: opacity 0.4s;
-    }
+.Navigation > a,
+.Navigation button {
+    margin-bottom: 0;
+}
 
-    .hasScrolled .small-logo {
-        opacity: 1;
-        transition: opacity 0.4s;
-    }
+.login {
+    border-color: #efefef;
+    color: #efefef;
+    height: 40px;
+    line-height: 32px;
+    position: fixed;
+    top: 30px;
+    right: 60px;
+    padding-top: 0;
+    padding-bottom: 0;
+    z-index: 1000;
 
-    .head-cutout {
-    }
+    font-size: 18px;
 
-    .Navigation {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 30px;
-        justify-content: flex-end;
-
-        @include mobile()  {
-            padding: 15px;
-        }
-    }
-
-    .Navigation > a,
-    .Navigation button {
-        margin-bottom: 0;
-    }
-
-    .login {
-        border-color: #efefef;
-        color: #efefef;
+    @include mobile() {
         height: 40px;
-        line-height: 32px;
-        position: fixed;
-        top: 30px;
-        right: 60px;
-        padding-top: 0;
-        padding-bottom: 0;
-        z-index: 1000;
-
-        font-size: 18px;
-
-        @include mobile() {
-            height: 40px;
-            line-height: 40px;
-        }
-
-        opacity: 1;
-        transition: opacity 0.4s;
-    }
-    .login:hover,
-    .login:focus {
-        border-color: #fff;
-        color: #fff;
+        line-height: 40px;
     }
 
-    .hasScrolled .login {
-        transition: opacity 0.4s;
-        opacity: 0;
-    }
+    opacity: 1;
+    transition: opacity 0.4s;
+}
+.login:hover,
+.login:focus {
+    border-color: #fff;
+    color: #fff;
+}
 
-    .menu_button {
-        position: fixed;
-        top: 30px;
-        right: 30px;
-        z-index: 1000;
-    }
-    .menu_button:hover,
-    .menu_button:focus {
-        filter: brightness(100%);
-    }
+.hasScrolled .login {
+    transition: opacity 0.4s;
+    opacity: 0;
+}
 
-    .menu_button div {
-        cursor: pointer;
-        background: url("../../assets/images/btn-hamburger.svg") no-repeat center center;
-        background-size: contain;
+.menu_button {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+.menu_button:hover,
+.menu_button:focus {
+    filter: brightness(100%);
+}
+
+.menu_button div {
+    cursor: pointer;
+    background: url("../../assets/images/btn-hamburger.svg") no-repeat center center;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+}
+.overlay {
+    width: 100%;
+    display: none;
+    padding: 30px;
+    height: 100%;
+    position: fixed;
+    z-index: 99999;
+    left:0;
+    top:0;
+    background-color: white;
+    overflow-x: hidden;
+
+    @include mobile() {
+        padding: 15px;
+    }
+}
+
+.overlay-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.overlay-content{
+    padding-top: 44px;
+    text-align: left;
+
+    @include mobile() {
+        padding-top: 16px;
+    }
+}
+
+.overlay a,
+.heading {
+    text-transform: none;
+    color: #020303;
+    font-family: YoungSerif, serif;
+    font-weight: 400;
+
+    font-size: 64px;
+    line-height: 92px;
+
+    @include mobile() {
+        font-size: 32px;
+        line-height: 46px;
+    }
+}
+
+.overlay a {
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+}
+.overlay a:hover, .overlay a:focus {
+    color: #0087ff;
+}
+
+a.closebtn {
+    float: right;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: url('../../assets/images/btn-close.svg') no-repeat center center;
+    background-size: contain;
+    text-indent: 9999px;
+
+    @include mobile() {
         width: 40px;
         height: 40px;
     }
-    .overlay {
-        width: 100%;
-        display: none;
-        padding: 30px;
-        height: 100%;
-        position: fixed;
-        z-index: 99999;
-        left:0;
-        top:0;
-        background-color: white;
-        overflow-x: hidden;
+}
 
-        @include mobile() {
-            padding: 15px;
-        }
+.two-column-on-desktop {
+    margin-top: 90px;
+
+    @include tablet() {
+        display: flex;
+        justify-content: space-between;
     }
-
-    .overlay-header {
+    @include minimum-desktop() {
         display: flex;
         justify-content: space-between;
     }
 
-    .overlay-content{
-        padding-top: 44px;
-        text-align: left;
-
-        @include mobile() {
-            padding-top: 16px;
-        }
+    > * {
+        flex: 1;
     }
 
-    .overlay a,
-    .heading {
-        text-transform: none;
-        color: #020303;
-        font-family: YoungSerif, serif;
-        font-weight: 400;
-
-        font-size: 64px;
-        line-height: 92px;
-
-        @include mobile() {
-            font-size: 32px;
-            line-height: 46px;
-        }
-    }
-
-    .overlay a {
-        text-decoration: none;
-        display: block;
-        transition: 0.3s;
-    }
-    .overlay a:hover, .overlay a:focus {
-        color: #0087ff;
-    }
-
-    a.closebtn {
-        float: right;
-        width: 40px;
-        height: 40px;
-        padding: 0;
-        background: url('../../assets/images/btn-close.svg') no-repeat center center;
-        background-size: contain;
-        text-indent: 9999px;
-
-        @include mobile() {
-            width: 40px;
-            height: 40px;
-        }
-    }
-
-    .two-column-on-desktop {
-        margin-top: 90px;
-
-        @include tablet() {
+    @include tablet() {
+        .heading {
+            justify-content: center;
+            flex-direction: column;
             display: flex;
-            justify-content: space-between;
         }
-        @include minimum-desktop() {
+    }
+    @include minimum-desktop() {
+        .heading {
+            justify-content: center;
+            flex-direction: column;
             display: flex;
-            justify-content: space-between;
-        }
-
-        > * {
-            flex: 1;
-        }
-
-        @include tablet() {
-            .heading {
-                justify-content: center;
-                flex-direction: column;
-                display: flex;
-            }
-        }
-        @include minimum-desktop() {
-            .heading {
-                justify-content: center;
-                flex-direction: column;
-                display: flex;
-            }
-        }
-
-    }
-
-    .social-icons.center {
-        margin-top: 15px;
-        width: 100vw;
-        justify-content: flex-start;
-        text-align: left;
-
-        @include tablet() {
-            justify-content: flex-end;
-        }
-        @include minimum-desktop() {
-            justify-content: flex-end;
         }
     }
 
-    .social-icons a {
-        display: block;
-    }
+}
 
-    .social-icons a:first-child img {
-        margin-left: 0;
-    }
-    .social-icons img {
-        margin: 0 11px;
-        width: 74px;
+.social-icons.center {
+    margin-top: 15px;
+    width: 100vw;
+    justify-content: flex-start;
+    text-align: left;
 
-        @include mobile() {
-            margin: 0 5px;
-            width: 37px;
-        }
+    @include tablet() {
+        justify-content: flex-end;
     }
+    @include minimum-desktop() {
+        justify-content: flex-end;
+    }
+}
 
-    /*@media screen and (max-height: 450px) {*/
-        /*.overlay a {font-size: 20px}*/
-        /*.overlay .closebtn {*/
-            /*font-size: 40px;*/
-            /*top: 15px;*/
-            /*right: 35px;*/
-        /*}*/
-    /*}*/
+.social-icons a {
+    display: block;
+}
+
+.social-icons a:first-child img {
+    margin-left: 0;
+}
+.social-icons img {
+    margin: 0 11px;
+    width: 74px;
+
+    @include mobile() {
+        margin: 0 5px;
+        width: 37px;
+    }
+}
 
 </style>

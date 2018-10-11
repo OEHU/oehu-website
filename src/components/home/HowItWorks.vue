@@ -1,13 +1,15 @@
 <template>
-    <div class="how-it-works">
-        <div class="">
+    <div style="position: relative;">
+        <div class="how-it-works">
             <div class="how-it-works-columns columns">
+
                 <div class="column">
-                    <img class="oehu_home_image" src="../../assets/images/oehu_home.png"/> <!-- //TODO: SVG -->
+                    <div>
+                        <img class="oehu_home_image" src="../../assets/images/oehu_home.png"/>
+                    </div>
                 </div>
 
-                <div class="column content is-four-fifths-tablet is-three-fifths-desktop">
-                <div class="column content is-four-fifths-tablet is-Title-fifths-desktop">
+                <div class="column content">
 
                     <Title title="How it works" color="white" class="title"/>
 
@@ -25,9 +27,10 @@
                         <!-- <Button class="oehu-btn contribute" title="How can I contribute?"/> -->
                     </div>
                 </div>
+
             </div>
         </div>
-        <FlowBackground/>
+        <FlowBackground />
     </div>
   </div>
 
@@ -53,6 +56,10 @@
     @import '../../assets/sass/mix.scss';
 
     .how-it-works {
+        width: 1500px;
+        max-width: 80%;
+        margin: 0 auto;
+
         position: relative;
         background: $primary;
 
@@ -62,6 +69,19 @@
             @include mobile() {
                 padding: 30px 0;
             }
+
+            .column:first-child {
+                flex: 1;
+                text-align: center;
+
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .column:last-child {
+                flex: 2;
+            }
+
         }
 
         .oehu_home_image {
@@ -111,5 +131,7 @@
         }
         .oehu-btn-primary {
         }
+
     }
+
 </style>
