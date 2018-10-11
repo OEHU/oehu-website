@@ -1,32 +1,33 @@
 <template>
-    <div class="get-started">
-        <div class="container">
-            <div class="get-started-columns columns is-gapless">
-                <div class="column content is-three-fifths">
-                    <Title
-                        title="Get started & sign up for a dashboard"
-                        color="#fff"
-                        />
-                    <p>
-                        Rotterdam The Hague Open Energy Hub/OEHU is a public, open-source, distributed database for smart meter data. Users can contribute their data and in return gain access to a personal energy usage dashboard, detailed datasets from all contributors and cloud-based data analysis tools.
-                    </p>
-                    <div class="buttons">
-                        <div v-on:click="getStarted()">
-                            <Button class="oehu-btn-primary" title="Get Started!" />
-                        </div>
-                        <div v-on:click="goFaq()">
-                            <Button class="faq" title="FAQ"/>
+    <div class="base">
+        <div class="get-started">
+            <div class="container">
+                <div class="get-started-columns columns">
+                    <div class="column content">
+                        <Title
+                            title="Get started & sign up for a dashboard"
+                            color="#fff"
+                            />
+                        <p>
+                            Rotterdam The Hague Open Energy Hub/OEHU is a public, open-source, distributed database for smart meter data. Users can contribute their data and in return gain access to a personal energy usage dashboard, detailed datasets from all contributors and cloud-based data analysis tools.
+                        </p>
+                        <div class="buttons">
+                            <div v-on:click="getStarted()">
+                                <Button class="oehu-btn-primary" title="Get Started!" />
+                            </div>
+                            <div v-on:click="goFaq()">
+                                <Button class="faq" title="FAQ"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <img class="smart_oehu_image" src="../../assets/images/smart_oehu.png"/>
+                    <div class="column">
+                        <img class="smart_oehu_image" src="../../assets/images/smart_oehu.png"/>
+                    </div>
                 </div>
             </div>
         </div>
-        <FlowBackground/>
+        <FlowBackground />
     </div>
-
 </template>
 
 <script>
@@ -52,12 +53,29 @@
 <style scoped lang="scss">
     @import '../../assets/sass/mix.scss';
 
+    .base {
+        position: relative;
+        padding-top: 10% !important;
+        padding-bottom: 10% !important;
+    }
+
     .get-started {
         position: relative;
+
+        width: 1500px;
+        max-width: 80%;
+        margin: 0 auto;
+
         .columns {
-            .content {
-                padding-top: 10% !important;
-                padding-bottom: 10% !important;
+            .column:first-child {
+                flex: 2;
+            }
+            .column:last-child {
+                flex: 1;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
             }
         }
 
@@ -67,7 +85,6 @@
     }
 
     p {
-
         font-size: 28px;
         line-height: 48px;
 
@@ -81,13 +98,8 @@
     .smart_oehu_image {
         position: relative;
         z-index: 2;
-        width: 80%;
-        top: 30%    ;
-        left: 30%;
+        max-width: 300px;
 
-        @include tablet() {
-            left: 15%;
-        }
         @include mobile() {
             display: none;
         }

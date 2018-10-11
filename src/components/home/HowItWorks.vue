@@ -53,85 +53,84 @@
 </script>
 
 <style scoped lang="scss">
-    @import '../../assets/sass/mix.scss';
+@import '../../assets/sass/mix.scss';
 
-    .how-it-works {
-        width: 1500px;
-        max-width: 80%;
-        margin: 0 auto;
+.how-it-works {
+    width: 1500px;
+    max-width: 80%;
+    margin: 0 auto;
 
-        position: relative;
-        background: $primary;
+    position: relative;
+    background: $primary;
 
-        &-columns {
-            padding: 100px 0 50px 0;
+    &-columns {
+        padding: 100px 0 50px 0;
 
-            @include mobile() {
-                padding: 30px 0;
-            }
-
-            .column:first-child {
-                flex: 1;
-                text-align: center;
-
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-            }
-            .column:last-child {
-                flex: 2;
-            }
-
+        @include mobile() {
+            padding: 30px 0;
         }
 
-        .oehu_home_image {
-            position: relative;
-            z-index: 2;
+        .column:first-child {
+            flex: 1;
+            text-align: center;
+
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
         }
-
-        .content {
-            .title {
-                margin: 0 auto 50px auto;
-                max-width: 80vw;
-                font-weight: 400;
-
-                @include mobile() {
-                    margin: 0 auto 24px auto;
-                }
-            }
-            p {
-                margin: 0 auto 40px auto;
-                max-width: 80vw;
-                font-weight: 400;
-                font-size: 32px;
-
-                @include mobile() {
-                    font-size: 18px;
-                }
-            }
-        }
-
-        .btn-wrapper {
-            max-width: 80vw;
-            margin: 0 auto;
-
-            @include minimum-desktop() {
-                display: flex;
-            }
-        }
-
-        .oehu-btn {
-            @include mobile() {
-                display: block;
-                width: 100%;
-                max-width: 80vw;
-                margin: 15px auto;
-                margin-bottom: 15px;
-            }
-        }
-        .oehu-btn-primary {
+        .column:last-child {
+            flex: 2;
         }
 
     }
 
+    .oehu_home_image {
+        position: relative;
+        z-index: 2;
+    }
+
+    .content {
+        .title {
+            margin: 0 auto 50px auto;
+            max-width: 80vw;
+            font-weight: 400;
+
+            @include mobile() {
+                margin: 0 auto 24px auto;
+            }
+        }
+        p {
+            margin: 0 auto 40px auto;
+            max-width: 80vw;
+            font-weight: 400;
+            font-size: 32px;
+
+            @include mobile() {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .btn-wrapper {
+        max-width: 80vw;
+        margin: 0 auto;
+
+        @include minimum-desktop() {
+            display: flex;
+        }
+    }
+
+    .oehu-btn {
+        @include mobile() {
+            display: block;
+            width: 100%;
+            max-width: 80vw;
+            margin: 15px auto;
+            margin-bottom: 15px;
+        }
+    }
+    .oehu-btn-primary {
+    }
+
+}
 </style>
