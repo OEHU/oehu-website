@@ -128,7 +128,7 @@ export default {
   }
 }
 
-.footer_logo {  
+.footer_logo {
   @include tablet() {
     position: absolute;
     left: 30px;
@@ -141,6 +141,8 @@ export default {
   }
 }
 .footer_logo img {
+  cursor: pointer;
+
   display: block;
   margin: 0 auto;
   

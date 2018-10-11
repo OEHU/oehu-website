@@ -14,7 +14,7 @@
             </h2>
 
             <p>
-                Sharing your data is easy. Simply register for a personal energy dashboard and download the driver for your device, create a DID (Decentralized Identifier) with which your device is identified on the database, attach it to the P1 port of your smart meter, and you’re set!
+                Sharing your data is easy. Simply buy the needed hardware and follow the setup for creating your personal energy dashboard, and you're set!
             </p>
 
             <h2>
@@ -22,19 +22,19 @@
             </h2>
 
             <p>
-                There are two reasons to share your data. First of all, your data is already being collected and funneled into the data silos discussed above: sharing it with an open database will allow other people to use open data, and incentivize others to join you in sharing their data as well! The more data, the better the datasets. 
+                There are two reasons to share your data. First of all, your data is already being collected and funneled into the data silos discussed on <a href="/about">About</a>: sharing it with an open database will allow other people to use open data, and incentivize others to join you in sharing their data as well! The more data, the better the datasets. 
             </p>
 
             <p>
-                Secondly, as the VEL/H develops, so will the incentives to share. By implementing a valourization mechanism atop the database, those who share their data will be able to passively earn from sharing their data with those who want to access it. 
+                Secondly, as OEHU develops, so will the incentives to share. By implementing a valourization mechanism atop the database, those who share their data will be able to passively earn from sharing their data with those who want to access it. 
             </p>
 
             <h2>
-                What kind of data can i share? 
+                What kind of data can I share? 
             </h2>
 
             <p>
-                Currently the database only supports smart meter data. However, we plan to extend the database to support other kinds of data in the future (solar panels, home wind turbines, etc)
+                Currently the database only supports smart meter data. However, we plan to extend the database to support other kinds of data in the future (solar panels, home wind turbines, etc).
             </p>
 
             <h2>
@@ -42,7 +42,7 @@
             </h2>
 
             <p>
-                Starting point will be the most accessible smart meter(s) and a raspberry PI 3b Research what kind of smart meters are available and how they differ from each other. A script that will install all of the requirements on the raspberry, or a docker container.
+                Starting point is that we will support common smart meter(s) used in the European Union. You'll connect a device to your smart meter; for this we'll use the Raspberry Pi 3B. With this setup we made it easy to onboard your smart meter.
             </p>
 
             <h2>
@@ -50,31 +50,35 @@
             </h2>
             
             <p>
-                To register for a personal dashboard, we only need your email address and a password. These are encrypted client-side so we have no access to this information; they are only necessary for logging in. 
+                To register for a personal dashboard, we only need your email address and a password. These are encrypted client-side so we have no access to this information; they are only necessary for logging in.
             </p>
 
             <p>
-                Any additional information that you choose to provide will simply serve to create better datasets. Geo-location will be scrambled by ~100 meters to protect your privacy. 
+                Any additional information that you choose to provide will simply serve to create better datasets. Geo-location will be scrambled by ~100 meters to protect your privacy.
             </p>
 
             <p>
-                Emails provided for the newsletter will be kept in a separate database from the login information, and will only be used to send occasional updates about the progress of the Lab/Hub. 
+                Emails provided for the newsletter will be kept in a separate database from the login information, and will only be used to send occasional updates about the progress of OEHU.
             </p>
 
             <h2>
-                How does the VEL earn money? 
+                How does OEHU earn money? 
             </h2>
 
             <p>
-                For the meanwhile, it doesn’t. 
+                For the meanwhile, it doesn’t. The project is funded by BlockLab, that has funded this project by using subsidy from <a href="https://mrdh.nl/" target="_blank">MRDH</a>.
             </p>
 
             <h2>
-                Who is behind the VEL/H? 
+                Who is behind OEHU?
             </h2>
 
            <p>
-                The Lab/Hub is funded by BlockLab, a blockchain innovation lab supported by the port of Rotterdam and <a href="https://mrdh.nl/" target="_blank">MRDH</a>. 
+                OEHU is funded by BlockLab, a blockchain innovation lab supported by the port of Rotterdam and <a href="https://mrdh.nl/" target="_blank">MRDH</a>. 
+            </p>
+
+            <p>
+                OEHU, an open source project, is created by a decentralized team of ambitious people. See <a href="https://github.com/orgs/OEHU/people">github.com/orgs/OEHU/people</a> for a list of contributors so far. Feel free to contribute! Leave a message in OEHU's Telegram channel :)
             </p>
 
             <h2>

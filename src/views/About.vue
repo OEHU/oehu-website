@@ -10,7 +10,7 @@
             </Title>
 
             <p>
-                The Virtual Energy Hub/<a href="/" title="To the main page"><b>OEHU</b></a> is a public, open-source, distributed <b>database for smart meter data</b>. Users can contribute their data and in return gain access to a <b>personal energy usage dashboard</b>, detailed datasets from all contributors, and cloud-based data analysis tools. 
+                The Virtual Energy Hub/<a href="/" title="To the main page"><b>OEHU</b></a> is a public, open-source, distributed database for <b>smart meter data</b>. Users can contribute their data and in return gain access to a <b>personal dashboard</b>, detailed datasets from all contributors, and cloud-based data analysis tools. 
             </p>
 
             <p>
