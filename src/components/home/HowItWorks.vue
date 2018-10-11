@@ -1,10 +1,13 @@
 <template>
     <div style="position: relative;">
+
+        <img src="../../assets/images/oehu-home-connected-square.svg" class="only-on-mobile" />
+
         <div class="how-it-works">
             <div class="how-it-works-columns columns">
 
                 <div class="column">
-                    <div>
+                    <div class="not-on-mobile">
                         <img class="oehu_home_image" src="../../assets/images/oehu_home.svg"/>
                     </div>
                 </div>
@@ -30,7 +33,7 @@
 
             </div>
         </div>
-        <FlowBackground />
+        <FlowBackground class="not-on-mobile" />
     </div>
   </div>
 
@@ -58,12 +61,19 @@
 .how-it-works {
     width: 1500px;
     max-width: 80%;
+
+    @include mobile() {
+        max-width: 90%;
+    }
+
     margin: 0 auto;
 
     position: relative;
     background: $primary;
 
     &-columns {
+        margin-top: 0;
+        margin-bottom: 0;
         padding: 100px 0 50px 0;
 
         @include mobile() {
@@ -129,8 +139,11 @@
             margin-bottom: 15px;
         }
     }
-    .oehu-btn-primary {
-    }
 
 }
+
+.only-on-mobile {
+    width: 100%;
+}
+
 </style>

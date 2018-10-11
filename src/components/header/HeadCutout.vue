@@ -1,5 +1,6 @@
 <template>
     <div class="header">    
+
         <img src="../../assets/images/owl-header.svg" style="width: 100vw !important; min-height: 60px; !important" />
 
         <div class="Navigation flex">
@@ -131,13 +132,13 @@ export default {
 
     font-size: 18px;
 
-    @include mobile() {
-        height: 40px;
-        line-height: 40px;
-    }
-
     opacity: 1;
-    transition: opacity 0.4s;
+    transition: all 0.4s;
+
+    @include mobile() {
+        right: auto;
+        left: 30px;
+    }
 }
 .login:hover,
 .login:focus {
@@ -146,8 +147,17 @@ export default {
 }
 
 .hasScrolled .login {
-    transition: opacity 0.4s;
+    transition: all 0.4s;
     opacity: 0;
+
+    @include mobile() {
+        transition: all 0.8s;
+        border-color: #000;
+        border-radius: 40px;
+        width: 40px;
+        height: 40px;
+        text-indent: -9999px;
+    }
 }
 
 .menu_button {
@@ -179,10 +189,6 @@ export default {
     top:0;
     background-color: white;
     overflow-x: hidden;
-
-    @include mobile() {
-        padding: 15px;
-    }
 }
 
 .overlay-header {

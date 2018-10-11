@@ -62,6 +62,20 @@ Extra classes
 TODO: remove?
  */
 
+.not-on-mobile {
+  @include mobile() {
+    display: none !important;  
+  }
+}
+
+.only-on-mobile {
+  display: none;
+
+  @include mobile() {
+    display: block;  
+  }
+}
+
 .flex {
   display: flex;
   justify-content: space-between;

@@ -224,6 +224,10 @@ export default {
         max-width: 100vw;
         margin: 0 auto;
         padding-bottom: 100px;
+
+        @include mobile() {
+            width: 90%;
+        }
     }
 
     img {

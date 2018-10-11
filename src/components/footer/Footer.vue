@@ -113,6 +113,9 @@ export default {
       display: inline-block;
     }
   }
+  .social-icon:hover {
+    opacity: 0.8;
+  }
   .social-icon a {
     display: flex;
     justify-content: center;

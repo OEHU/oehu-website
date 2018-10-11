@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="332"
+   height="280"
+   viewBox="0 0 332 280"
+   version="1.1"
+   id="svg4738"
+   sodipodi:docname="oehu-home-connected-square.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <metadata
+     id="metadata4742">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1918"
+     inkscape:window-height="1053"
+     id="namedview4740"
+     showgrid="false"
+     inkscape:zoom="1.3373494"
+     inkscape:cx="281.2967"
+     inkscape:cy="112.44228"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4738" />
+  <defs
+     id="defs4692">
+    <path
+       id="d79rb"
+       d="m 358,1545.18 c -120.02,18.75 -130.02,24.37 -184,106.9 -54,82.55 -58.03,121.92 -206,121.92 -148,0 -129.85,-229.58 -26,-300.08 103.85,-70.51 468,0 468,0 0,0 68,52.51 -52,71.26 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79ra"
+       d="M 81,1546.13 H 238.83 V 1708 H 81 Z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79rd"
+       d="m 157.4,1547.15 -75.35,73.98 c -2.24,2.2 -0.65,5.96 2.51,5.96 h 9.84 a 3.52,3.52 0 0 1 3.55,3.49 v 73.93 c 0,1.93 1.6,3.49 3.56,3.49 h 37.72 a 3.52,3.52 0 0 0 3.55,-3.5 v -43.72 c 0,-1.93 1.6,-3.5 3.56,-3.5 h 27.34 a 3.52,3.52 0 0 1 3.55,3.5 v 43.73 c 0,1.93 1.6,3.49 3.56,3.49 h 37.54 a 3.52,3.52 0 0 0 3.55,-3.5 v -73.92 c 0,-1.93 1.6,-3.49 3.56,-3.49 h 9.83 c 3.17,0 4.76,-3.76 2.52,-5.96 l -75.36,-73.98 a 3.6,3.6 0 0 0 -5.03,0"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79re"
+       d="M 203.3,1550.18 H 203 c -0.41,0 -0.82,0 -1.22,0.03 C 189.48,1550.1 182,1541 182,1541 l 0.03,30.8 c 0,3.16 0.14,6.17 2.48,8.77 L 203,1599 l 18.5,-18.43 c 2.1,-2.26 2.53,-5.63 2.47,-8.77 L 224,1541 c -7.76,6.44 -14.75,8.88 -20.7,9.18"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79rf"
+       d="m 203.1,1574 -7.1,-7.19 0.8,-0.81 6.3,6.37 6.1,-6.19 0.8,0.82 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79rg"
+       d="m 191,1560 a 1,1 0 1 1 -2,0 1,1 0 0 1 2,0"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79rh"
+       d="m 186,1560.46 c 0,-1.22 0.5,-2.27 1.48,-3.15 a 5.14,5.14 0 0 1 3.54,-1.31 c 1.37,0 2.54,0.44 3.51,1.33 a 4.15,4.15 0 0 1 0,6.36 5.21,5.21 0 0 1 -3.58,1.31 5.23,5.23 0 0 1 -3.33,-1.16 4.1,4.1 0 0 1 -1.62,-3.38 m 1.46,0.02 a 3,3 0 0 0 1.06,2.37 c 0.7,0.62 1.52,0.92 2.44,0.92 1,0 1.85,-0.31 2.54,-0.94 a 3.05,3.05 0 0 0 1.03,-2.33 c 0,-0.92 -0.34,-1.7 -1.02,-2.32 a 3.55,3.55 0 0 0 -2.5,-0.95 c -1,0 -1.84,0.32 -2.53,0.95 a 2.99,2.99 0 0 0 -1.02,2.3"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79ri"
+       d="m 214.43,1556 v 5.32 c 0,0.76 0.13,1.32 0.4,1.67 a 2,2 0 0 0 1.67,0.76 2,2 0 0 0 1.68,-0.76 c 0.26,-0.34 0.4,-0.9 0.4,-1.67 V 1556 H 220 v 5.7 c 0,0.92 -0.31,1.69 -0.93,2.3 -0.7,0.66 -1.56,1 -2.57,1 a 3.55,3.55 0 0 1 -2.57,-1 3.07,3.07 0 0 1 -0.93,-2.3 v -5.7 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79rj"
+       d="m 202,1557.28 h -3.63 v 2.16 h 3.52 v 1.28 h -3.52 v 3 H 202 v 1.28 h -5 v -9 h 5 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="d79rk"
+       d="m 206.44,1559.52 h 4.12 V 1556 H 212 v 9 h -1.44 v -4.2 h -4.12 v 4.2 H 205 v -9 h 1.44 z"
+       inkscape:connector-curvature="0" />
+    <clipPath
+       id="d79rc">
+      <use
+         xlink:href="#d79ra"
+         id="use4689"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+  </defs>
+  <g
+     id="g4736"
+     transform="translate(-136,-52)">
+    <g
+       transform="translate(140,-1442)"
+       id="g4696">
+      <use
+         xlink:href="#d79rb"
+         id="use4694"
+         style="fill:#186dff"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       transform="translate(140,-1442)"
+       id="g4734">
+      <g
+         id="g4704">
+        <g
+           id="g4698" />
+        <g
+           clip-path="url(#d79rc)"
+           id="g4702">
+          <use
+             xlink:href="#d79rd"
+             id="use4700"
+             style="fill:#020303"
+             x="0"
+             y="0"
+             width="100%"
+             height="100%" />
+        </g>
+      </g>
+      <g
+         id="g4708">
+        <use
+           xlink:href="#d79re"
+           id="use4706"
+           style="fill:#fefefe"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+      <g
+         id="g4712">
+        <use
+           xlink:href="#d79rf"
+           id="use4710"
+           style="fill:#020303"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+      <g
+         id="g4716">
+        <use
+           xlink:href="#d79rg"
+           id="use4714"
+           style="fill:#020303"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+      <g
+         id="g4720">
+        <use
+           xlink:href="#d79rh"
+           id="use4718"
+           style="fill:#020303"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+      <g
+         id="g4724">
+        <use
+           xlink:href="#d79ri"
+           id="use4722"
+           style="fill:#020303"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+      <g
+         id="g4728">
+        <use
+           xlink:href="#d79rj"
+           id="use4726"
+           style="fill:#020303"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+      <g
+         id="g4732">
+        <use
+           xlink:href="#d79rk"
+           id="use4730"
+           style="fill:#020303"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+    </g>
+  </g>
+</svg>

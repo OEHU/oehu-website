@@ -11,12 +11,13 @@
                         <Button class="readmore" title="Read more"/>
                     </div>
                 </div>
-                <div class="column" style="justify-content: center; display: flex;">
+                <div class="column phone-mockup-wrapper not-on-mobile">
                     <PhoneMockup class="PhoneMockup" />
                 </div>
             </div>
         </div>
-        <FlowBackground class="FlowBackground" />
+        <FlowBackground class="FlowBackground not-on-mobile" />
+        <img src="../../assets/images/mobile-app-mockup-mobile.svg" class="only-on-mobile" />
     </div>
 </template>
 
@@ -100,6 +101,15 @@
             }
         }
 
+        .phone-mockup-wrapper {
+            justify-content: center;
+            display: flex;
+        }
+
+    }
+
+    .only-on-mobile {
+        width: 100%;
     }
 
 </style>

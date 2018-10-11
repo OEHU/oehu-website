@@ -133,6 +133,10 @@ export default {
         margin: 0 auto;
         padding-bottom: 100px;
 
+        @include mobile() {
+            width: 90%;
+        }
+
         position: relative;
         z-index: 2;
     }
@@ -168,12 +172,10 @@ h2 {
 
 ol {
     margin: 15px 45px;
-    max-width: 50vw;
 }
 
 p {
     margin: 15px 0;
-    max-width: 50vw;
 
     @include tablet() {
         font-size: 1.6em;

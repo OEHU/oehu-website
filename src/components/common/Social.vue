@@ -70,6 +70,10 @@
             width: 1100px;
             max-width: 80%;
 
+            @include mobile() {
+                max-width: 90%;
+            }
+
             @include tablet() {
                 font-size: 1.6rem;
             }

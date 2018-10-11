@@ -66,6 +66,10 @@
         max-width: 80%;
         margin: 0 auto;
 
+        @include mobile() {
+            max-width: 90%;
+        }
+
         .columns {
             .column:first-child {
                 flex: 2;
