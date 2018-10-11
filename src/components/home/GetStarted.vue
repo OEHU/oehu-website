@@ -9,8 +9,16 @@
                             color="#fff"
                             />
                         <p>
-                            Rotterdam The Hague Open Energy Hub/OEHU is a public, open-source, distributed database for smart meter data. Users can contribute their data and in return gain access to a personal energy usage dashboard, detailed datasets from all contributors and cloud-based data analysis tools.
+                            Be wise & own your own data! You'll get full access to your data & charts in return.
                         </p>
+                        <p>
+                            You will need a Raspberry Pi, that you connect to your smart meter. At the first time you configure some basic things. After that the Pi will autonomously upload your energy data to a decentralized database. You stay owner of your data, and you'll have instantly access to a live & personal dashboard. That's it!
+                        </p>
+
+                        <p>
+                            If you're curious and want to start, click <i>Get Started</i> below. The guide will show you where to buy the Pi, and how to configure it. From then you'll have full control and get nice insights.
+                        </p>
+
                         <div class="buttons">
                             <div v-on:click="getStarted()">
                                 <Button class="oehu-btn-primary" title="Get Started!" />
@@ -89,13 +97,12 @@
     }
 
     p {
-        font-size: 28px;
-        line-height: 48px;
+        font-size: 18px;
+        line-height: 27px;
 
-        @include mobile() {
-            font-size: 18px;
-            line-height: 27px;
-            font-weight: 400;
+        @media (min-width: 480px) {
+            font-size: 28px;
+            line-height: 48px;
         }
     }
 
@@ -103,6 +110,8 @@
         position: relative;
         z-index: 2;
         max-width: 300px;
+        display: block;
+        margin: 0 auto;
 
         @include mobile() {
             display: none;

@@ -21,15 +21,11 @@
                     </p>
 
                     <p>
-                        Right now the data is shared with your net deliverer. With OEHU it's possible to own your own data. It's fairly easy.
-                    </p>
+                        Right now the data is shared with your net deliverer. With OEHU it's possible to own your own data.
+                    <p>
 
                     <p>
-                        You need a Raspberry Pi. This you can connect to your smart meter using an USB cable. At the first time you configure some basic things. After that the Pi will autonomously upload your energy data to a decentralized database. You stay owner of your data, and you'll have instantly access to a live & personal dashboard. That's it!
-                    </p>
-
-                    <p>
-                        If you're curious and want to start, click <i>Get Started</i> below. The guide will show you where to buy the Pi, and how to configure it. From then you'll have full control and get nice insights.
+                        It's fairly easy: You connect a Raspberry Pi to your smart meter using an USB cable. After configuration it sends the data to a shared database in which you stay owner of yóur data. You'll instantly have access to your real time, personalized dashboard.
                     </p>
 
                     <div class="btn-wrapper">
