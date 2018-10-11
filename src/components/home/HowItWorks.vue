@@ -17,10 +17,19 @@
                     <Title title="How it works" color="white" class="title"/>
 
                     <p>
-                        The Rotterdam Open Energy Hub/OEHU is a public, open-source, distributed database for smart
-                        meters. Users can contribute their data and in return gain access to a personal
-                        energy usage dashboard, detailed datasets from all contributors, and cloud-based data analysis
-                        tools.
+                        If you have a smart meter, this meter is continuously sharing energy data. The default information it shares is the amount of kWh of electricity & m3 of gas that is used, with a precision of 20 seconds.
+                    </p>
+
+                    <p>
+                        Right now the data is shared with your net deliverer. With OEHU it's possible to own your own data. It's fairly easy.
+                    </p>
+
+                    <p>
+                        You need a Raspberry Pi. This you can connect to your smart meter using an USB cable. At the first time you configure some basic things. After that the Pi will autonomously upload your energy data to a decentralized database. You stay owner of your data, and you'll have instantly access to a live & personal dashboard. That's it!
+                    </p>
+
+                    <p>
+                        If you're curious and want to start, click <i>Get Started</i> below. The guide will show you where to buy the Pi, and how to configure it. From then you'll have full control and get nice insights.
                     </p>
 
                     <div class="btn-wrapper">
@@ -113,10 +122,10 @@
             margin: 0 auto 40px auto;
             max-width: 80vw;
             font-weight: 400;
-            font-size: 32px;
-
-            @include mobile() {
-                font-size: 18px;
+            font-size: 18px;
+            @media (min-width: 480px) {
+                font-size: 28px;
+                line-height: 48px;
             }
         }
     }
