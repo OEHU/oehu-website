@@ -1,143 +1,249 @@
 <template>
 <div class="container">
-        <form-wizard shape="tab" color="#26292d" @on-complete="onComplete">
-            <h1 slot="title">Setup</h1> 
-            <tab-content title="Location" icon="ti-user">
-              My first tab content
-            </tab-content>
-            <tab-content title="Building data" icon="ti-settings">
-			<div class="form">
-					<form>
-						<p>Can you tell me a little bit about the building?</p>
-						<br/>
-						<label for="business">Building Type:</label>
-						<select name="building type" form="carform">
-							<option value="house">House</option>
-							<option value="office">Office</option>
-							<option value="storage">Storage</option>
-							<option value="factory">Factory</option>
-						</select>
+        <form-wizard shape="tab" color="#26292d" @on-complete="postData" error-color="#a94442">
+			<h1 slot="title">Setup</h1>
+			<tab-content title="Location">
+					<div class="tab">
+				    <l-map
+							class="oehu-map"
+							:zoom="zoom"
+							:center="center"
+							@update:center="centerUpdate"
+							@update:zoom="zoomUpdate">
+						<l-tile-layer
+								:url="url"
+								:attribution="attribution"/>
+						<l-marker
+								v-for="marker in markers"
+								:key="marker.id"
+								:icon="LIcon"
+								:lat-lng="marker.position">
+							<l-tooltip :content="marker.tooltip" />
 
-						<label for="business">Occupants:</label>
-						<input type="number" value="1"/>
-					</form>
-			</div>
-            </tab-content>
-
-            <tab-content title="Credentials" icon="ti-check">
-            <div class="form">
-                <form>
-					<p>What would you like your username and password to be?</p>
-					<br/>
-                    <input type="text" placeholder="Username"/>
-                    <input type="password" placeholder="Password"/>
-                </form>
-            </div>
-            </tab-content>
-
-			<tab-content title="Backup" icon="ti-check">
-				<div class="form">
-					<form>
-					<p>Please write down the data below</p>
-					<br/>
-						<input type="text" placeholder="Phrase"/>
-						<input type="text" placeholder="Username"/>
-						<input type="password" placeholder="Password"/>
-					</form>
+						</l-marker>
+					</l-map>
+					<vue-form-generator :model="model" :schema="selectLocation" :options="formOptions" ref="selectLocation"></vue-form-generator>
+					</div>
+			</tab-content>
+			
+			<tab-content title="Building data" :before-change="validateBuildingTab">
+				<div class="tab">
+               		<vue-form-generator :model="model" :schema="selectBuilding" :options="formOptions" ref="selectBuilding"></vue-form-generator>
 				</div>
             </tab-content>
 
-			<tab-content title="Dashboard" icon="ti-check">
-              <p>Please wait while we register your OEHU device to the network.</p>
-			  <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
+            <tab-content title="Credentials" :before-change="validateCredentialsTab">
+			   <div class="tab">
+               		<vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions" ref="credentialsTab"></vue-form-generator>
+			   </div>
             </tab-content>
-        </form-wizard>
+
+			<tab-content title="Backup" :before-change="validateBackupTab">
+			   <div class="tab">
+				<p>Please write down the data below!</p>
+               		<vue-form-generator :model="model" :schema="backupTab" :options="formOptions" ref="backupTab"></vue-form-generator>
+			   </div>
+            </tab-content>
+
+			<tab-content :before-change="validateAsync"  title="Dashboard">
+			   <div class="tab">
+              <p>{{this.model}}</p>
+			  <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
+			   </div>
+            </tab-content>
+        </form-wizard>		
 </div>
 </template>
 
 <script>
+import VueFormGenerator from "vue-form-generator";
+import "vue-form-generator/dist/vfg-core.css";
+import { LMap, LTileLayer, LMarker, LTooltip } from "vue2-leaflet";
+import L from "leaflet";
 export default {
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+    LTooltip
+  },
+  data: function() {
+    return {
+      zoom: 10,
+      center: { lat: 52.0182305, lng: 4.6910549 },
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      markers: [],
+      LIcon: L.icon({
+        iconUrl: "/marker-icon.png",
+        iconRetinaUrl: "/marker-icon-2x.png",
+        // shadowUrl: 'https://static.afbeeldinguploaden.nl/1810/478987/xmrMaSzC.png',
+        iconSize: [50, 50],
+        iconAnchor: [25, 25],
+        popupAnchor: [0, 0]
+      }),
+      test: "",
+      model: {},
+      formOptions: {
+        validationErrorClass: "has-error",
+        validationSuccessClass: "has-success",
+        validateAfterChanged: true
+      },
+      selectBuilding: {
+        fields: [
+          {
+            type: "select",
+            label: "Select building type:",
+            model: "building",
+            required: true,
+            validator: VueFormGenerator.validators.string,
+            values: ["House", "Office", "Storage", "Factory"],
+            selectOptions: {
+              noneSelectedText: "Select type"
+            }
+          },
+          {
+            type: "select",
+            label: "Select occupants:",
+            model: "occupants",
+            validator: VueFormGenerator.validators.string,
+            required: true,
+            values: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+            selectOptions: {
+              noneSelectedText: "Amount of occupants"
+            }
+          }
+        ]
+      },
+      selectLocation: {
+        fields: [
+          {
+            type: "input",
+            inputType: "number",
+            label: "Location Accuracy",
+            model: "location",
+            min: 100,
+            required: true,
+            validator: VueFormGenerator.validators.string,
+            styleClasses: "col-xs-6"
+          }
+        ]
+      },
+      credentialsTab: {
+        fields: [
+          {
+            type: "input",
+            inputType: "text",
+            label: "Username:",
+            model: "username",
+            required: true,
+            validator: VueFormGenerator.validators.string
+          },
+          {
+            type: "input",
+            inputType: "password",
+            label: "Password:",
+            model: "password",
+            required: true,
+            validator: VueFormGenerator.validators.string
+          }
+        ]
+      },
+      backupTab: {
+        fields: [
+          {
+            type: "input",
+            inputType: "text",
+            label: "Phrase:",
+            required: true,
+            model: "phrase",
+            validator: VueFormGenerator.validators.string
+          },
+          {
+            type: "input",
+            inputType: "text",
+            label: "Username",
+            model: "username",
+            required: true,
+            validator: VueFormGenerator.validators.string
+          },
+          {
+            type: "input",
+            inputType: "password",
+            label: "Password",
+            model: "password",
+            required: true,
+            validator: VueFormGenerator.validators.string
+          }
+        ]
+      }
+    };
+  },
   methods: {
-    onComplete: function() {
-      alert("Yay. Done!");
+    validateBuildingTab: function() {
+      return this.$refs.selectBuilding.validate();
+    },
+    validateCredentialsTab: function() {
+      return this.$refs.credentialsTab.validate();
+    },
+    validateBackupTab: function() {
+      return this.$refs.backupTab.validate();
+    },
+    postData: function() {
+      this.axios
+        .post("http://api.oehu.org/account/register", {
+          email: this.model.username,
+          password: this.model.password
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      alert("Send Request");
+    },
+
+    zoomUpdate(zoom) {
+      this.currentZoom = zoom;
+    },
+    centerUpdate(center) {
+      this.currentCenter = center;
+    },
+    handleDevicesData(devices) {
+      devices.forEach(device => {
+        this.markers.push({
+          id: Math.floor(Math.random() * 1000 + 1),
+          position: {
+            lat: device.device.location.coordinates[0],
+            lng: device.device.location.coordinates[1]
+          },
+          tooltip:
+            "Totaal verbruikt: " + device.device.electricityReceived.total
+        });
+      });
+    },
+    mounted() {
+      this.retrieveOehuLocations();
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .container {
+  h1 {
+    font-size: 30px;
+  }
   height: 1090px;
+  fieldset {
+    border: 0;
+  }
 }
 
-.form {
-  position: relative;
-  z-index: 1;
-  background: #ffffff;
-  max-width: 560px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  
-  p {
-    color: black;
-  }
-  label {
-      color: black;
-      float: left;
-      position: relative;
-      bottom: 10px;
-  }
-  input {
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  select {
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  button {
-    text-transform: uppercase;
-    outline: 0;
-    background: #0086ff;
-    width: 100%;
-    border: 0;
-    padding: 15px;
-    color: #ffffff;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    &:hover,
-    &:focus,
-    &:active {
-      background: #0086ff;
-    }
-  }
-  .message {
-    margin: 15px 0 0;
-    color: #b3b3b3;
-    font-size: 12px;
-
-    a {
-      color: #4caf50;
-      text-decoration: none;
-    }
-    .register-form {
-      display: none;
-    }
-  }
+.tab {
+  height: 350px;
 }
 </style>
 
