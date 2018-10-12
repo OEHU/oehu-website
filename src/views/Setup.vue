@@ -133,6 +133,26 @@
 							required: true,
 							validator: VueFormGenerator.validators.string,
 							styleClasses: "col-xs-6"
+						},
+						{
+							type: "input",
+							inputType: "text",
+							label: "Lat",
+							model: "lat",
+							min: 100,
+							required: true,
+							validator: VueFormGenerator.validators.string,
+							styleClasses: "col-xs-6"
+						},
+						{
+							type: "input",
+							inputType: "text",
+							label: "Long",
+							model: "long",
+							min: 100,
+							required: true,
+							validator: VueFormGenerator.validators.string,
+							styleClasses: "col-xs-6"
 						}
 					]
 				},
