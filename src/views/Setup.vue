@@ -238,7 +238,7 @@
 			},
 			getConfigurated() {
 				this.axios
-				.get("http://localhost:8000/oehu/GetConfigurated")
+				.get("https://localhost:8000/oehu/GetConfigurated")
 				.then(function (response) {
 					if (response.data.configurated !== true) {
 						this.generateNewPhrase();
@@ -252,7 +252,7 @@
 			},
 			generateNewPhrase() {
 				this.axios
-				.get("http://localhost:8000/oehu/GenerateNewPhrase")
+				.get("https://localhost:8000/oehu/GenerateNewPhrase")
 				.then(function (response) {
 					this.phrase = response.data.phrase;
 				})
@@ -262,7 +262,7 @@
 			},
 			registerNewDevice() {
 				this.axios
-				.get("http://localhost:8000/oehu/registerDevice/" + 'deviceType' + '/' + 'lat' + '/' + 'long' + '/' + 'locationAccuracy' + '/' + 'householdType' + '/' + 'occupants')
+				.get("https://localhost:8000/oehu/registerDevice/" + 'deviceType' + '/' + 'lat' + '/' + 'long' + '/' + 'locationAccuracy' + '/' + 'householdType' + '/' + 'occupants')
 				.then(function (response) {
 					this.deviceId = response.data.deviceID;
 				})
@@ -272,7 +272,7 @@
 			},
 			registerAccount() {
 				this.axios
-				.post("http://api.oehu.org/account/register", {
+				.post("https://api.oehu.org/account/register", {
 					email: this.model.username,
 					password: this.model.password,
 					deviceId: this.deviceId
