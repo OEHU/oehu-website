@@ -227,19 +227,6 @@ export default {
     centerUpdate(center) {
       this.currentCenter = center;
     },
-    handleDevicesData(devices) {
-      devices.forEach(device => {
-        this.markers.push({
-          id: Math.floor(Math.random() * 1000 + 1),
-          position: {
-            lat: device.device.location.coordinates[0],
-            lng: device.device.location.coordinates[1]
-          },
-          tooltip:
-            "Totaal verbruikt: " + device.device.electricityReceived.total
-        });
-      });
-    },
     getConfigurated() {
       this.axios
         .get("https://localhost:8000/oehu/GetConfigurated")
@@ -309,7 +296,6 @@ export default {
     },
 
     mounted() {
-      this.retrieveOehuLocations();
       this.getConfigurated();
     }
   }
