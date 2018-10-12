@@ -206,35 +206,6 @@ export default {
             validator: VueFormGenerator.validators.string
           }
         ]
-      },
-      backupTab: {
-        fields: [
-          {
-            type: "input",
-            inputType: "text",
-            label: "Phrase:",
-            required: true,
-            default: this.phrase,
-            model: "phrase",
-            validator: VueFormGenerator.validators.string
-          },
-          {
-            type: "input",
-            inputType: "text",
-            label: "Check username",
-            model: "username",
-            required: true,
-            validator: VueFormGenerator.validators.string
-          },
-          {
-            type: "input",
-            inputType: "password",
-            label: "Check password ",
-            model: "password",
-            required: true,
-            validator: VueFormGenerator.validators.string
-          }
-        ]
       }
     };
   },

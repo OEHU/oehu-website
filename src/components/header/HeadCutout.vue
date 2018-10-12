@@ -9,9 +9,16 @@
                 <img src="../../assets/images/oehu-logo-small.svg" />
             </a>
 
-            <router-link :to="{name: 'login'}">
-                <Button class="login" title="log in" />
-            </router-link>
+            <div v-if="isCookieSet">
+                <Button v-on:click.native="logout()" class="login" title="logout" />
+            </div>
+
+            <div v-else> 
+                <router-link :to="{name: 'login'}">
+                        <Button class="login" title="log in" />
+                </router-link>
+            </div>
+  
 
             <div class="menu_button">
                 <div @click="openNav()"/>
@@ -67,13 +74,27 @@ import Button from "@/components/common/Button.vue";
 export default {
   name: "HeadCutOUt",
   components: {Button},
+  data(){
+      return {
+          isCookieSet: false
+      }
+  },
   methods: {
       closeNav(){
         this.$refs.menu.style.display = "none"; 
       },
       openNav(){
         this.$refs.menu.style.display = "block"; 
+      },
+      logout(){
+        this.$cookies.remove("devices");
+        this.$router.go('/')
       }
+  },
+  mounted() {
+    if (this.$cookies.get("devices")) {
+      this.isCookieSet = true;
+    }
   }
 };
 </script>
