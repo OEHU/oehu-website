@@ -1,20 +1,11 @@
 <template>
     <div class="dashboard">
-        <div v-if="isCookieSet">
             <Logo/>
             <div class="container">
                 <Title title="Your Own Dashboard" class="Title"/>
                 <p>This page is dedicated to you!</p>
-                <Map :devices="devices"></Map>
+                <Map :markers="devices"></Map>
             </div>
-        </div>
-        <div v-else>
-            <Logo/>
-            <div class="container">
-                <Title title="Your Own Dashboard" class="Title"/>
-                <p>This page is dedicated to you! Cookie not set</p>
-            </div>
-        </div>
         <Footer/>
         <FooterClosing/>
     </div>
@@ -32,7 +23,6 @@
         data() {
             return {
                 isCookieSet: false,
-
                 deviceId: 0,
                 devices: [
                     {
