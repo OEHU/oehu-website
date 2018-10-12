@@ -2,12 +2,12 @@
     <div>
         <l-map
                 class="oehu-map"
-                :zoom="zoom"
-                :center="center"
+                :zoom="map.zoom"
+                :center="map.center"
                 :options="{zoomControl: true, touchZoom: true, scrollWheelZoom: false, doubleClickZoom: true, boxZoom: true}"
                 @update:center="centerUpdate"
                 @update:zoom="zoomUpdate">
-            <l-tile-layer :url="url" :attribution="attribution"/>
+            <l-tile-layer :url="map.url" :attribution="map.attribution"/>
             <l-marker
                     v-for="marker in markers"
                     :key="marker.id"
@@ -26,19 +26,23 @@
 
     export default {
         name: 'Map',
+        components: {
+            LMap,
+            LTileLayer,
+            LMarker,
+            LTooltip
+        },
         props: ['markers'],
         data() {
             return {
-                zoom: 10,
-                currentZoom: 10,
-                center: {lat: 52.0182305, lng: 4.6910549},
-                currentCenter: {lat: 52.0182305, lng: 4.6910549},
-                // Found some of the map styles below style on https://wiki.openstreetmap.org/wiki/Tiles#Servers
-                // url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                // url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
-                // url: 'https://{s}.tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png',
-                url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
-                attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                map: {
+                    zoom: 10,
+                    currentZoom: 10,
+                    center: {lat: 52.0182305, lng: 4.6910549},
+                    currentCenter: {lat: 52.0182305, lng: 4.6910549},
+                    url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
+                    attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                },
                 LIcon: L.icon({
                     iconUrl: '/marker-icon.png',
                     iconRetinaUrl: '/marker-icon-2x.png',
@@ -57,11 +61,24 @@
             },
         },
         mounted() {
-            // this.retrieveOehuLocations();
+            console.log(this.markers);
         }
     }
 </script>
 
 <style scoped lang="scss">
+    @import '../../assets/sass/mix.scss';
 
+    .oehu-map {
+        margin: 0 auto;
+        width: 100%;
+        overflow: hidden;
+        height: 400px;
+        z-index: 8;
+        position: relative;
+
+        @include mobile() {
+            width: 90%;
+        }
+    }
 </style>
