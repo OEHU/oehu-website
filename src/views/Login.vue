@@ -34,20 +34,19 @@ export default {
   },
   methods: {
     login: function() {
-     this.$cookies.set("devices",555)
-     this.$router.push('/dashboard')
-    //   this.axios
-    //     .post("https://api.oehu.org/account/login", {
-    //       email: this.email,
-    //       password: this.password,
-    //     })
-    //     .then(function(response) {
-    //       console.log(response);
-    //       this.$cookies.set("devices",response.devices)
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
+     this.axios
+        .post("https://api.oehu.org/account/login", {
+          email: this.email,
+          password: this.password,
+        })
+        .then(function(response) {
+          console.log(response);
+          this.$cookies.set("devices",response.devices)
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+        this.$router.push('/dashboard')
     }
   }
 };
