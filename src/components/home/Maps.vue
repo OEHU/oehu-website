@@ -49,6 +49,7 @@
                     iconRetinaUrl: '/marker-icon-2x.png',
                     // shadowUrl: 'https://static.afbe+eldinguploaden.nl/1810/478987/xmrMaSzC.png',
                     iconSize: [76, 76],
+                    iconSize: [50, 50],
                     iconAnchor: [25, 25],
                     popupAnchor: [0, 0],
                 })
