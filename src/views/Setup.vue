@@ -75,6 +75,7 @@
 		data: function () {
 			return {
 				deviceId: 0,
+				phrase: 0,
 				zoom: 10,
 				center: {lat: 52.0182305, lng: 4.6910549},
 				url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -252,6 +253,9 @@
 			generateNewPhrase() {
 				this.axios
 				.get("http://localhost:8000/oehu/GenerateNewPhrase")
+				.then(function (response) {
+					this.phrase = response.data.phrase;
+				})
 				.catch(function (error) {
 					console.log(error);
 				});
