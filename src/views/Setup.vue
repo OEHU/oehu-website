@@ -28,6 +28,7 @@
             </tab-content>
 
             <tab-content title="Building data" :before-change="validateBuildingTab">
+                <template slot="prev"></template>
                 <div class="tab">
                     <vue-form-generator :model="model" :schema="selectBuilding" :options="formOptions"
                                         ref="selectBuilding"></vue-form-generator>
@@ -321,16 +322,7 @@ export default {
     },
     loadPhrase: function() {
       this.model = VueFormGenerator.schema.createDefaultObject(this.backupTab);
-    },
-    isLastStep: function() {
-      if (this.$refs.wizard) {
-
-        return this.$refs.wizard.isLastStep
-      }
-      return false
-    },
-    
-
+    },    
     mounted() {
       this.getConfigurated();
     }
@@ -348,6 +340,7 @@ export default {
     border: 0;
   }
 }
+
 
 .tab {
   height: 350px;
