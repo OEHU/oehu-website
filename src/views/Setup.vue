@@ -65,7 +65,6 @@ import "vue-form-generator/dist/vfg-core.css";
 import { LMap, LTileLayer, LMarker, LTooltip } from "vue2-leaflet";
 import L from "leaflet";
 
-
 export default {
   components: {
     LMap,
@@ -93,6 +92,35 @@ export default {
       }),
       test: "",
       model: {},
+      backupTab: {
+        fields: [
+          {
+            type: "input",
+            inputType: "text",
+            label: "Phrase:",
+            required: true,
+            default: this.phrase,
+            model: "phrase",
+            validator: VueFormGenerator.validators.string
+          },
+          {
+            type: "input",
+            inputType: "text",
+            label: "Check username",
+            model: "username",
+            required: true,
+            validator: VueFormGenerator.validators.string
+          },
+          {
+            type: "input",
+            inputType: "password",
+            label: "Check password ",
+            model: "password",
+            required: true,
+            validator: VueFormGenerator.validators.string
+          }
+        ]
+      },
       formOptions: {
         validationErrorClass: "has-error",
         validationSuccessClass: "has-success",
@@ -185,7 +213,7 @@ export default {
             inputType: "text",
             label: "Phrase:",
             required: true,
-            default: 'some text',
+            default: this.phrase,
             model: "phrase",
             validator: VueFormGenerator.validators.string
           },
@@ -216,6 +244,7 @@ export default {
     },
     validateCredentialsTab: function() {
       this.registerAccount();
+      this.loadPhrase();
       return this.$refs.credentialsTab.validate();
     },
     validateBackupTab: function() {
@@ -290,10 +319,17 @@ export default {
           console.log(error);
         });
     },
-
-    newModel: function() {
-      this.model = VueFormGenerator.schema.createDefaultObject(this.schema);
+    loadPhrase: function() {
+      this.model = VueFormGenerator.schema.createDefaultObject(this.backupTab);
     },
+    isLastStep: function() {
+      if (this.$refs.wizard) {
+
+        return this.$refs.wizard.isLastStep
+      }
+      return false
+    },
+    
 
     mounted() {
       this.getConfigurated();
