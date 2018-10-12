@@ -89,6 +89,14 @@
                 Read how to start using OEHU on the <a href="/get-started" target="_blank">Get Started!</a> page.
             </p>
 
+            <h2>
+                I have an other question.
+            </h2>
+
+            <p>
+                Please leave a message in <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">OEHU's Telegram channel</a> :)
+            </p>
+
         </div>
 
         <GetStarted />

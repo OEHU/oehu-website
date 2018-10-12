@@ -67,87 +67,105 @@
             <h3>Step 1</h3>
 
             <p>
-                Download the OEHU software for your Rpi: here [link];
+                <b>
+                    For the time being: <a href="https://github.com/BlocklabNL/VEL/blob/master/NOTES-PREVIEW.MD#raspberry-pi-setup" target="_blank">Follow these manual steps</a> to install the needed software on your Pi.
+                </b>
             </p>
-
-            <h3>Step 2</h3>
 
             <p>
-                Unzip the downloaded image and copy the file to the micro-SD-card; NB. our set provides a USB SD-card reader in case your laptop lacks an SD-card slot.
+                <strike>Download the OEHU software for your Rpi: here [link];</strike>
             </p>
 
-            <h3>Step 3</h3>
+            <strike>
 
-            <p>
-                Connect everything to your Rpi:
-            </p>
-            <ol>
-                <li>Slide the micro-SD card into the designated slot of the Rpi;</li>
-                <li>If your Rpi doesn’t have WiFi build-in: Connect the Ethernet cable or WiFi dongle to the Rpi, otherwise skip this;</li>
-                <li>
-                    Connect the P1 connector of the P1 cable to the P1 port of your smart meter. NB. Usually you have to slide aside a rubber lit to access the P1 port
+                <h3>Step 2</h3>
 
-                    <img class="image" src="../assets/images/icon/OEHU_R_PI_+_CABLE.svg" alt="" />
-                </li>
-                <li>
-                    Connect the USB connector of the P1 cable to the Rpi
+                <p>
+                    Unzip the downloaded image and copy the file to the micro-SD-card; NB. our set provides a USB SD-card reader in case your laptop lacks an SD-card slot.
+                </p>
 
-                    <img class="image" src="../assets/images/icon/OEHU_METER_R_PI_+_CABLE.svg" alt="" />
-                </li>
-                <li>Finally, connect the power cable to the Rpi and plug it into a power socket. This will make your Rpi boot;</li>
-                <li>
-                    Get yourself a nice cup of coffee, because the booting will take up to 20 minutes. Just let the Rpi do its thing. You know it is ready when you see either:
-                    <ol>
-                        <li>A new WiFi network called OEHU Setup, or,</li>
-                        <li>When WiFi is not available on the Rpi and you use ethernet instead: you see that your Rpi is connected on this website: <a href="https://oehu.org/setup" target="_blank">oehu.org/setup</a></li>
-                    </ol>
-                </li>
-            </ol>
+                <h3>Step 3</h3>
+
+                <p>
+                    Connect everything to your Rpi:
+                </p>
+                <ol>
+                    <li>Slide the micro-SD card into the designated slot of the Rpi;</li>
+                    <li>If your Rpi doesn’t have WiFi build-in: Connect the Ethernet cable or WiFi dongle to the Rpi, otherwise skip this;</li>
+                    <li>
+                        Connect the P1 connector of the P1 cable to the P1 port of your smart meter. NB. Usually you have to slide aside a rubber lit to access the P1 port
+
+                        <img class="image" src="../assets/images/icon/OEHU_R_PI_+_CABLE.svg" alt="" />
+                    </li>
+                    <li>
+                        Connect the USB connector of the P1 cable to the Rpi
+
+                        <img class="image" src="../assets/images/icon/OEHU_METER_R_PI_+_CABLE.svg" alt="" />
+                    </li>
+                    <li>Finally, connect the power cable to the Rpi and plug it into a power socket. This will make your Rpi boot;</li>
+                    <li>
+                        Get yourself a nice cup of coffee, because the booting will take up to 20 minutes. Just let the Rpi do its thing. You know it is ready when you see either:
+                        <ol>
+                            <li>A new WiFi network called OEHU Setup, or,</li>
+                            <li>When WiFi is not available on the Rpi and you use ethernet instead: you see that your Rpi is connected on this website: <a href="https://oehu.org/setup" target="_blank">oehu.org/setup</a></li>
+                        </ol>
+                    </li>
+                </ol>
+
+            </strike>
 
             <h2>
                 Part 3: Configure & Go!
             </h2>
             
-            <p>
-                If WiFi is available on your Rpi, your Rpi is turned into a hotspot by now and is sending out a WiFi network called: OEHU Setup. Then start with step 1, otherwise go straight to step 5.
+                <strike>
 
-                <img class="image" src="../assets/images/icon/OEHU_R_PI.svg" alt="" />
-            </p>
+                <p>
+                    If WiFi is available on your Rpi, your Rpi is turned into a hotspot by now and is sending out a WiFi network called: OEHU Setup. Then start with step 1, otherwise go straight to step 5.
 
-            <h3>Step 1</h3>
+                    <img class="image" src="../assets/images/icon/OEHU_R_PI.svg" alt="" />
+                </p>
 
-            <p>
-                Change the WiFi connection of your laptop to the network: OEHU Setup;
-            </p>
+                <h3>Step 1</h3>
 
-            <h3>Step 2</h3>
+                <p>
+                    Change the WiFi connection of your laptop to the network: OEHU Setup;
+                </p>
 
-            <p>
-                Browse to <a href="http://oehu.local" target="blank">oehu.local</a>
-            </p>
+                <h3>Step 2</h3>
 
-            <h3>Step 3</h3>
+                <p>
+                    Browse to <a href="http://oehu.local" target="blank">oehu.local</a>
+                </p>
 
-            <p>
-                Here you need to select your own (home) WiFi network. Make sure the Rpi and your laptop are on the same network. Click the Submit button. <i>Be aware: enter the credentials right the first time, otherwise the Rpi will freeze and you need to start all over again.</i>
-            </p>
+                <h3>Step 3</h3>
 
-            <h3>Step 4</h3>
+                <p>
+                    Here you need to select your own (home) WiFi network. Make sure the Rpi and your laptop are on the same network. Click the Submit button. <i>Be aware: enter the credentials right the first time, otherwise the Rpi will freeze and you need to start all over again.</i>
+                </p>
 
-            <p>
-                Change the WiFi connection of your laptop back to your own (home) WiFi network;
-            </p>
+                <h3>Step 4</h3>
+
+                <p>
+                    Change the WiFi connection of your laptop back to your own (home) WiFi network;
+                </p>
+
+            </strike>
 
             <h3>Step 5</h3>
 
             <p>
-                To configure your Rpi go to <a href="https://oehu.org/setup">oehu.org/setup</a>
+                To configure your Rpi go to <a href="https://oehu.org/setup" target="_blank">oehu.org/setup</a>
             </p>
 
             <h3>Step 6</h3>
 
             <p>
-                Fill in your location and give in the accuracy in meter that you want the viewer to show your location on the map. Click Next. <i>NB. It is possible to choose anonymity instead of giving in your precise location. Check the box if you want to stay anonymous.</i>
+                Fill in your location and give in the accuracy in meter that you want the viewer to show your location on the map. Click Next.
+            </p>
+
+            <p>
+                <i>NB. It is possible to choose anonymity instead of giving in your precise location. Check the box if you want to stay anonymous.</i>
             </p>
 
             <h3>Step 7</h3>
@@ -159,7 +177,15 @@
             <h3>Step 8</h3>
 
             <p>
-                Choose your username and password that gives you access to your dashboard on the OEHU website. Make sure you save the passfrase, username and password by downloading the file and storing this in a save location. Normally, the download of the pdf with this information starts automatically. Click Next. 
+                Choose your username and password that will give you access to your dashboard on the OEHU website.
+            </p>
+
+            <p>
+                Make sure you save the passphrase, username and password by writing it down on paper or storing this in your password manager. The passphrase is important: It gives you access to your data, and lets you modify it. 
+            </p>
+
+            <p>
+                Click Next.
             </p>
 
             <h3>Step 9</h3>
