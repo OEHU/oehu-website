@@ -11,7 +11,7 @@
                     <Meter class="meter" :value="metersConnectedCount" textAbove="" description="Meters connected"/>
                     <Meter class="meter" :value="averageKwHUsage" textAbove="Past 24Hr" description="Average KwH usage per household"/>
                     <Meter class="meter" :value="averageKwHGenerated" textAbove="Past 24Hr" description="Average KwH generated per household"/>
-                    <Meter class="meter" :value="averagGasUsed8" textAbove="Past 24Hr" description="Gas used per household"/>
+                    <Meter class="meter" :value="averagGasUsed" textAbove="Past 24Hr" description="Gas used per household"/>
                 </div>
             </div>
         </div>

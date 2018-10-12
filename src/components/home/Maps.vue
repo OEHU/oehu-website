@@ -46,7 +46,6 @@
                 LIcon: L.icon({
                     iconUrl: '/marker-icon.png',
                     iconRetinaUrl: '/marker-icon-2x.png',
-                    // shadowUrl: 'https://static.afbeeldinguploaden.nl/1810/478987/xmrMaSzC.png',
                     iconSize: [50, 50],
                     iconAnchor: [25, 25],
                     popupAnchor: [0, 0],
