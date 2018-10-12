@@ -35,6 +35,7 @@ export default {
   methods: {
     login: function() {
      this.$cookies.set("devices",555)
+     this.$router.push('/dashboard')
     //   this.axios
     //     .post("https://api.oehu.org/account/login", {
     //       email: this.email,
