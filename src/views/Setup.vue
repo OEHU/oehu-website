@@ -1,9 +1,10 @@
 <template>
     <div class="container">
         <form-wizard shape="tab" color="#26292d" error-color="#a94442">
-            <h1 slot="title">Setup</h1>
+            <h1 class="title" slot="title">Welcome to the OEHU setup</h1>
             <tab-content title="Location">
                 <div class="tab">
+                    <h2>Step 1: Enter your location</h2>
                     <l-map
                             class="oehu-map"
                             :zoom="zoom"
@@ -28,7 +29,9 @@
             </tab-content>
 
             <tab-content title="Building data" :before-change="validateBuildingTab">
+                <template slot="prev"></template>
                 <div class="tab">
+                    <h2>Step 2: Enter your Building data</h2>
                     <vue-form-generator :model="model" :schema="selectBuilding" :options="formOptions"
                                         ref="selectBuilding"></vue-form-generator>
                 </div>
@@ -36,6 +39,7 @@
 
             <tab-content title="Credentials" :before-change="validateCredentialsTab">
                 <div class="tab">
+                    <h2>Step 3: Enter your credentials</h2>
                     <vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions"
                                         ref="credentialsTab"></vue-form-generator>
                 </div>
@@ -43,6 +47,7 @@
 
             <tab-content title="Backup" :before-change="validateBackupTab">
                 <div class="tab">
+                    <h2>Step 4: Save your credentials</h2>
                     <p>Please write down the data below!</p>
                     <vue-form-generator :model="model" :schema="backupTab" :options="formOptions"
                                         ref="backupTab"></vue-form-generator>
@@ -51,8 +56,9 @@
 
             <tab-content title="Dashboard">
                 <div class="tab">
-                    <p>{{this.model}}</p>
+                    <h2>Step 5: Well done we're processing your request</h2>
                     <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
+                    <p>{{this.model}}</p>
                 </div>
             </tab-content>
         </form-wizard>
@@ -92,6 +98,35 @@ export default {
       }),
       test: "",
       model: {},
+      backupTab: {
+        fields: [
+          {
+            type: "input",
+            inputType: "text",
+            label: "Phrase:",
+            required: true,
+            default: this.phrase,
+            model: "phrase",
+            validator: VueFormGenerator.validators.string
+          },
+          {
+            type: "input",
+            inputType: "text",
+            label: "Check email",
+            model: "email",
+            required: true,
+            validator: VueFormGenerator.validators.string
+          },
+          {
+            type: "input",
+            inputType: "password",
+            label: "Check password ",
+            model: "password",
+            required: true,
+            validator: VueFormGenerator.validators.string
+          }
+        ]
+      },
       formOptions: {
         validationErrorClass: "has-error",
         validationSuccessClass: "has-success",
@@ -162,8 +197,8 @@ export default {
           {
             type: "input",
             inputType: "text",
-            label: "Username:",
-            model: "username",
+            label: "email:",
+            model: "email",
             required: true,
             validator: VueFormGenerator.validators.string
           },
@@ -171,35 +206,6 @@ export default {
             type: "input",
             inputType: "password",
             label: "Password:",
-            model: "password",
-            required: true,
-            validator: VueFormGenerator.validators.string
-          }
-        ]
-      },
-      backupTab: {
-        fields: [
-          {
-            type: "input",
-            inputType: "text",
-            label: "Phrase:",
-            required: true,
-            default: 'some text',
-            model: "phrase",
-            validator: VueFormGenerator.validators.string
-          },
-          {
-            type: "input",
-            inputType: "text",
-            label: "Check username",
-            model: "username",
-            required: true,
-            validator: VueFormGenerator.validators.string
-          },
-          {
-            type: "input",
-            inputType: "password",
-            label: "Check password ",
             model: "password",
             required: true,
             validator: VueFormGenerator.validators.string
@@ -215,6 +221,7 @@ export default {
     },
     validateCredentialsTab: function() {
       this.registerAccount();
+      this.loadPhrase();
       return this.$refs.credentialsTab.validate();
     },
     validateBackupTab: function() {
@@ -226,22 +233,9 @@ export default {
     centerUpdate(center) {
       this.currentCenter = center;
     },
-    handleDevicesData(devices) {
-      devices.forEach(device => {
-        this.markers.push({
-          id: Math.floor(Math.random() * 1000 + 1),
-          position: {
-            lat: device.device.location.coordinates[0],
-            lng: device.device.location.coordinates[1]
-          },
-          tooltip:
-            "Totaal verbruikt: " + device.device.electricityReceived.total
-        });
-      });
-    },
     getConfigurated() {
       this.axios
-        .get("http://localhost:8000/oehu/GetConfigurated")
+        .get("https://localhost:8000/oehu/GetConfigurated")
         .then(function(response) {
           if (response.data.configurated !== true) {
             this.generateNewPhrase();
@@ -255,7 +249,7 @@ export default {
     },
     generateNewPhrase() {
       this.axios
-        .get("http://localhost:8000/oehu/GenerateNewPhrase")
+        .get("https://localhost:8000/oehu/GenerateNewPhrase")
         .then(function(response) {
           this.phrase = response.data.phrase;
         })
@@ -267,7 +261,7 @@ export default {
       //na 2
       this.axios
         .get(
-          "http://localhost:8000/oehu/registerDevice/" +
+          "https://localhost:8000/oehu/registerDevice/" +
             "OEHU" +
             "/" +
             this.model.lat +
@@ -291,7 +285,7 @@ export default {
       //na 3
       this.axios
         .post("https://api.oehu.org/account/register", {
-          email: this.model.username,
+          email: this.model.email,
           password: this.model.password,
           deviceId: this.deviceId
         })
@@ -302,13 +296,10 @@ export default {
           console.log(error);
         });
     },
-
-    newModel: function() {
-      this.model = VueFormGenerator.schema.createDefaultObject(this.schema);
-    },
-
+    loadPhrase: function() {
+      this.model = VueFormGenerator.schema.createDefaultObject(this.backupTab);
+    },    
     mounted() {
-      this.retrieveOehuLocations();
       this.getConfigurated();
     }
   }
@@ -317,14 +308,18 @@ export default {
 
 <style lang="scss">
 .container {
+  height: 1090px;
   h1 {
     font-size: 30px;
   }
-  height: 1090px;
   fieldset {
     border: 0;
   }
+  .title{
+      color: black;
+  }
 }
+
 
 .tab {
   height: 350px;

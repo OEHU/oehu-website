@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueCookies from 'vue-cookies'
  
 //Sass styling
 import '@/assets/sass/main.scss'
@@ -28,6 +29,7 @@ Vue.config.productionTip = false
 Vue.use(VueFormWizard)
 Vue.use(VueFormGenerator)
 Vue.use(VueAxios, axios)
+Vue.use(VueCookies)
 
 new Vue({
     router,
