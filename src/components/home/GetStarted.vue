@@ -79,6 +79,14 @@
         }
 
         .columns {
+            flex-wrap: wrap;
+
+            .column.content {
+                @media (max-width: 1200px) {
+                    min-width: 100%;
+                }
+            }
+
             .column:first-child {
                 flex: 2;
             }
@@ -109,13 +117,11 @@
     .smart_oehu_image {
         position: relative;
         z-index: 2;
-        max-height: 287px;
         display: block;
         margin: 0 auto;
 
-        @include mobile() {
-            display: none;
-        }
+        width: 360px;
+        max-width: 360px;
     }
 
 </style>
