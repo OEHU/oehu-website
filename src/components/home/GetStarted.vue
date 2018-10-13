@@ -109,7 +109,7 @@
     .smart_oehu_image {
         position: relative;
         z-index: 2;
-        max-width: 300px;
+        max-height: 287px;
         display: block;
         margin: 0 auto;
 
