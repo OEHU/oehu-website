@@ -187,7 +187,7 @@ export default {
           {
             type: "input",
             inputType: "text",
-            label: "Lat",
+            label: "Latitude",
             model: "lat",
             required: true,
             validator: VueFormGenerator.validators.string,
@@ -196,7 +196,7 @@ export default {
           {
             type: "input",
             inputType: "text",
-            label: "Long",
+            label: "Longitude",
             model: "long",
             required: true,
             validator: VueFormGenerator.validators.string,
@@ -338,9 +338,8 @@ export default {
   }
 }
 
-
 .tab {
-  height: 350px;
+  height: 450px;
 }
 </style>
 
