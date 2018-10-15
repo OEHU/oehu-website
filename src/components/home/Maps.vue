@@ -63,7 +63,7 @@
             },
             async retrieveOehuLocations() {
                 try {
-                    const response = await axios.get('http://api.oehu.org/data');
+                    const response = await axios.get('https://api.oehu.org/data');
                     this.handleDevicesData(response.data);
                 } catch (error) {
                     console.error(error);
