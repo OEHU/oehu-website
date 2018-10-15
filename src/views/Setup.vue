@@ -7,22 +7,26 @@
                     <h2>Step 1: Enter your location</h2>
                     <l-map
                             class="oehu-map"
-                            :zoom="zoom"
-                            :center="center"
+                            :zoom="map.zoom"
+                            :center="map.center"
+                            :options="{zoomControl: true, touchZoom: true, scrollWheelZoom: true, doubleClickZoom: true, boxZoom: true}"
                             @update:center="centerUpdate"
-                            @update:zoom="zoomUpdate">
-                        <l-tile-layer
-                                :url="url"
-                                :attribution="attribution"/>
+                            @update:zoom="zoomUpdate"
+                            @click="markerClick">
+                        <l-tile-layer :url="map.url" :attribution="map.attribution"/>
                         <l-marker
-                                v-for="marker in markers"
-                                :key="marker.id"
+                                key="mylocation"
                                 :icon="LIcon"
-                                :lat-lng="marker.position">
-                            <l-tooltip :content="marker.tooltip"/>
-
+                                :lat-lng="map.marker.position">
                         </l-marker>
+                        <LCircle
+                                key="mylocation2"
+                                :radius="model.accuracy"
+                                :icon="LIcon"
+                                :lat-lng="map.marker.position">
+                        </LCircle>
                     </l-map>
+
                     <vue-form-generator :model="model" :schema="selectLocation" :options="formOptions"
                                         ref="selectLocation"></vue-form-generator>
                 </div>
@@ -68,7 +72,7 @@
 <script>
 import VueFormGenerator from "vue-form-generator";
 import "vue-form-generator/dist/vfg-core.css";
-import { LMap, LTileLayer, LMarker, LTooltip } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LCircle } from "vue2-leaflet";
 import L from "leaflet";
 
 export default {
@@ -76,28 +80,38 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LTooltip
+      LCircle
   },
   data: function() {
     return {
       deviceId: 0,
       phrase: 0,
-      zoom: 10,
-      center: { lat: 52.0182305, lng: 4.6910549 },
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      attribution:
-        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      markers: [],
-      LIcon: L.icon({
-        iconUrl: "/marker-icon.png",
-        iconRetinaUrl: "/marker-icon-2x.png",
-        // shadowUrl: 'https://static.afbeeldinguploaden.nl/1810/478987/xmrMaSzC.png',
-        iconSize: [50, 50],
-        iconAnchor: [25, 25],
-        popupAnchor: [0, 0]
+        map: {
+            marker: {
+                position: {
+                    lat: 0,
+                    lng: 0
+                },
+                radius: 10000
+            },
+            zoom: 10,
+            currentZoom: 10,
+            center: {lat: 52.0182305, lng: 4.6910549},
+            currentCenter: {lat: 52.0182305, lng: 4.6910549},
+            url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            attribution:
+                '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        },
+        LIcon: L.icon({
+            iconUrl: "/marker-icon.png",
+            iconRetinaUrl: "/marker-icon-2x.png",
+            iconSize: [25, 25],
       }),
-      test: "",
-      model: {},
+      model: {
+          lat: "",
+          long: "",
+          accuracy: 1000
+      },
       backupTab: {
         fields: [
           {
@@ -164,7 +178,7 @@ export default {
             type: "input",
             inputType: "number",
             label: "Location Accuracy",
-            model: "location",
+            model: "accuracy",
             min: 100,
             required: true,
             validator: VueFormGenerator.validators.string,
@@ -175,7 +189,6 @@ export default {
             inputType: "text",
             label: "Lat",
             model: "lat",
-            min: 100,
             required: true,
             validator: VueFormGenerator.validators.string,
             styleClasses: "col-xs-6"
@@ -185,7 +198,6 @@ export default {
             inputType: "text",
             label: "Long",
             model: "long",
-            min: 100,
             required: true,
             validator: VueFormGenerator.validators.string,
             styleClasses: "col-xs-6"
@@ -228,11 +240,17 @@ export default {
       return this.$refs.backupTab.validate();
     },
     zoomUpdate(zoom) {
-      this.currentZoom = zoom;
+      this.map.currentZoom = zoom;
     },
     centerUpdate(center) {
-      this.currentCenter = center;
+      this.map.currentCenter = center;
     },
+      markerClick(e) { //todo: can be a bit cleaner
+        this.map.marker.position.lat = e.latlng.lat;
+        this.map.marker.position.lng = e.latlng.lng;
+        this.model.lat = this.map.marker.position.lat;
+        this.model.long = this.map.marker.position.lng;
+      },
     getConfigurated() {
       this.axios
         .get("https://localhost:8000/oehu/GetConfigurated")
@@ -268,7 +286,7 @@ export default {
             "/" +
             this.model.long +
             "/" +
-            this.model.location +
+            this.model.accuracy +
             "/" +
             this.model.building +
             "/" +
@@ -298,7 +316,7 @@ export default {
     },
     loadPhrase: function() {
       this.model = VueFormGenerator.schema.createDefaultObject(this.backupTab);
-    },    
+    },
     mounted() {
       this.getConfigurated();
     }
