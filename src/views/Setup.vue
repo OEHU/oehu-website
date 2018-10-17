@@ -116,7 +116,8 @@ export default {
       model: {
         lat: "",
         long: "",
-        accuracy: 1000
+        accuracy: 1000,
+        accept: false
       },
       backupTab: {
         fields: [
@@ -237,6 +238,28 @@ export default {
       }
     };
   },
+  watch: {
+    "model.accept": {
+      handler: function(newVal) {
+        if (newVal == true) {
+          this.model.lat = "52.31877224455515";
+          this.model.long = "2.973580237523761";
+          this.map.marker.position.lat = this.model.lat;
+          this.map.marker.position.lng = this.model.long;
+          this.model.lat = this.map.marker.position.lat;
+          this.model.long = this.map.marker.position.lng;
+        } else {
+          this.model.lat = "";
+          this.model.long = "";
+          this.map.marker.position.lat = this.model.lat;
+          this.map.marker.position.lng = this.model.long;
+          this.model.lat = this.map.marker.position.lat;
+          this.model.long = this.map.marker.position.lng;
+        }
+      },
+      deep: true
+    }
+  },
   methods: {
     validateBuildingTab: function() {
       this.registerNewDevice();
@@ -330,7 +353,6 @@ export default {
       this.model = VueFormGenerator.schema.createDefaultObject(this.backupTab);
     },
     mounted() {
-      console.log(this.$refs.formWizard.activeTabIndex);
       //   this.getConfigurated();
     }
   }
@@ -379,9 +401,6 @@ export default {
 
   .vue-form-wizard {
     padding-top: 50px;
-    .wizard-icon-container {
-      display: none;
-    }
 
     .wizard-navigation .wizard-progress-with-circle {
       position: relative !important;
@@ -450,17 +469,17 @@ export default {
   }
 
   .tab {
-    h1 {
-      position: relative;
-      bottom: 296px;
-      text-align: center;
-    }
     h1,
     p,
     h2 {
       color: $black;
       font-size: 36px;
       font-weight: 400;
+    }
+    h1 {
+      position: relative;
+      bottom: 296px;
+      text-align: center;
     }
     .permisson_text {
       color: white;
