@@ -339,10 +339,14 @@
             color: black;
         }
 
+        .wizard-progress-with-circle,
+        .wizard-progress-bar {
+          display: none;
+        }
+
         .vue-form-wizard {
-            .wizard-icon-container {
-                display: none;
-            }
+            .wizard-icon-container { 
+           }
 
             .wizard-icon-circle {
                 background-color: #ffffff !important;
@@ -355,6 +359,7 @@
                 i {
                     color: $lightgray !important;
                     font-size: 30px !important;
+                    font-style: normal;
                 }
 
                 &.checked {
@@ -374,6 +379,10 @@
 
         .tab {
             height: 450px;
+        }
+
+        .wizard-card-footer {
+            margin-top: 36px;
         }
     }
 </style>
