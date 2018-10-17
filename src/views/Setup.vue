@@ -265,7 +265,7 @@ export default {
     },
     getConfigurated() {
       this.axios
-        .get("https://localhost:8000/oehu/GetConfigurated")
+        .get("https://oehu-setup-api.ngrok.io/oehu/GetConfigurated")
         .then(function(response) {
           if (response.data.configurated !== true) {
             this.generateNewPhrase();
@@ -279,7 +279,7 @@ export default {
     },
     generateNewPhrase() {
       this.axios
-        .get("https://localhost:8000/oehu/GenerateNewPhrase")
+        .get("https://oehu-setup-api.ngrok.io/oehu/GenerateNewPhrase")
         .then(function(response) {
           this.phrase = response.data.phrase;
         })
@@ -291,7 +291,7 @@ export default {
       //na 2
       this.axios
         .get(
-          "https://localhost:8000/oehu/registerDevice/" +
+          "https://oehu-setup-api.ngrok.io/oehu/registerDevice/" +
             "OEHU" +
             "/" +
             this.model.lat +
