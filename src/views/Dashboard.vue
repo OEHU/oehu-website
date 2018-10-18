@@ -25,14 +25,6 @@
                 isCookieSet: false,
                 deviceId: 0,
                 devices: [
-                    {
-                        id: 'test',
-                        position: {
-                            lat: 1,
-                            lng: 1
-                        },
-                        tooltip: 'test'
-                    }
                 ]
             }
         },
@@ -46,15 +38,20 @@
         methods: {
             async getDeviceData() {
                 try {
-                    const response = await this.axios.get('https://api.oehu.org/data?deviceId=' + this.deviceId);
+                    const response = await this.axios.get('https://api.oehu.org/devices?deviceId=' + this.deviceId);
                     this.handleDevicesData(response.data);
                 } catch (error) {
                     console.error(error);
                 }
             },
-            handleDevicesData() {
-                // let's generate a map
-                // let's generate some cool data!
+            handleDevicesData(data) {
+                this.data.push({
+                    id: data.deviceId,
+                    position: {
+                        lat: data.metadata.location.coordinates[0],
+                        lng: data.metadata.location.coordinates[1]
+                    }
+                })
             }
         },
         mounted() {
