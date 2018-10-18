@@ -11,7 +11,7 @@
                     <Meter class="meter" :value="metersConnectedCount" textAbove="" description="Meters connected"/>
                     <Meter class="meter" :value="averageKwHUsage" textAbove="Past 24Hr" description="Average KwH usage per household"/>
                     <Meter class="meter" :value="averageKwHGenerated" textAbove="Past 24Hr" description="Average KwH generated per household"/>
-                    <Meter class="meter" :value="averagGasUsed" textAbove="Past 24Hr" description="Gas used per household"/>
+                    <Meter class="meter" :value="averageGasUsed" textAbove="Past 24Hr" description="Gas used per household"/>
                 </div>
             </div>
         </div>
@@ -32,28 +32,27 @@
                 metersConnectedCount: 0,
                 averageKwHUsage: 0,
                 averageKwHGenerated: 0,
-                averagGasUsed: 0,
+                averageGasUsed: 0,
             }
         },
         methods: {
-            async retrieveOehuLocations() {
+            async getStatistics() {
                 try {
-                    const response = await axios.get('https://api.oehu.org/data');
-                    this.handleDevicesData(response.data);
+                    const response = await axios.get('https://api.oehu.org/statistics');
+                    this.handleStatisticData(response.data);
                 } catch (error) {
                     console.error(error);
                 }
             },
-            handleDevicesData(devices) {
-                this.meterConnected(devices);
-            },
-            meterConnected(devices) {
-                console.log(devices.length);
-                this.metersConnectedCount = devices.length;
+            handleStatisticData(statistics) {
+                this.metersConnectedCount(statistics.devicesConnected);
+                this.averageKwHUsage(statistics.averageUseEnergy);
+                this.averageKwHGenerated(statistics.averageGeneratedEnergy);
+                this.averageGasUsed(statistics.averageUseGas);
             }
         },
         mounted() {
-            this.retrieveOehuLocations();
+            this.getStatistics();
         }
     }
 </script>
