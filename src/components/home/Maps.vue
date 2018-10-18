@@ -63,7 +63,7 @@
             },
             async retrieveOehuLocations() {
                 try {
-                    const response = await axios.get('https://api.oehu.org/data');
+                    const response = await axios.get('https://api.oehu.org/devices');
                     this.handleDevicesData(response.data);
                 } catch (error) {
                     console.error(error);
@@ -72,9 +72,9 @@
             handleDevicesData(devices) {
                 devices.forEach((device) => {
                     this.markers.push({
-                        id: Math.floor((Math.random() * 1000) + 1),
-                        position: {lat: device.device.location.coordinates[0], lng: device.device.location.coordinates[1]},
-                        tooltip: 'Totaal verbruikt: ' + device.device.electricityReceived.total
+                        id: device.deviceId,
+                        position: {lat: device.metadata.location.coordinates[0], lng: device.metadata.location.coordinates[1]},
+                        tooltip: 'Totaal verbruikt: ' + device.metadata.electricityReceived.total
                     })
                 })
             }
