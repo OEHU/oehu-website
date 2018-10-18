@@ -1,9 +1,16 @@
 # oehu-website
 
+The website of OEHU, oehu.org.
+
 ## Project setup
-```
-npm install
-```
+
+Install `npm` & `node`
+
+Use node v9: `nvm use 9.0.0`
+
+Install dependencies:
+
+    npm install
 
 ### Compiles and hot-reloads for development
 ```
