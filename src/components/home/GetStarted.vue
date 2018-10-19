@@ -5,23 +5,28 @@
                 <div class="get-started-columns columns">
                     <div class="column content">
                         <Title
-                            title="Get started & sign up for a dashboard"
-                            color="#fff"
-                            />
+                                title="Get started & sign up for a dashboard"
+                                color="#fff"
+                        />
                         <p>
                             Be wise & own your own data! You'll get full access to your data & charts in return.
                         </p>
                         <p>
-                            You will need a Raspberry Pi, that you connect to your smart meter. At the first time you configure some basic things. After that the Pi will autonomously upload your energy data to a decentralized database. You stay owner of your data, and you'll have instantly access to a live & personal dashboard. That's it!
+                            You will need a Raspberry Pi, that you connect to your smart meter. At the first time you
+                            configure some basic things. After that the Pi will autonomously upload your energy data to
+                            a decentralized database. You stay owner of your data, and you'll have instantly access to a
+                            live & personal dashboard. That's it!
                         </p>
 
                         <p>
-                            If you're curious and want to start, click <i>Get Started</i> below. The guide will show you where to buy the Pi, and how to configure it. From then you'll have full control and get nice insights.
+                            If you're curious and want to start, click <i>Get Started</i> below. The guide will show you
+                            where to buy the Pi, and how to configure it. From then you'll have full control and get
+                            nice insights.
                         </p>
 
                         <div class="buttons">
                             <div v-on:click="getStarted()">
-                                <Button class="oehu-btn-primary" title="Get Started!" />
+                                <Button class="oehu-btn-primary" title="Get Started!"/>
                             </div>
                             <div v-on:click="goFaq()">
                                 <Button class="faq" title="FAQ"/>
@@ -34,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <FlowBackground />
+        <FlowBackground/>
     </div>
 </template>
 
@@ -48,10 +53,10 @@
         name: "WhatIs",
         components: {Button, Title, PhoneMockup, FlowBackground},
         methods: {
-            getStarted: function() {
+            getStarted: function () {
                 document.location = '/get-started';
             },
-            goFaq: function() {
+            goFaq: function () {
                 document.location = '/faq';
             }
         }
