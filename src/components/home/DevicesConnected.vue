@@ -45,10 +45,10 @@
                 }
             },
             handleStatisticData(statistics) {
-                this.metersConnectedCount(statistics.devicesConnected);
-                this.averageKwHUsage(statistics.averageUseEnergy);
-                this.averageKwHGenerated(statistics.averageGeneratedEnergy);
-                this.averageGasUsed(statistics.averageUseGas);
+                this.metersConnectedCount = statistics.devicesConnected;
+                this.averageKwHUsage = statistics.averageUseEnergy;
+                this.averageKwHGenerated = statistics.averageGeneratedEnergy;
+                this.averageGasUsed = statistics.averageUseGas;
             }
         },
         mounted() {
