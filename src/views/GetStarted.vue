@@ -58,8 +58,7 @@
 
             <p>
                 We provide an all-in-one set for your convenience. You can purchase this set <a
-                    href="https://www.sossolutions.nl/raspberry-smartmeter-voor-oehu-leden">here</a>. Bij
-                SOS Solutions een winkelmandje maken.
+                    href="https://www.sossolutions.nl/raspberry-smartmeter-voor-oehu-leden">here</a>.
             </p>
 
             <p>
@@ -81,11 +80,11 @@
             </p>
 
             <p>
-                <!--<strike>Download the OEHU software for your Rpi here [link];</strike>-->
+                <!--Download the OEHU software for your Rpi here [link];-->
                 The software is not ready yet. Just wait for a little while please.
             </p>
 
-            <strike>
+            
 
                 <h3>Step 2</h3>
 
@@ -130,13 +129,13 @@
                     </li>
                 </ol>
 
-            </strike>
+            
 
             <h2>
                 Part 3: Configure & Go!
             </h2>
 
-            <strike>
+            
 
                 <p>
                     If WiFi is available on your Rpi, your Rpi is turned into a hotspot by now and is sending out a WiFi
@@ -171,7 +170,7 @@
                     Change the WiFi connection of your laptop back to your own (home) WiFi network;
                 </p>
 
-            </strike>
+            
 
             <h3>Step 5</h3>
 
