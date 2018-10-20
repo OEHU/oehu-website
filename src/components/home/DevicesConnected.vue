@@ -8,10 +8,14 @@
                     class="title"
                     />
                 <div class="meters-wrapper">
-                    <Meter class="meter" :value="metersConnectedCount" textAbove="" description="Meters connected"/>
-                    <Meter class="meter" :value="averageKwHUsage" textAbove="Past 24Hr" description="Average KwH usage per household"/>
-                    <Meter class="meter" :value="averageKwHGenerated" textAbove="Past 24Hr" description="Average KwH generated per household"/>
-                    <Meter class="meter" :value="averageGasUsed" textAbove="Past 24Hr" description="Gas used per household"/>
+                    <Meter class="meter" :value="metersConnectedCount" valuePrecision=0
+                            textAbove="" description="Meters connected"/>
+                    <Meter class="meter" :value="averageKwHUsage" valuePrecision=2
+                            textAbove="Past 24Hr" description="Average KwH usage per household"/>
+                    <Meter class="meter" :value="averageKwHGenerated" valuePrecision=2
+                            textAbove="Past 24Hr" description="Average KwH generated per household"/>
+                    <Meter class="meter" :value="averageGasUsed" valuePrecision=2
+                            textAbove="Past 24Hr" description="Gas used per household"/>
                 </div>
             </div>
         </div>
@@ -80,7 +84,7 @@
 
     .meters-wrapper {
         width: 80vw;
-        margin: -40px auto 0 auto;
+        margin: 0 auto 0 auto;
 
         @media (min-width: 480px) {
             width: auto;

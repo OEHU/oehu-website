@@ -4,7 +4,7 @@
             {{this.textAbove}}
         </div>
         <div class="circle">
-            {{this.value}}
+            {{this.value.toFixed(this.valuePrecision)}}
         </div>
         <span class="meter-text-under">
             {{this.description}}
@@ -16,7 +16,7 @@
 <script>
     export default {
         name: 'Meter',
-        props: ['value', 'textAbove', 'description'],
+        props: ['value', 'valuePrecision', 'textAbove', 'description'],
     }
 </script>
 
