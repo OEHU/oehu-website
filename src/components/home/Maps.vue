@@ -71,10 +71,12 @@
             },
             handleDevicesData(devices) {
                 devices.forEach((device) => {
+                    if(! device.metadata ) return;
+                    if(! device.metadata.householdType ) return;
                     this.markers.push({
                         id: device.deviceId,
                         position: {lat: device.metadata.location.coordinates[0], lng: device.metadata.location.coordinates[1]},
-                        tooltip: 'Totaal verbruikt: ' + device.metadata.electricityReceived.total
+                        tooltip: '' + device.metadata.householdType.charAt(0).toUpperCase() + device.metadata.householdType.slice(1)
                     })
                 })
             }
