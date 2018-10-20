@@ -67,16 +67,10 @@
             <h3>Step 1</h3>
 
             <p>
-                <b>
-                    For the time being: <a href="https://github.com/BlocklabNL/VEL/blob/master/NOTES-PREVIEW.MD#raspberry-pi-setup" target="_blank">Follow these manual steps</a> to install the needed software on your Pi.
-                </b>
+                Download the OEHU software for your Rpi: here [link];
             </p>
 
-            <p>
-                <strike>Download the OEHU software for your Rpi: here [link];</strike>
-            </p>
-
-            <strike>
+            
 
                 <h3>Step 2</h3>
 
@@ -112,13 +106,13 @@
                     </li>
                 </ol>
 
-            </strike>
+            
 
             <h2>
                 Part 3: Configure & Go!
             </h2>
             
-                <strike>
+                
 
                 <p>
                     If WiFi is available on your Rpi, your Rpi is turned into a hotspot by now and is sending out a WiFi network called: OEHU Setup. Then start with step 1, otherwise go straight to step 5.
@@ -150,7 +144,7 @@
                     Change the WiFi connection of your laptop back to your own (home) WiFi network;
                 </p>
 
-            </strike>
+            
 
             <h3>Step 5</h3>
 
