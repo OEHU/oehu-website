@@ -368,16 +368,9 @@ export default {
   @include mobile() {
     height: 180vh;
   }
-  h1 {
-    font-size: 30px;
-  }
   fieldset {
     border: 0;
   }
-  .title {
-    color: black;
-  }
-
   .logo {
     position: fixed;
     left: 25px;
@@ -394,6 +387,18 @@ export default {
     height: 422px;
   }
   .tab {
+    .permisson_text {
+      color: white;
+      font-size: 18px;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      @include mobile() {
+        padding-top: 5px;
+      }
+      @include tablet() {
+        padding-top: 5px;
+      }
+    }
     h1,
     p,
     h2 {
@@ -418,29 +423,23 @@ export default {
       bottom: 296px;
       text-align: center;
     }
-    .permisson_text {
-      color: white;
-      font-size: 18px;
-      margin-top: 20px;
-      margin-bottom: 15px;
-      @include mobile() {
-        font-size: 14px;
-        padding-top: 5px;
-      }
-      @include tablet() {
-        font-size: 16px;
-        padding-top: 5px;
-      }
-    }
   }
-
+// Form elements
   .vue-form-generator {
     .form-group {
       width: 35% !important;
       display: block !important;
       @include mobile() {
         width: 100% !important;
-        display: block !important;
+      }
+      @include tablet() {
+        width: 50% !important;
+      }
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url("../assets/images/select_arrow.png") no-repeat $blue
+          97% 50% !important;
       }
     }
 
@@ -449,30 +448,24 @@ export default {
       font-size: 18px !important;
       line-height: 1.42857143 !important;
       color: white !important;
-      background-color: #0086ff !important;
+      background-color: $blue !important;
       background-image: none !important;
       border: 5px solid white !important;
       border-radius: 4px !important;
       @include mobile() {
-        padding: 6px 12px !important;
-        font-size: 12px !important;
-        line-height: 1.42857143 !important;
-        color: white !important;
-        background-color: #0086ff !important;
-        background-image: none !important;
-        border: 3px solid white !important;
-        border-radius: 4px !important;
+        font-size: 20px !important;
+        padding: 17px 12px !important;
       }
     }
 
     .field-checkbox input {
-      width: 19px;
-      height: 19px;
-      margin: -2px 10px 0 0;
-      vertical-align: middle;
+      width: 2.2em;
+      height: 2.2em;
+      position: relative;
+      right: 10px;
     }
   }
-
+// Wizard elements
   .vue-form-wizard {
     padding-top: 50px;
 
