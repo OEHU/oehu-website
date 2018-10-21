@@ -2,7 +2,7 @@
     <div class="container">
         <img class="logo" src="../assets/images/oehu-logo-small.svg" />
         <form-wizard shape="tab" color="#26292d" error-color="#a94442" next-button-text="Next step" >
-            <tab-content>
+            <tab-content :before-change="validateLocationTab">
                 <div class="tab">
                     <h1>Welcome to the OEHU setup</h1>
                     <h2>Step 1: Enter your location</h2>
@@ -196,7 +196,7 @@ export default {
             label: "Latitude",
             model: "lat",
             required: true,
-            validator: VueFormGenerator.validators.string,
+            validator: VueFormGenerator.validators.number,
             styleClasses: "col-xs-6"
           },
           {
@@ -205,7 +205,7 @@ export default {
             label: "Longitude",
             model: "long",
             required: true,
-            validator: VueFormGenerator.validators.string,
+            validator: VueFormGenerator.validators.number,
             styleClasses: "col-xs-6"
           },
           {
@@ -260,6 +260,9 @@ export default {
     }
   },
   methods: {
+    validateLocationTab: function() {
+      return this.$refs.selectLocation.validate();
+    },
     validateBuildingTab: function() {
       this.registerNewDevice();
       return this.$refs.selectBuilding.validate();
@@ -382,7 +385,7 @@ export default {
 
   .oehu-map {
     width: 100%;
-    height: 300px;
+    height: 422px;
   }
   .tab {
     h1,
