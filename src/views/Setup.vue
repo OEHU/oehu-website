@@ -2,8 +2,7 @@
     <div class="container">
         <img class="logo" src="../assets/images/oehu-logo-small.svg" />
         <form-wizard shape="tab" color="#26292d" error-color="#a94442" next-button-text="Next step" >
-            <h1 class="title" slot="title"></h1>
-            <tab-content  >
+            <tab-content>
                 <div class="tab">
                     <h1>Welcome to the OEHU setup</h1>
                     <h2>Step 1: Enter your location</h2>
@@ -136,7 +135,7 @@ export default {
             label: "E-mail",
             model: "email",
             required: true,
-            validator: VueFormGenerator.validators.string
+            validator: VueFormGenerator.validators.email
           },
           {
             type: "input",
@@ -188,7 +187,7 @@ export default {
             model: "accuracy",
             min: 100,
             required: true,
-            validator: VueFormGenerator.validators.string,
+            validator: VueFormGenerator.validators.number,
             styleClasses: "col-xs-6"
           },
           {
@@ -224,7 +223,7 @@ export default {
             label: "• Enter your e-mail",
             model: "email",
             required: true,
-            validator: VueFormGenerator.validators.string
+            validator: VueFormGenerator.validators.email
           },
           {
             type: "input",
@@ -267,7 +266,6 @@ export default {
     },
     validateCredentialsTab: function() {
       this.registerAccount();
-      this.loadPhrase();
       return this.$refs.credentialsTab.validate();
     },
     validateBackupTab: function() {
@@ -348,12 +346,6 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
-    },
-    loadPhrase: function() {
-      this.model = VueFormGenerator.schema.createDefaultObject(this.backupTab);
-    },
-    mounted() {
-      //   this.getConfigurated();
     }
   }
 };
@@ -364,6 +356,9 @@ export default {
 
 .container {
   height: 140vh;
+  @include mobile() {
+    height: 180vh;
+  }
   h1 {
     font-size: 30px;
   }
@@ -374,10 +369,64 @@ export default {
     color: black;
   }
 
+  .logo {
+    position: fixed;
+    left: 25px;
+    top: 25px;
+  }
+
+  .setup_finish_svg {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .oehu-map {
+    width: 100%;
+    height: 300px;
+  }
+  .tab {
+    h1,
+    p,
+    h2 {
+      color: $black;
+      font-size: 36px;
+      font-weight: 400;
+      @include mobile() {
+        padding-top: 30px;
+      }
+      @include tablet() {
+        padding-top: 30px;
+      }
+    }
+    h1 {
+      @include mobile() {
+        display: none;
+      }
+      @include tablet() {
+        display: none;
+      }
+      position: relative;
+      bottom: 296px;
+      text-align: center;
+    }
+    .permisson_text {
+      color: white;
+      font-size: 18px;
+      position: relative;
+      @include mobile() {
+        font-size: 12px;
+      }
+    }
+  }
+
   .vue-form-generator {
     .form-group {
       width: 35% !important;
       display: block !important;
+      @include mobile() {
+        width: 100% !important;
+        display: block !important;
+      }
     }
 
     .form-control {
@@ -389,6 +438,16 @@ export default {
       background-image: none !important;
       border: 5px solid white !important;
       border-radius: 4px !important;
+      @include mobile() {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+        line-height: 1.42857143 !important;
+        color: white !important;
+        background-color: #0086ff !important;
+        background-image: none !important;
+        border: 3px solid white !important;
+        border-radius: 4px !important;
+      }
     }
 
     .field-checkbox input {
@@ -406,6 +465,12 @@ export default {
       position: relative !important;
       top: 107px !important;
       height: 30px !important;
+      @include mobile() {
+        display: none;
+      }
+      @include tablet() {
+        display: none;
+      }
     }
 
     .wizard-icon-circle {
@@ -415,11 +480,20 @@ export default {
       height: 181px !important;
       width: 182px !important;
       border-radius: 50% !important;
+      @include mobile() {
+        display: none;
+      }
+      @include tablet() {
+        display: none;
+      }
 
       i {
         color: $lightgray !important;
         font-size: 64px !important;
         font-weight: 600px !important;
+        @include mobile() {
+          font-size: 14px !important;
+        }
       }
 
       &.checked {
@@ -448,50 +522,6 @@ export default {
         }
       }
     }
-  }
-
-  .setup_finish_svg {
-    width: 100%;
-    margin-top: 40px;
-  }
-
-  .oehu-map {
-    margin: 0 auto;
-    width: 100%;
-    overflow: hidden;
-    height: 422px;
-    z-index: 8;
-    position: relative;
-
-    @include mobile() {
-      width: 90%;
-    }
-  }
-
-  .tab {
-    h1,
-    p,
-    h2 {
-      color: $black;
-      font-size: 36px;
-      font-weight: 400;
-    }
-    h1 {
-      position: relative;
-      bottom: 296px;
-      text-align: center;
-    }
-    .permisson_text {
-      color: white;
-      font-size: 18px;
-      position: relative;
-    }
-  }
-
-  .logo {
-    position: fixed;
-    left: 25px;
-    top: 25px;
   }
 }
 </style>
