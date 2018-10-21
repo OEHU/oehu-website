@@ -27,8 +27,14 @@
                                 :lat-lng="map.marker.position">
                         </LCircle>
                     </l-map>
-                    <p class="permisson_text">• Give permission or pin your location on the map</p> 
-                    <p class="permisson_text">• Select the accuracy for display and saving your data</p>
+                    <p class="permisson_text">                  
+                        <span>
+                             • Give permission or pin your location on the map
+                             <br/>
+                             • Select the accuracy for display and saving your data
+                        </span>
+                    </p>
+                    
                     <vue-form-generator :model="model" :schema="selectLocation" :options="formOptions"
                                         ref="selectLocation"></vue-form-generator>
                 </div>
@@ -241,8 +247,8 @@ export default {
     "model.accept": {
       handler: function(newVal) {
         if (newVal == true) {
-          this.model.lat = "52.31877224455515";
-          this.model.long = "2.973580237523761";
+          this.model.lat = 52.31877224455515;
+          this.model.long = 2.973580237523761;
           this.map.marker.position.lat = this.model.lat;
           this.map.marker.position.lng = this.model.long;
           this.model.lat = this.map.marker.position.lat;
@@ -415,9 +421,15 @@ export default {
     .permisson_text {
       color: white;
       font-size: 18px;
-      position: relative;
+      margin-top: 20px;
+      margin-bottom: 15px;
       @include mobile() {
-        font-size: 12px;
+        font-size: 14px;
+        padding-top: 5px;
+      }
+      @include tablet() {
+        font-size: 16px;
+        padding-top: 5px;
       }
     }
   }
