@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <img class="logo" src="../assets/images/oehu-logo-small.svg" />
-        <form-wizard shape="tab" color="#26292d" next-button-text="Next step" >
+        <form-wizard shape="tab" color="#26292d">
             <wizard-step 
                 slot-scope="props"
                 slot="step"
@@ -80,11 +80,15 @@
                     <h2>Step 5: Well done we're processing your request</h2>
                     <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
                     <img class="setup_finish_svg" src="../assets/images/oehu_setup_finish.svg" alt="" />
+                    <div class="loading"><div></div><div></div><div></div><div></div></div>
                 </div>
             </tab-content>
 
-            
-            
+        <template slot="footer" slot-scope="props">
+            <div class="wizard-footer-right">
+                <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+            </div>
+       </template>            
         </form-wizard>
     </div>
 </template>
@@ -371,7 +375,7 @@ export default {
 .container {
   height: 140vh;
   @include mobile() {
-    height: 180vh;
+    height: 200vh;
   }
   fieldset {
     border: 0;
@@ -429,10 +433,60 @@ export default {
       bottom: 296px;
       text-align: center;
     }
+    .loading {
+      position: relative;
+      left: 40%;
+      bottom: 200px;
+      @include mobile(){
+          left: 35%;
+          bottom: 100px;
+      }
+    }
+    .loading div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      margin: 6px;
+      border: 20px solid #fff;
+      border-radius: 50%;
+      animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: #000 transparent transparent transparent;
+      @include mobile() {
+        border: 10px solid #fff;
+        border-color: #000 transparent transparent transparent;
+        width: 75px;
+        height: 75px;
+      }
+    }
+    .loading div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    .loading div:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    .loading div:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+    @keyframes loading {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
   // Form elements
   .vue-form-generator {
     .form-group {
+      #-this-phrase-is-generated-by-your-pi {
+        width: 175% !important;
+        @include mobile() {
+          width: 100% !important;
+        }
+      }
       width: 35% !important;
       display: block !important;
       @include mobile() {
