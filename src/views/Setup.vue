@@ -304,12 +304,12 @@ export default {
     getConfigurated() {
       let self = this;
       this.axios
-        .get("http://oehu.local:8000/oehu/GetConfigurated")
+        .get("http://localhost:8000/oehu/GetConfigurated")
         .then(function(response) {
           if (response.data.configurated !== true) {
             self.generateNewPhrase();
           } else {
-            self.$router.push('/dashboard')
+            self.$router.push("/dashboard");
           }
         })
         .catch(function(error) {
@@ -319,7 +319,7 @@ export default {
     generateNewPhrase() {
       let self = this;
       this.axios
-        .get("http://oehu.local:8000/oehu/GenerateNewPhrase")
+        .get("http://localhost:8000/oehu/GenerateNewPhrase")
         .then(function(response) {
           self.model.phrase = response.data.phrase;
         })
@@ -331,7 +331,7 @@ export default {
       let self = this;
       this.axios
         .get(
-          "http://oehu.local:8000/oehu/registerDevice/" +
+          "http://localhost:8000/oehu/registerDevice/" +
             "OEHU" +
             "/" +
             this.model.lat +
@@ -352,12 +352,18 @@ export default {
         });
     },
     registerAccount() {
+       //TODO: CALL CHANGED
+      const config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      };
       this.axios
         .post("https://api.oehu.org/account/register", {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
-        })
+        },config)
         .then(function(response) {
           console.log(response);
         })
@@ -440,9 +446,9 @@ export default {
       position: relative;
       left: 40%;
       bottom: 200px;
-      @include mobile(){
-          left: 35%;
-          bottom: 100px;
+      @include mobile() {
+        left: 35%;
+        bottom: 100px;
       }
     }
     .loading div {
