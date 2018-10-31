@@ -136,7 +136,7 @@ export default {
         accuracy: 1000,
         accept: false,
         phrase: "",
-        deviceId: []
+        deviceId: ""
       },
       backupTab: {
         fields: [
@@ -309,7 +309,7 @@ export default {
           if (response.data.configurated !== true) {
             self.generateNewPhrase();
           } else {
-            self.$route.router.go("/dashboard");
+            self.$router.push('/dashboard')
           }
         })
         .catch(function(error) {
@@ -353,7 +353,7 @@ export default {
     },
     registerAccount() {
       this.axios
-        .post("http://api.oehu.org/account/register", {
+        .post("https://api.oehu.org/account/register", {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
@@ -375,6 +375,9 @@ export default {
 .container {
   height: 140vh;
   @include mobile() {
+    height: 200vh;
+  }
+  @include minimum-desktop() {
     height: 200vh;
   }
   fieldset {
