@@ -304,7 +304,7 @@ export default {
     getConfigurated() {
       let self = this;
       this.axios
-        .get("http://localhost:8000/oehu/GetConfigurated")
+        .get("http://oehu.local:8000/oehu/GetConfigurated")
         .then(function(response) {
           if (response.data.configurated !== true) {
             self.generateNewPhrase();
@@ -319,7 +319,7 @@ export default {
     generateNewPhrase() {
       let self = this;
       this.axios
-        .get("http://localhost:8000/oehu/GenerateNewPhrase")
+        .get("http://oehu.local:8000/oehu/GenerateNewPhrase")
         .then(function(response) {
           self.model.phrase = response.data.phrase;
         })
@@ -331,7 +331,7 @@ export default {
       let self = this;
       this.axios
         .get(
-          "http://localhost:8000/oehu/registerDevice/" +
+          "http://oehu.local:8000/oehu/registerDevice/" +
             "OEHU" +
             "/" +
             this.model.lat +
