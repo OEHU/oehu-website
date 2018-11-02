@@ -353,12 +353,6 @@ export default {
         });
     },
     registerAccount() {
-       //TODO: CALL CHANGED
-      const config = {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      };
       this.axios
         .post("https://api.oehu.org/account/register", {
           email: this.model.email,
