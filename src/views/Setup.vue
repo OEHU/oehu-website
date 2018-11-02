@@ -380,13 +380,6 @@ export default {
 @import "../assets/sass/mix.scss";
 
 .container {
-  height: 140vh;
-  @include mobile() {
-    height: 200vh;
-  }
-  @include minimum-desktop() {
-    height: 200vh;
-  }
   fieldset {
     border: 0;
   }
