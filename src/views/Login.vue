@@ -34,19 +34,20 @@ export default {
   },
   methods: {
     login: function() {
+     let self = this;
      this.axios
         .post("https://api.oehu.org/account/login", {
           email: this.email,
           password: this.password,
         })
         .then(function(response) {
-          console.log(response);
-          this.$cookies.set("devices",response.devices)
+          self.$cookies.set("devices",response.devices)
+          self.$router.push('/dashboard')
         })
         .catch(function(error) {
           console.log(error);
         });
-        this.$router.push('/dashboard')
+        
     }
   }
 };

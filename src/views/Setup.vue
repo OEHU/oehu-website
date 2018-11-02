@@ -309,6 +309,7 @@ export default {
           if (response.data.configurated !== true) {
             self.generateNewPhrase();
           } else {
+            self.$cookies.set("devices",self.model.deviceId)
             self.$router.push("/dashboard");
           }
         })

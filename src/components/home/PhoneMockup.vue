@@ -2,7 +2,7 @@
     <div class="phone-mockup">
 
         <!--Phone-->
-        <svg class="phone-mockup-phone" width="100%" height="auto" viewBox="0 0 349 552" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg class="phone-mockup-phone" width="100%" height="100%" viewBox="0 0 349 552" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <filter x="-12.4%" y="-5.9%" width="124.8%" height="111.8%" filterUnits="objectBoundingBox" id="filter-1">
                     <feOffset dx="5" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>

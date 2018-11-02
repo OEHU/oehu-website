@@ -88,7 +88,11 @@ export default {
       },
       logout(){
         this.$cookies.remove("devices");
-        this.$router.push('/')
+        if(this.$router.currentRoute.path == '/'){
+            this.$router.go()
+        } else {
+            this.$router.push('/')
+        }
       }
   },
   mounted() {
