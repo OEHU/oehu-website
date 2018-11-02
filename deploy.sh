@@ -3,12 +3,12 @@ nvm use 9.0
 # Run build
 npm run build
 # Empty build folder
-rm -R ../build/*
+rm -R build/*
 # Move new build
-mv ./build-copy/* ../build/
+mv build-copy/* build/
 
 # Go to build
-cd ../build/
+cd build
 # Create CNAME file
 echo "oehu.org" > CNAME
 # Add all files + commit

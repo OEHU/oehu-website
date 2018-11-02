@@ -525,6 +525,12 @@ export default {
   // Wizard elements
   .vue-form-wizard {
     padding-top: 50px;
+      .wizard-header {
+          h4,
+          p {
+              display: none;
+          }
+      }
 
     .wizard-nav-pills {
       a,
