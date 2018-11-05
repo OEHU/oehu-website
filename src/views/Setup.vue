@@ -358,7 +358,7 @@ export default {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
-        },config)
+        })
         .then(function(response) {
           console.log(response);
         })
@@ -525,12 +525,20 @@ export default {
   // Wizard elements
   .vue-form-wizard {
     padding-top: 50px;
-      .wizard-header {
-          h4,
-          p {
-              display: none;
-          }
+    .wizard-header {
+      h4,
+      p {
+        display: none;
       }
+    }
+
+    .wizard-footer-right {
+      background-color: $yellow ;
+      width: 200px;
+      height: 80px;
+      font-size: 24px;
+      font-weight: 600;
+    }
 
     .wizard-nav-pills {
       a,
