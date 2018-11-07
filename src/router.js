@@ -9,8 +9,8 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: () => import('./views/Home.vue')
+            name: 'setup',
+            component: () => import('./views/Setup.vue')
         },
         {
             path: '/about',
@@ -31,11 +31,6 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: () => import( './views/Login.vue')
-        },
-        {
-            path: '/setup',
-            name: 'setup',
-            component: () => import('./views/Setup.vue')
         },
         {
             path: '/dashboard',
