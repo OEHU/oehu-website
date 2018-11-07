@@ -60,9 +60,6 @@
                 this.map.currentCenter = center;
             },
         },
-        mounted() {
-            console.log(this.markers);
-        }
     }
 </script>
 
