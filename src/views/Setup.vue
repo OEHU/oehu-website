@@ -85,9 +85,11 @@
             </tab-content>
 
         <template slot="footer" slot-scope="props">
-            <div class="wizard-footer-right">
-                <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
-            </div>
+            <div v-if="!props.isLastStep">
+                <div class="wizard-footer-right">
+                    <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+                </div>
+            </div>              
        </template>            
         </form-wizard>
     </div>
@@ -295,7 +297,6 @@ export default {
       this.map.currentCenter = center;
     },
     markerClick(e) {
-      //todo: can be a bit cleaner
       this.map.marker.position.lat = e.latlng.lat;
       this.map.marker.position.lng = e.latlng.lng;
       this.model.lat = this.map.marker.position.lat;
@@ -309,8 +310,8 @@ export default {
           if (response.data.configurated !== true) {
             self.generateNewPhrase();
           } else {
-            self.$cookies.set("devices",self.model.deviceId)
-            self.$router.push("/dashboard");
+            self.$cookies.set("devices", self.model.deviceId);
+            setTimeout(function () { self.$router.push("/dashboard") }, 5000)
           }
         })
         .catch(function(error) {
@@ -358,9 +359,6 @@ export default {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
-        })
-        .then(function(response) {
-          console.log(response);
         })
         .catch(function(error) {
           console.log(error);
@@ -533,7 +531,7 @@ export default {
     }
 
     .wizard-footer-right {
-      background-color: $yellow ;
+      background-color: $yellow;
       width: 200px;
       height: 80px;
       font-size: 24px;
