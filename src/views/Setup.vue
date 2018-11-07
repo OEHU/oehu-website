@@ -309,7 +309,7 @@ export default {
           if (response.data.configurated !== true) {
             self.generateNewPhrase();
           } else {
-            self.$route.router.go("/dashboard");
+            document.location = "https://oehu.org/dashboard";
           }
         })
         .catch(function(error) {
