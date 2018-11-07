@@ -353,7 +353,7 @@ export default {
     },
     registerAccount() {
       this.axios
-        .post("http://api.oehu.org/account/register", {
+        .post("https://api.oehu.org/account/register", {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
