@@ -14,6 +14,7 @@
                 <div class="tab">
                     <h1>Welcome to the OEHU setup</h1>
                     <h2>Step 1: Enter your location</h2>
+
                     <l-map
                             class="oehu-map"
                             :zoom="map.zoom"
@@ -37,14 +38,18 @@
                     </l-map>
                     <p class="permisson_text">                  
                         <span>
-                             • Give permission or pin your location on the map
-                             <br/>
-                             • Select the accuracy for display and saving your data
+                             • Pin your location on the map<br/>
+                             • Select the accuracy for displaying and saving your data
                         </span>
                     </p>
                     
-                    <vue-form-generator :model="model" :schema="selectLocation" :options="formOptions"
+                    <vue-form-generator :model="model" :schema="locationAccuracy" :options="formOptions"
+                                          ref="locationAccuracy"></vue-form-generator>
+
+                    <div hidden>
+                      <vue-form-generator :model="model" :schema="selectLocation" :options="formOptions"
                                         ref="selectLocation"></vue-form-generator>
+                    </div>
                 </div>
             </tab-content>
 
@@ -85,7 +90,10 @@
             </tab-content>
 
         <template slot="footer" slot-scope="props">
-            <div v-if="!props.isLastStep">
+            <div v-show="showNext">
+                <div class="wizard-footer-left">
+                  <a @click.native="props.prevTab()">Prev step</a>
+                </div>
                 <div class="wizard-footer-right">
                     <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
                 </div>
@@ -111,6 +119,7 @@ export default {
   data: function() {
     return {
       deviceId: 0,
+      showNext: false,
       map: {
         marker: {
           position: {
@@ -123,7 +132,8 @@ export default {
         currentZoom: 10,
         center: { lat: 52.0182305, lng: 4.6910549 },
         currentCenter: { lat: 52.0182305, lng: 4.6910549 },
-        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        // url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       },
@@ -135,11 +145,10 @@ export default {
       model: {
         lat: "",
         long: "",
-        accuracy: 1000,
-        accept: false,
+        locationAccuracy: "town/city",
+        accuracy: 3000,
         phrase: "",
-        deviceId: ""
-      },
+        deviceId: 28      },
       backupTab: {
         fields: [
           {
@@ -203,8 +212,8 @@ export default {
         fields: [
           {
             type: "input",
-            inputType: "number",
-            label: "Location Accuracy",
+            inputType: "hidden",
+            // label: "Location Accuracy",
             model: "accuracy",
             min: 100,
             required: true,
@@ -213,8 +222,8 @@ export default {
           },
           {
             type: "input",
-            inputType: "text",
-            label: "Latitude",
+            inputType: "hidden",
+            // label: "Latitude",
             model: "lat",
             required: true,
             validator: VueFormGenerator.validators.number,
@@ -222,17 +231,24 @@ export default {
           },
           {
             type: "input",
-            inputType: "text",
-            label: "Longitude",
+            inputType: "hidden",
+            // label: "Longitude",
             model: "long",
             required: true,
             validator: VueFormGenerator.validators.number,
             styleClasses: "col-xs-6"
-          },
+          }
+        ]
+      },
+      locationAccuracy: {
+        fields: [
           {
-            type: "checkbox",
-            label: "I want to be annonymous",
-            model: "accept"
+            type: "radios",
+            model: "locationAccuracy",
+            values: ["street", "town/city", "state", "hidden"],
+            required: true,
+            // validator: VueFormGenerator.validators.number,
+            styleClasses: "locationAccuracyFormGroup"
           }
         ]
       },
@@ -259,9 +275,16 @@ export default {
     };
   },
   watch: {
-    "model.accept": {
+    "model.locationAccuracy": {
       handler: function(newVal) {
-        if (newVal == true) {
+        if(newVal == 'street') {
+          this.model.accuracy = 200;
+        } else if(newVal == 'town/city') {
+          this.model.accuracy = 3000;
+        } else if(newVal == 'state') {
+          this.model.accuracy = 28000;
+        } else {
+          this.model.accuracy = 100000;
           this.model.lat = 52.31877224455515;
           this.model.long = 2.973580237523761;
           this.map.marker.position.lat = this.model.lat;
@@ -301,6 +324,7 @@ export default {
       this.map.marker.position.lng = e.latlng.lng;
       this.model.lat = this.map.marker.position.lat;
       this.model.long = this.map.marker.position.lng;
+      this.showNext = true;
     },
     getConfigurated() {
       let self = this;
@@ -428,6 +452,10 @@ export default {
       bottom: 296px;
       text-align: center;
     }
+    h2 {
+      margin-top: -68px;
+      margin-bottom: 24px;
+    }
     .loading {
       position: relative;
       left: 40%;
@@ -530,6 +558,13 @@ export default {
       }
     }
 
+    .wizard-footer-left {
+      float: left;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 80px;
+    }
     .wizard-footer-right {
       background-color: $yellow;
       width: 200px;
@@ -558,7 +593,7 @@ export default {
 
     .wizard-icon-circle {
       background-color: #ffffff !important;
-      border: 20px solid $lightgray !important;
+      border: 20px solid #f3f3f3 !important;
       padding: 0 !important;
       height: 181px !important;
       width: 182px !important;
@@ -571,8 +606,9 @@ export default {
       }
 
       i {
-        color: $lightgray !important;
+        color: #f3f3f3 !important;
         font-size: 64px !important;
+        font-style: normal;
         font-weight: 600px !important;
         @include mobile() {
           font-size: 14px !important;
@@ -588,6 +624,7 @@ export default {
         }
 
         i {
+          font-style: normal;
           color: $black !important;
         }
       }
@@ -601,8 +638,23 @@ export default {
         }
 
         i {
+          font-style: normal;
           color: $black !important;
         }
+      }
+    }
+  }
+
+  .vue-form-generator .form-group.locationAccuracyFormGroup {
+    .radio-list label {
+      display: inline-block;
+      height: 30px;
+      font-family: WorkSans, sans-serif;
+      font-size: 18px;
+      margin-right: 14px;
+
+      &.is-checked {
+        border-bottom: solid 2px #ffde00
       }
     }
   }
