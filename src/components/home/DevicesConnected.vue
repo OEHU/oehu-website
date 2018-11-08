@@ -9,7 +9,7 @@
                     />
                 <div class="meters-wrapper">
                     <Meter class="meter" :value="metersConnectedCount" valuePrecision=0
-                            textAbove="" description="Meters connected"/>
+                            textAbove="" description="Meters active"/>
                     <Meter class="meter" :value="averageKwHUsage" valuePrecision=2
                             textAbove="Past 24Hr" description="Average KwH usage per household"/>
                     <Meter class="meter" :value="averageKwHGenerated" valuePrecision=2
