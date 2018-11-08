@@ -49,6 +49,7 @@
                 }
             },
             handleStatisticData(statistics) {
+                console.log('statistics', statistics, statistics.devicesConnected);
                 this.metersConnectedCount = statistics.devicesConnected;
                 this.averageKwHUsage = statistics.averageUseEnergy;
                 this.averageKwHGenerated = statistics.averageGeneratedEnergy;

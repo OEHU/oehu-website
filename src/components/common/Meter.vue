@@ -4,7 +4,7 @@
             {{this.textAbove}}
         </div>
         <div class="circle">
-            {{this.fixedValue}}
+            {{this.value.toFixed(this.valuePrecision)}}
         </div>
         <span class="meter-text-under">
             {{this.description}}
@@ -16,20 +16,7 @@
 <script>
 export default {
   name: "Meter",
-  props: ["value", "valuePrecision", "textAbove", "description"],
-  data: function() {
-    return {
-      fixedValue: ""
-    };
-  },
-  methods: {
-    toFixed() {
-      this.fixedValue = this.value.toFixed(this.valuePrecision);
-    }
-  },
-  created() {
-    this.toFixed();
-  }
+  props: ["value", "valuePrecision", "textAbove", "description"]
 };
 </script>
 
