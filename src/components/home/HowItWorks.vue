@@ -40,8 +40,6 @@
         </div>
         <FlowBackground class="not-on-mobile" />
     </div>
-  </div>
-
 </template>
 
 <script>
