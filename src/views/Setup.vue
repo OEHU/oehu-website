@@ -85,9 +85,11 @@
             </tab-content>
 
         <template slot="footer" slot-scope="props">
-            <div class="wizard-footer-right">
-                <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
-            </div>
+            <div v-if="!props.isLastStep">
+                <div class="wizard-footer-right">
+                    <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+                </div>
+            </div>              
        </template>            
         </form-wizard>
     </div>
@@ -136,7 +138,7 @@ export default {
         accuracy: 1000,
         accept: false,
         phrase: "",
-        deviceId: []
+        deviceId: ""
       },
       backupTab: {
         fields: [
@@ -295,7 +297,6 @@ export default {
       this.map.currentCenter = center;
     },
     markerClick(e) {
-      //todo: can be a bit cleaner
       this.map.marker.position.lat = e.latlng.lat;
       this.map.marker.position.lng = e.latlng.lng;
       this.model.lat = this.map.marker.position.lat;
@@ -309,7 +310,8 @@ export default {
           if (response.data.configurated !== true) {
             self.generateNewPhrase();
           } else {
-            self.$route.router.go("/dashboard");
+            self.$cookies.set("devices", self.model.deviceId);
+            setTimeout(function () { self.$router.push("/dashboard") }, 5000)
           }
         })
         .catch(function(error) {
@@ -353,13 +355,10 @@ export default {
     },
     registerAccount() {
       this.axios
-        .post("http://api.oehu.org/account/register", {
+        .post("https://api.oehu.org/account/register", {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
-        })
-        .then(function(response) {
-          console.log(response);
         })
         .catch(function(error) {
           console.log(error);
@@ -373,10 +372,6 @@ export default {
 @import "../assets/sass/mix.scss";
 
 .container {
-  height: 140vh;
-  @include mobile() {
-    height: 200vh;
-  }
   fieldset {
     border: 0;
   }
@@ -437,9 +432,9 @@ export default {
       position: relative;
       left: 40%;
       bottom: 200px;
-      @include mobile(){
-          left: 35%;
-          bottom: 100px;
+      @include mobile() {
+        left: 35%;
+        bottom: 100px;
       }
     }
     .loading div {
@@ -528,6 +523,20 @@ export default {
   // Wizard elements
   .vue-form-wizard {
     padding-top: 50px;
+    .wizard-header {
+      h4,
+      p {
+        display: none;
+      }
+    }
+
+    .wizard-footer-right {
+      background-color: $yellow;
+      width: 200px;
+      height: 80px;
+      font-size: 24px;
+      font-weight: 600;
+    }
 
     .wizard-nav-pills {
       a,

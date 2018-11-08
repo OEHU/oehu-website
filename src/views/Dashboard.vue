@@ -22,6 +22,7 @@
         name: "dashboard",
         data() {
             return {
+                data: [],
                 isCookieSet: false,
                 deviceId: 0,
                 devices: [
@@ -45,13 +46,14 @@
                 }
             },
             handleDevicesData(data) {
-                this.data.push({
-                    id: data.deviceId,
-                    position: {
-                        lat: data.metadata.location.coordinates[0],
-                        lng: data.metadata.location.coordinates[1]
-                    }
-                })
+                console.log(data);
+                // this.data.push({
+                //     id: data.deviceId,
+                //     position: {
+                //         lat: data.metadata.location.coordinates[0],
+                //         lng: data.metadata.location.coordinates[1]
+                //     }
+                // })
             }
         },
         mounted() {
