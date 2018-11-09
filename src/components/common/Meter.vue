@@ -10,7 +10,6 @@
             {{this.description}}
         </span>
     </div>
-
 </template>
 
 <script>
