@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <img class="logo" src="../assets/images/oehu-logo-small.svg" />
-        <form-wizard shape="tab" color="#26292d">
+        <form-wizard shape="tab" color="#26292d" ref="wizard">
             <wizard-step 
                 slot-scope="props"
                 slot="step"
@@ -66,6 +66,7 @@
                 <div class="tab">
                     <h1>Halfway there!</h1>
                     <h2>Step 3: Enter your credentials</h2>
+                    <p class="errorMessage">{{this.errorMessage}}</p>
                     <vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions"
                                         ref="credentialsTab"></vue-form-generator>
                 </div>
@@ -120,6 +121,8 @@ export default {
     return {
       deviceId: 0,
       showNext: false,
+      error: "",
+      errorMessage: "",
       map: {
         marker: {
           position: {
@@ -132,8 +135,9 @@ export default {
         currentZoom: 10,
         center: { lat: 52.0182305, lng: 4.6910549 },
         currentCenter: { lat: 52.0182305, lng: 4.6910549 },
-        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        // url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
+        // url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        url:
+          "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png",
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       },
@@ -148,7 +152,8 @@ export default {
         locationAccuracy: "town/city",
         accuracy: 3000,
         phrase: "",
-        deviceId: 28      },
+        deviceId: 28
+      },
       backupTab: {
         fields: [
           {
@@ -277,11 +282,11 @@ export default {
   watch: {
     "model.locationAccuracy": {
       handler: function(newVal) {
-        if(newVal == 'street') {
+        if (newVal == "street") {
           this.model.accuracy = 200;
-        } else if(newVal == 'town/city') {
+        } else if (newVal == "town/city") {
           this.model.accuracy = 3000;
-        } else if(newVal == 'state') {
+        } else if (newVal == "state") {
           this.model.accuracy = 28000;
         } else {
           this.model.accuracy = 100000;
@@ -294,6 +299,12 @@ export default {
         }
       },
       deep: true
+    },
+    error: function(newError, emptyError) {
+      if ((newError = "Account already exists")) {
+        this.$refs.wizard.prevTab();
+        this.errorMessage = this.error;
+      }
     }
   },
   methods: {
@@ -336,7 +347,9 @@ export default {
           } else {
             self.$cookies.set("devices", self.model.deviceId);
             self.startRunning();
-            setTimeout(function () { self.$router.push("/dashboard") }, 5000)
+            setTimeout(function() {
+              self.$router.push("/dashboard");
+            }, 5000);
           }
         })
         .catch(function(error) {
@@ -359,7 +372,7 @@ export default {
       this.axios
         .get("http://oehu.local:8000/oehu/start")
         .then(function(response) {
-          console.log('start response: ', response);
+          console.log("start response: ", response);
         })
         .catch(function(error) {
           console.log(error);
@@ -390,14 +403,15 @@ export default {
         });
     },
     registerAccount() {
+      let self = this;
       this.axios
-        .post("https://api.oehu.org/account/register", {
+        .post("http://localhost:8001/account/register", {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
         })
         .catch(function(error) {
-          console.log(error);
+          self.error = error.response.data.message;
         });
     }
   }
@@ -415,6 +429,11 @@ export default {
     position: fixed;
     left: 25px;
     top: 25px;
+  }
+
+  .errorMessage {
+    color: #ca0707 !important;
+    font-size: 25px !important;
   }
 
   .setup_finish_svg {
@@ -666,7 +685,7 @@ export default {
       margin-right: 14px;
 
       &.is-checked {
-        border-bottom: solid 2px #ffde00
+        border-bottom: solid 2px #ffde00;
       }
     }
   }
