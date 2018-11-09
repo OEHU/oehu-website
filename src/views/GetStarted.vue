@@ -127,16 +127,14 @@
                 </li>
                 <li>Finally, connect the power cable to the Rpi and plug it into a power socket. This will make your
                     Rpi boot;
+                    <br />
+                    <br />
                 </li>
                 <li>
-                    Get yourself a nice cup of coffee, because the booting will take up to 20 minutes. Just let the
-                    Rpi do its thing. You know it is ready when you see either:
-                    <ol>
-                        <li>A new WiFi network called OEHU Setup, or,</li>
-                        <li>When WiFi is not available on the Rpi and you use ethernet instead: you see that your
-                            Rpi is connected on this website: <a href="https://oehu.org/setup" target="_blank">oehu.org/setup</a>
-                        </li>
-                    </ol>
+                    Get yourself a nice cup of coffee, because the booting will take up to 20 minutes. Just let the Rpi do its thing. If you can reach <a href="http://oehu.local" target="_blank">http://oehu.local</a> from your laptop, you know it's ready.
+                    <br />
+                    <br />
+                    <small>If you can't get oehu.local to load after 30 minutes, connect a screen to the HDMI port of your Rpi and check what's the installation status.</small>
                 </li>
             </ol>
 
