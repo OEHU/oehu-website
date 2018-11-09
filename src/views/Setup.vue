@@ -132,8 +132,8 @@ export default {
         currentZoom: 10,
         center: { lat: 52.0182305, lng: 4.6910549 },
         currentCenter: { lat: 52.0182305, lng: 4.6910549 },
-        // url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
+        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        // url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       },
