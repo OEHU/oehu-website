@@ -6,19 +6,26 @@
                 <p>
                     This page is dedicated to you!
                 </p>
-                <p>
-                    <b>Electricity received:</b>
-                    {{this.devices[0].electricityReceived}}
-                </p>
-                <p>
-                    <b>Electricity delivered:</b>
-                    {{this.devices[0].electricityDelivered}}
-                </p>
-                <p>
-                    <b>Gas received:</b>
-                    {{this.devices[0].gasReceived}}
-                </p>
+                <div class="meters-wrapper">
+                    <Meter class="meter" :value="this.devices[0].electricityReceived.total" valuePrecision=0
+                            textAbove="" description="Electricity received"/>
+                    <Meter class="meter" :value="this.devices[0].electricityDelivered.total" valuePrecision=0
+                            textAbove="" description="Electricity delivered"/>
+                    <Meter class="meter" :value="this.devices[0].gasReceived" valuePrecision=0
+                            textAbove="" description="Gas received"/>
+                </div>
+                <br />
                 <Map :markers="devices"></Map>
+                <dl>
+                    <dt><b>Electricity received:</b></dt>
+                    <dd>{{this.devices[0].electricityReceived}}</dd>
+
+                    <dt><b>Electricity delivered:</b></dt>
+                    <dd>{{this.devices[0].electricityDelivered}}</dd>
+
+                    <dt><b>Gas received:</b></dt>
+                    <dd>{{this.devices[0].gasReceived}}</dd>
+                </dl>
             </div>
         <Footer/>
         <FooterClosing/>
@@ -28,6 +35,7 @@
 <script>
     import Logo from '@/components/Logo.vue'
     import Title from '@/components/common/Title.vue'
+    import Meter from "@/components/common/Meter.vue";
     import Footer from "@/components/footer/Footer.vue";
     import FooterClosing from "@/components/footer/FooterClosing.vue";
     import Map from "@/components/common/Map.vue";
@@ -40,10 +48,12 @@
                 isCookieSet: false,
                 deviceId: 0,
                 devices: [
-                ]
+                ],
+                electricityReceived: 0
             }
         },
         components: {
+            Meter,
             Logo,
             Map,
             Title,
@@ -60,7 +70,6 @@
                 }
             },
             handleDevicesData(data) {
-                console.log(data);
                 this.devices.push({
                     id: data.deviceId,
                     position: {
@@ -92,8 +101,20 @@
         font-size: 18px;
         font-weight: 400;
 
+        dl {
+            margin-top: 45px;
+        }
+
+        dd {
+            margin-left: 50px;
+        }
+
         p {
             margin: 30px 0;
+        }
+
+        .meters-wrapper {
+            display: flex;
         }
 
         .container {
