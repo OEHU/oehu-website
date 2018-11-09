@@ -298,6 +298,7 @@ export default {
   },
   methods: {
     validateLocationTab: function() {
+      this.generateNewPhrase();
       return this.$refs.selectLocation.validate();
     },
     validateHouseholdType: function() {
@@ -305,7 +306,6 @@ export default {
       return this.$refs.selectHouseholdType.validate();
     },
     validateCredentialsTab: function() {
-      this.generateNewPhrase();
       this.registerAccount();
       return this.$refs.credentialsTab.validate();
     },
@@ -335,6 +335,7 @@ export default {
             self.generateNewPhrase();
           } else {
             self.$cookies.set("devices", self.model.deviceId);
+            self.startRunning();
             setTimeout(function () { self.$router.push("/dashboard") }, 5000)
           }
         })
@@ -348,6 +349,17 @@ export default {
         .get("http://oehu.local:8000/oehu/GenerateNewPhrase")
         .then(function(response) {
           self.model.phrase = response.data.phrase;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    startRunning() {
+      let self = this;
+      this.axios
+        .get("http://oehu.local:8000/oehu/start")
+        .then(function(response) {
+          console.log('start response: ', response);
         })
         .catch(function(error) {
           console.log(error);
