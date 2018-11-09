@@ -54,49 +54,63 @@
             </tab-content>
 
             <tab-content  :before-change="validateHouseholdType">
-                <div class="tab">
+                <div v-if="error == ''" class="tab">
                     <h1>Thank you! Just a few more steps</h1>
                     <h2>Step 2: Enter your Building data</h2>
                     <vue-form-generator :model="model" :schema="selectHouseholdType" :options="formOptions"
                                         ref="selectHouseholdType"></vue-form-generator>
                 </div>
+                <div v-else>
+                    {{this.error}}
+                </div>
             </tab-content>
 
             <tab-content  :before-change="validateCredentialsTab">
-                <div class="tab">
+                <div v-if="error == ''" class="tab">
                     <h1>Halfway there!</h1>
                     <h2>Step 3: Enter your credentials</h2>
                     <p class="errorMessage">{{this.errorMessage}}</p>
                     <vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions"
                                         ref="credentialsTab"></vue-form-generator>
                 </div>
+                <div v-else>
+                    {{this.error}}
+                </div>
             </tab-content>
 
             <tab-content  :before-change="validateBackupTab">
-                <div class="tab">
+                <div v-if="error == ''" class="tab">
                     <h1>OEHU! Almost there!</h1>
                     <h2>Step 4: Save your credentials</h2>
                     <vue-form-generator :model="model" :schema="backupTab" :options="formOptions"
                                         ref="backupTab"></vue-form-generator>
                 </div>
+                <div v-else>
+                    {{this.error}}
+                </div>
             </tab-content>
 
             <tab-content>
-                <div class="tab">
+                <div v-if="error == ''" class="tab">
                     <h2>Step 5: Well done we're processing your request</h2>
                     <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
                     <img class="setup_finish_svg" src="../assets/images/oehu_setup_finish.svg" alt="" />
                     <div class="loading"><div></div><div></div><div></div><div></div></div>
                 </div>
+                <div v-else>
+                    {{this.error}}
+                </div>
             </tab-content>
 
         <template slot="footer" slot-scope="props">
-            <div v-show="showNext">
-                <div class="wizard-footer-left">
-                  <a @click.native="props.prevTab()">Prev step</a>
-                </div>
-                <div class="wizard-footer-right">
-                    <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+            <div v-if="error == ''"> 
+                <div v-show="showNext">
+                    <div class="wizard-footer-left">
+                    <a @click.native="props.prevTab()">Prev step</a>
+                    </div>
+                    <div class="wizard-footer-right">
+                        <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+                    </div>
                 </div>
             </div>              
        </template>            
@@ -300,8 +314,8 @@ export default {
       },
       deep: true
     },
-    error: function(newError, emptyError) {
-      if ((newError = "Account already exists")) {
+    error: function(newError) {
+      if (newError == "Account already exists") {
         this.$refs.wizard.prevTab();
         this.errorMessage = this.error;
       }
@@ -353,6 +367,7 @@ export default {
           }
         })
         .catch(function(error) {
+          self.error = error + " in GetConfigurated";
           console.log(error);
         });
     },
@@ -364,17 +379,18 @@ export default {
           self.model.phrase = response.data.phrase;
         })
         .catch(function(error) {
+          self.error = error + " in GenerateNewPhrase";
           console.log(error);
         });
     },
     startRunning() {
-      let self = this;
       this.axios
         .get("http://oehu.local:8000/oehu/start")
         .then(function(response) {
           console.log("start response: ", response);
         })
         .catch(function(error) {
+          self.error = error + " in start";
           console.log(error);
         });
     },
@@ -399,6 +415,7 @@ export default {
           self.model.deviceId = response.data.deviceID;
         })
         .catch(function(error) {
+          self.error = error + " in registerDevice";
           console.log(error);
         });
     },
@@ -412,6 +429,7 @@ export default {
         })
         .catch(function(error) {
           self.error = error.response.data.message;
+          console.log(error);
         });
     }
   }
