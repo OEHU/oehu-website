@@ -9,8 +9,8 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'setup',
-            component: () => import('./views/Setup.vue')
+            name: 'landing',
+            component: () => import('./views/Home.vue')
         },
         {
             path: '/home',
