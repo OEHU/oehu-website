@@ -3,7 +3,21 @@
             <Logo/>
             <div class="container">
                 <Title title="Your Own Dashboard" class="Title"/>
-                <p>This page is dedicated to you!</p>
+                <p>
+                    This page is dedicated to you!
+                </p>
+                <p>
+                    <b>Electricity received:</b>
+                    {{this.devices[0].electricityReceived}}
+                </p>
+                <p>
+                    <b>Electricity delivered:</b>
+                    {{this.devices[0].electricityDelivered}}
+                </p>
+                <p>
+                    <b>Gas received:</b>
+                    {{this.devices[0].gasReceived}}
+                </p>
                 <Map :markers="devices"></Map>
             </div>
         <Footer/>
@@ -40,23 +54,29 @@
             async getDeviceData() {
                 try {
                     const response = await this.axios.get('https://api.oehu.org/devices?deviceId=' + this.deviceId);
-                    this.handleDevicesData(response.data);
+                    this.handleDevicesData(response.data[0]);
                 } catch (error) {
                     console.error(error);
                 }
             },
             handleDevicesData(data) {
                 console.log(data);
-                // this.data.push({
-                //     id: data.deviceId,
-                //     position: {
-                //         lat: data.metadata.location.coordinates[0],
-                //         lng: data.metadata.location.coordinates[1]
-                //     }
-                // })
+                this.devices.push({
+                    id: data.deviceId,
+                    position: {
+                        lat: data.metadata.location.coordinates[0],
+                        lng: data.metadata.location.coordinates[1]
+                    },
+                    electricityReceived: data.metadata.electricityReceived,
+                    electricityDelivered: data.metadata.electricityDelivered,
+                    gasReceived: data.metadata.gasReceived
+                })
+                console.log(this.devices[0].electricityReceived)
             }
         },
         mounted() {
+            this.deviceId = self.$cookies.get("devices");
+
             this.getDeviceData();
             if (this.$cookies.get("devices")) {
                 this.isCookieSet = true;
@@ -72,8 +92,12 @@
         font-size: 18px;
         font-weight: 400;
 
+        p {
+            margin: 30px 0;
+        }
+
         .container {
-            width: 50vw;
+            width: 60vw;
             max-width: 100vw;
             margin: 0 auto;
             padding-bottom: 100px;
