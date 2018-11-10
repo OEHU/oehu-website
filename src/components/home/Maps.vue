@@ -72,11 +72,11 @@
             handleDevicesData(devices) {
                 devices.forEach((device) => {
                     if(! device.metadata ) return;
-                    if(! device.metadata.householdType ) return;
+                    if(! device.metadata.metadata.householdType ) return;
                     this.markers.push({
                         id: device.deviceId,
-                        position: {lat: device.metadata.location.coordinates[0], lng: device.metadata.location.coordinates[1]},
-                        tooltip: '' + device.metadata.householdType.charAt(0).toUpperCase() + device.metadata.householdType.slice(1)
+                        position: {lat: device.metadata.metadata.location.coordinates[0], lng: device.metadata.metadata.location.coordinates[1]},
+                        tooltip: '' + device.metadata.metadata.householdType.charAt(0).toUpperCase() + device.metadata.metadata.householdType.slice(1)
                     })
                 })
             }
