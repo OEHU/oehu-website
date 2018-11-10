@@ -16,8 +16,12 @@
                 </div>
                 <br />
                 <p style="text-align: center;">
-                    <Button title="Start" v-on:click.native="start()" />
-                    <Button title="Stop" v-on:click.native="stop()" />
+                    <span v-on:click="start()">
+                        <Button title="Start" />
+                    </span>
+                    <span v-on:click="stop()">
+                        <Button title="Stop" v-on:click="stop()" />
+                    </span>
                 </p>
                 <Map :markers="devices"></Map>
                 <dl>
@@ -52,9 +56,7 @@
                 data: [],
                 isCookieSet: false,
                 deviceId: 0,
-                devices: [
-                ],
-                electricityReceived: 0
+                devices: [],
             }
         },
         components: {
@@ -67,12 +69,27 @@
             FooterClosing
         },
         methods: {
+            start: async function () {
+                try {
+                    const response = await this.axios.get('http://oehu.local:8000/oehu/start');
+                    console.log('Start response: ', response);
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            stop: async function () {
+                try {
+                    const response = await this.axios.get('http://oehu.local:8000/oehu/stop');
+                    console.log('Stop response: ', response);
+                } catch (error) {
+                    console.error(error);
+                }
+            },
             async getDeviceData() {
                 try {
                     var self = this; 
                     const response = await this.axios.get('https://api.oehu.org/devices?deviceId=' + this.deviceId);
                     this.handleDevicesData(response.data[0]);
-                    console.log('device data: ', response.data[0]);
                     // After 10 seconds: reload data
                     setTimeout(function() {
                         self.getDeviceData();
@@ -100,22 +117,6 @@
             this.getDeviceData();
             if (this.$cookies.get("devices")) {
                 this.isCookieSet = true;
-            }
-        },
-        start() {
-            try {
-                const response = await this.axios.get('http://oehu.local:8000/oehu/start');
-                console.log('Start response: ', response);
-            } catch (error) {
-                console.error(error);
-            }
-        },
-        stop() {
-            try {
-                const response = await this.axios.get('http://oehu.local:8000/oehu/stop');
-                console.log('Stop response: ', response);
-            } catch (error) {
-                console.error(error);
             }
         }
     }
