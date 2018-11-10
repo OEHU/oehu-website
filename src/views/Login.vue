@@ -41,7 +41,8 @@ export default {
           password: this.password,
         })
         .then(function(response) {
-          self.$cookies.set("devices",response.data.devices)
+          console.log('response', response.data.devices[0])
+          self.$cookies.set("devices", response.data.devices[0])
           self.$router.push('/dashboard')
         })
         .catch(function(error) {
