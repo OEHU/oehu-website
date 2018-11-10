@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <img class="logo" src="../assets/images/oehu-logo-small.svg" />
-        <form-wizard shape="tab" color="#26292d">
+        <form-wizard shape="tab" color="#26292d" ref="wizard">
             <wizard-step 
                 slot-scope="props"
                 slot="step"
@@ -54,48 +54,63 @@
             </tab-content>
 
             <tab-content  :before-change="validateHouseholdType">
-                <div class="tab">
+                <div v-if="error == ''" class="tab">
                     <h1>Thank you! Just a few more steps</h1>
                     <h2>Step 2: Enter your Building data</h2>
                     <vue-form-generator :model="model" :schema="selectHouseholdType" :options="formOptions"
                                         ref="selectHouseholdType"></vue-form-generator>
                 </div>
+                <div v-else>
+                    {{this.error}}
+                </div>
             </tab-content>
 
             <tab-content  :before-change="validateCredentialsTab">
-                <div class="tab">
+                <div v-if="error == ''" class="tab">
                     <h1>Halfway there!</h1>
                     <h2>Step 3: Enter your credentials</h2>
+                    <p class="errorMessage">{{this.errorMessage}}</p>
                     <vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions"
                                         ref="credentialsTab"></vue-form-generator>
+                </div>
+                <div v-else>
+                    {{this.error}}
                 </div>
             </tab-content>
 
             <tab-content  :before-change="validateBackupTab">
-                <div class="tab">
+                <div v-if="error == ''" class="tab">
                     <h1>OEHU! Almost there!</h1>
                     <h2>Step 4: Save your credentials</h2>
                     <vue-form-generator :model="model" :schema="backupTab" :options="formOptions"
                                         ref="backupTab"></vue-form-generator>
                 </div>
+                <div v-else>
+                    {{this.error}}
+                </div>
             </tab-content>
 
             <tab-content>
-                <div class="tab">
+                <div v-if="error == ''" class="tab">
                     <h2>Step 5: Well done we're processing your request</h2>
                     <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
                     <img class="setup_finish_svg" src="../assets/images/oehu_setup_finish.svg" alt="" />
                     <div class="loading"><div></div><div></div><div></div><div></div></div>
                 </div>
+                <div v-else>
+                    {{this.error}}
+                </div>
             </tab-content>
 
         <template slot="footer" slot-scope="props">
-            <div v-show="showNext">
-                <div class="wizard-footer-left">
-                  <a @click.native="props.prevTab()">Prev step</a>
-                </div>
-                <div class="wizard-footer-right">
-                    <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+            <div v-if="error == ''"> 
+                <div v-show="showNext">
+                    <div class="wizard-footer-left">
+                    <a @click.native="props.prevTab()">Prev step</a>
+                    </div>
+                    <div class="wizard-footer-right">
+                        <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+                    </div>
                 </div>
             </div>              
        </template>            
@@ -120,6 +135,8 @@ export default {
     return {
       deviceId: 0,
       showNext: false,
+      error: "",
+      errorMessage: "",
       map: {
         marker: {
           position: {
@@ -132,8 +149,9 @@ export default {
         currentZoom: 10,
         center: { lat: 52.0182305, lng: 4.6910549 },
         currentCenter: { lat: 52.0182305, lng: 4.6910549 },
-        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        // url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
+        // url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        url:
+          "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png",
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       },
@@ -148,7 +166,8 @@ export default {
         locationAccuracy: "town/city",
         accuracy: 3000,
         phrase: "",
-        deviceId: 28      },
+        deviceId: 28
+      },
       backupTab: {
         fields: [
           {
@@ -277,11 +296,11 @@ export default {
   watch: {
     "model.locationAccuracy": {
       handler: function(newVal) {
-        if(newVal == 'street') {
+        if (newVal == "street") {
           this.model.accuracy = 200;
-        } else if(newVal == 'town/city') {
+        } else if (newVal == "town/city") {
           this.model.accuracy = 3000;
-        } else if(newVal == 'state') {
+        } else if (newVal == "state") {
           this.model.accuracy = 28000;
         } else {
           this.model.accuracy = 100000;
@@ -294,6 +313,12 @@ export default {
         }
       },
       deep: true
+    },
+    error: function(newError) {
+      if (newError == "Account already exists") {
+        this.$refs.wizard.prevTab();
+        this.errorMessage = this.error;
+      }
     }
   },
   methods: {
@@ -336,10 +361,13 @@ export default {
           } else {
             self.$cookies.set("devices", self.model.deviceId);
             self.startRunning();
-            setTimeout(function () { self.$router.push("/dashboard") }, 5000)
+            setTimeout(function() {
+              self.$router.push("/dashboard");
+            }, 5000);
           }
         })
         .catch(function(error) {
+          self.error = error + " in GetConfigurated";
           console.log(error);
         });
     },
@@ -351,17 +379,18 @@ export default {
           self.model.phrase = response.data.phrase;
         })
         .catch(function(error) {
+          self.error = error + " in GenerateNewPhrase";
           console.log(error);
         });
     },
     startRunning() {
-      let self = this;
       this.axios
         .get("http://oehu.local:8000/oehu/start")
         .then(function(response) {
-          console.log('start response: ', response);
+          console.log("start response: ", response);
         })
         .catch(function(error) {
+          self.error = error + " in start";
           console.log(error);
         });
     },
@@ -386,17 +415,20 @@ export default {
           self.model.deviceId = response.data.deviceID;
         })
         .catch(function(error) {
+          self.error = error + " in registerDevice";
           console.log(error);
         });
     },
     registerAccount() {
+      let self = this;
       this.axios
-        .post("https://api.oehu.org/account/register", {
+        .post("http://localhost:8001/account/register", {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
         })
         .catch(function(error) {
+          self.error = error.response.data.message;
           console.log(error);
         });
     }
@@ -415,6 +447,11 @@ export default {
     position: fixed;
     left: 25px;
     top: 25px;
+  }
+
+  .errorMessage {
+    color: #ca0707 !important;
+    font-size: 25px !important;
   }
 
   .setup_finish_svg {
@@ -666,7 +703,7 @@ export default {
       margin-right: 14px;
 
       &.is-checked {
-        border-bottom: solid 2px #ffde00
+        border-bottom: solid 2px #ffde00;
       }
     }
   }
