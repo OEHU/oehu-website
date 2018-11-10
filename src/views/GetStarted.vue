@@ -56,7 +56,7 @@
                 </li>
                 <li>
                     Optional: Ethernet cable to connect to your home internet network if your Rpi doesn't have WiFi or
-                    you don’t have a WiFi dongle
+                    you don’t have a WiFi dongle.
                     <br/><br/>
                 </li>
             </ol>
@@ -78,12 +78,12 @@
             <h3>Step 2</h3>
 
             <p>
-                Extract the contents of the ZIP file to the micro-SD-card.
+                Extract the ZIP file. Copy the contents of the unzipped folder to the micro-SD-card.
             </p>
 
             <p>
                 <small>
-                    Our set provides a USB SD-card reader in case your laptop lacks an SD-card slot.
+                    Our set provides a SD-card adapter in case your laptop lacks an microSD-card slot.
                 </small>
             </p>
 
@@ -126,15 +126,11 @@
                     <img class="image" src="../assets/images/icon/OEHU_METER_R_PI_+_CABLE.svg" alt=""/>
                 </li>
                 <li>Finally, connect the power cable to the Rpi and plug it into a power socket. This will make your
-                    Rpi boot;
-                    <br />
-                    <br />
+                    Rpi boot. You'll see the red and green leds fire up.
                 </li>
                 <li>
-                    Get yourself a nice cup of coffee, because the booting will take up to 20 minutes. Just let the Rpi do its thing. If you can reach <a href="http://oehu.local" target="_blank">http://oehu.local</a> from your laptop, you know it's ready.
-                    <br />
-                    <br />
-                    <small>If you can't get oehu.local to load after 30 minutes, connect a screen to the HDMI port of your Rpi and check what's the installation status.</small>
+                    Get yourself a nice cup of coffee, because the booting will take up to 20 minutes. Just let the
+                    Rpi do its thing. You know it is ready when you this website shows up: <a href="http://oehu.local" target="_blank">oehu.local</a>.
                 </li>
             </ol>
 
@@ -151,7 +147,7 @@
             <h3>Step 2</h3>
 
             <p>
-                Fill in your location and give in the accuracy in meter that you want the viewer to show your location on the map. Click Next.
+                Fill in your location and give in the accuracy in meters that you want the viewer to show your location on the map. Click Next.
             </p>
 
             <p>
@@ -181,15 +177,19 @@
             <h3>Step 5</h3>
 
             <p>
-                If you entered an username and password in step 4, you will now enter your dashboard on the OEHU
-                website: <a href="https://oehu.org/dashboard">oehu.org/dashboard</a>. Typically, after 10 seconds the
+                You will now enter your dashboard on the OEHU website: <a href="https://oehu.org/dashboard">oehu.org/dashboard</a>. Typically, after 10 seconds the
                 first information of your smart meter should be visible in the dashboard.
+            </p>
+            
+            <p>
+                The amount of active meters on the OEHU homepage is updated.
             </p>
 
             <h3>Congratulations!</h3>
 
             <p>
-                You're now running your own node. In the future, just go to <a href="https://oehu.org" target="_blank">oehu.org</a>
+                You're now running your own node. Thank you for using OEHU. 
+                In the future, just go to <a href="https://oehu.org" target="_blank">oehu.org</a>
                 to view your dashboard 😄
             </p>
 
@@ -205,6 +205,17 @@
                 Join the OEHU community <a href="https://t.me/joinchat/A8b03hI61nBIbnVF18582A" target="_blank">on
                 Telegram</a> or ask your question <a href="https://twitter.com/oehu_project" target="_blank">via
                 Twitter</a>. We are happy to help if needed!
+            </p>
+            
+            <h2>Troubleshooting</h2>
+            
+            <p>
+                Make sure that your microSD card is formatted in FAT format.
+            </p>
+            
+            <p>
+                The RPi version 2B has ARMv6 hardware. The RPi version 3(+) has ARMv7 hardware. Make sure you download the right package for your hardware.
+                NB. The package for the RPi version 2B is not available. The package that is available is tested for RPi 3 only.
             </p>
 
         </div>

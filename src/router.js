@@ -10,7 +10,7 @@ export default new Router({
         {
             path: '/',
             name: 'landing',
-            component: () => import('./views/Setup.vue')
+            component: () => import('./views/Home.vue')
         },
         {
             path: '/home',

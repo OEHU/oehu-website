@@ -114,7 +114,14 @@
         mounted() {
             this.deviceId = self.$cookies.get("devices");
 
-            this.getDeviceData();
+            // Get device data
+            if(this.deviceId)
+                this.getDeviceData();
+
+            // Redirect to login if not logged in
+            else
+              document.location = '/login';
+    
             if (this.$cookies.get("devices")) {
                 this.isCookieSet = true;
             }
