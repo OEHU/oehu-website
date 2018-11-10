@@ -2,8 +2,8 @@
     <div class="dashboard">
             <Logo/>
             <div class="container">
-                <Title title="Your Own Dashboard" class="Title"/>
-                <p>
+                <Title align="center" title="Your Own Dashboard" class="Title" />
+                <p align="center">
                     This page is dedicated to you!
                 </p>
                 <div class="meters-wrapper">
@@ -15,6 +15,10 @@
                             textAbove="" description="Gas received"/>
                 </div>
                 <br />
+                <p style="text-align: center;">
+                    <Button title="Start" />
+                    <Button title="Stop" />
+                </p>
                 <Map :markers="devices"></Map>
                 <dl>
                     <dt><b>Electricity received:</b></dt>
@@ -36,6 +40,7 @@
     import Logo from '@/components/Logo.vue'
     import Title from '@/components/common/Title.vue'
     import Meter from "@/components/common/Meter.vue";
+    import Button from "@/components/common/Button.vue";
     import Footer from "@/components/footer/Footer.vue";
     import FooterClosing from "@/components/footer/FooterClosing.vue";
     import Map from "@/components/common/Map.vue";
@@ -55,6 +60,7 @@
         components: {
             Meter,
             Logo,
+            Button,
             Map,
             Title,
             Footer,
@@ -63,8 +69,14 @@
         methods: {
             async getDeviceData() {
                 try {
+                    var self = this; 
                     const response = await this.axios.get('https://api.oehu.org/devices?deviceId=' + this.deviceId);
                     this.handleDevicesData(response.data[0]);
+                    console.log('device data: ', response.data[0]);
+                    // After 10 seconds: reload data
+                    setTimeout(function() {
+                        self.getDeviceData();
+                    }, 10000)
                 } catch (error) {
                     console.error(error);
                 }
@@ -80,7 +92,6 @@
                     electricityDelivered: data.metadata.electricityDelivered,
                     gasReceived: data.metadata.gasReceived
                 })
-                console.log(this.devices[0].electricityReceived)
             }
         },
         mounted() {
@@ -118,7 +129,7 @@
         }
 
         .container {
-            width: 60vw;
+            width: 50vw;
             max-width: 100vw;
             margin: 0 auto;
             padding-bottom: 100px;
