@@ -102,6 +102,12 @@
                 <li>Fill in your WiFi network name (SSID) and password</li>
                 <li>Save the file</li>
             </ol>
+            
+            <p>
+                <small>
+                    NB. Don't use the guest network of your router!
+                </small>
+            </p>
 
             <p>
                 Now you can remove the SD card from your laptop.
