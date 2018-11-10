@@ -7,11 +7,11 @@
                     This page is dedicated to you!
                 </p>
                 <div class="meters-wrapper">
-                    <Meter class="meter" :value="this.devices[0].electricityReceived.total" valuePrecision=0
+                    <Meter class="meter" :value="this.electricityReceived" valuePrecision=2
                             textAbove="" description="Electricity received"/>
-                    <Meter class="meter" :value="this.devices[0].electricityDelivered.total" valuePrecision=0
+                    <Meter class="meter" :value="this.electricityDelivered" valuePrecision=0
                             textAbove="" description="Electricity delivered"/>
-                    <Meter class="meter" :value="this.devices[0].gasReceived" valuePrecision=0
+                    <Meter class="meter" :value="this.gasReceived" valuePrecision=0
                             textAbove="" description="Gas received"/>
                 </div>
                 <br />
@@ -26,13 +26,13 @@
                 <Map :markers="devices"></Map>
                 <dl>
                     <dt><b>Electricity received:</b></dt>
-                    <dd>{{this.devices[0].electricityReceived}}</dd>
+                    <dd>{{this.electricityReceived}}</dd>
 
                     <dt><b>Electricity delivered:</b></dt>
-                    <dd>{{this.devices[0].electricityDelivered}}</dd>
+                    <dd>{{this.electricityDelivered}}</dd>
 
                     <dt><b>Gas received:</b></dt>
-                    <dd>{{this.devices[0].gasReceived}}</dd>
+                    <dd>{{this.gasReceived}}</dd>
                 </dl>
             </div>
         <Footer/>
@@ -57,6 +57,9 @@
                 isCookieSet: false,
                 deviceId: 0,
                 devices: [],
+                electricityReceived: 0,
+                electricityDelivered: 0,
+                gasReceived: 0
             }
         },
         components: {
@@ -102,21 +105,24 @@
                 this.devices.push({
                     id: data.deviceId,
                     position: {
-                        lat: data.metadata.location.coordinates[0],
-                        lng: data.metadata.location.coordinates[1]
+                        lat: data.metadata.location && data.metadata.location.coordinates[0],
+                        lng: data.metadata.location && data.metadata.location.coordinates[1]
                     },
                     electricityReceived: data.metadata.electricityReceived,
                     electricityDelivered: data.metadata.electricityDelivered,
                     gasReceived: data.metadata.gasReceived
                 })
+                this.electricityReceived = data.metadata.metadata.electricityReceived.total
             }
         },
         mounted() {
             this.deviceId = self.$cookies.get("devices");
 
             // Get device data
-            if(this.deviceId)
+            if(this.deviceId) {
+                console.log('GET THE DEVICE DATA OF deviceId ', this.deviceId)
                 this.getDeviceData();
+            }
 
             // Redirect to login if not logged in
             else
