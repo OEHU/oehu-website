@@ -16,8 +16,8 @@
                 </div>
                 <br />
                 <p style="text-align: center;">
-                    <Button title="Start" />
-                    <Button title="Stop" />
+                    <Button title="Start" v-on:click.native="start()" />
+                    <Button title="Stop" v-on:click.native="stop()" />
                 </p>
                 <Map :markers="devices"></Map>
                 <dl>
@@ -100,6 +100,22 @@
             this.getDeviceData();
             if (this.$cookies.get("devices")) {
                 this.isCookieSet = true;
+            }
+        },
+        start() {
+            try {
+                const response = await this.axios.get('http://oehu.local:8000/oehu/start');
+                console.log('Start response: ', response);
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        stop() {
+            try {
+                const response = await this.axios.get('http://oehu.local:8000/oehu/stop');
+                console.log('Stop response: ', response);
+            } catch (error) {
+                console.error(error);
             }
         }
     }
