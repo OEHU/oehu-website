@@ -15,14 +15,6 @@
                             textAbove="" description="Gas received"/>
                 </div>
                 <br />
-                <p style="text-align: center;">
-                    <span v-on:click="start()">
-                        <Button title="Start" />
-                    </span>
-                    <span v-on:click="stop()">
-                        <Button title="Stop" v-on:click="stop()" />
-                    </span>
-                </p>
                 <Map :markers="devices"></Map>
                 <dl>
                     <dt><b>Electricity received:</b></dt>
