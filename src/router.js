@@ -10,7 +10,7 @@ export default new Router({
         {
             path: '/',
             name: 'landing',
-            component: () => import('./views/Home.vue')
+            component: () => import('./views/Setup.vue')
         },
         {
             path: '/home',
@@ -41,6 +41,11 @@ export default new Router({
             path: '/dashboard',
             name: 'dashboard',
             component: () => import('./views/Dashboard.vue')
+        },
+        {
+            path: '/setup',
+            name: 'setup',
+            component: () => import('./views/Setup.vue')
         }
     ]
 })
