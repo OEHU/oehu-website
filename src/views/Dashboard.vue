@@ -102,11 +102,12 @@
                 }
             },
             handleDevicesData(data) {
+                console.log(data)
                 this.devices.push({
                     id: data.deviceId,
                     position: {
-                        lat: data.metadata.location && data.metadata.location.coordinates[0],
-                        lng: data.metadata.location && data.metadata.location.coordinates[1]
+                        lat: data.metadata.metadata.location.coordinates[0],
+                        lng: data.metadata.metadata.location.coordinates[1]
                     },
                     electricityReceived: data.metadata.electricityReceived,
                     electricityDelivered: data.metadata.electricityDelivered,
