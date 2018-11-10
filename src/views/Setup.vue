@@ -361,7 +361,7 @@ export default {
             self.$cookies.set("devices", self.model.deviceId);
             self.startRunning();
             setTimeout(function() {
-              self.$router.push("/dashboard");
+              document.location = 'https://oehu.org/dashboard';
             }, 5000);
           }
         })
@@ -421,7 +421,7 @@ export default {
     registerAccount() {
       let self = this;
       this.axios
-        .post("http://localhost:8001/account/register", {
+        .post("https://api.oehu.org/account/register", {
           email: this.model.email,
           password: this.model.password,
           deviceId: this.model.deviceId
