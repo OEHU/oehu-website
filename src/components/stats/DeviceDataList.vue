@@ -82,7 +82,6 @@
                     for (var i = 0; i <= transactions.data.length - 1; i++) {
                         transactions.data[i].metadata.metadata.lastUpdateFormatted =
                             moment(transactions.data[i].metadata.metadata.lastUpdate).format('YYYY-MM-DD HH:mm:ss');
-                        console.log(transactions.data[i].metadata.metadata.lastUpdateFormatted);
                     }
                     self.transactions = transactions.data;
                     // After 60 seconds: reload data

@@ -3,8 +3,7 @@
         <div class="meter-text-above">
             {{this.textAbove}}
         </div>
-        <div class="circle">
-            {{this.value.toFixed(this.valuePrecision)}}
+        <div class="circle" v-html="this.value.toFixed(this.valuePrecision).replace(/(\D*)(\d*)(\.\d*)/, '<div><small>$1</small>$2<small style=\'font-size: 0.6em;\'>$3</small></div>')">
         </div>
         <span class="meter-text-under">
             {{this.description}}
@@ -58,6 +57,7 @@ export default {
       width: 200px;
     }
   }
+
   .meter-text-above {
     min-height: 20px;
     margin-bottom: 20px;
