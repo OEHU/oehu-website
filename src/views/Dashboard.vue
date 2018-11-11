@@ -1,5 +1,6 @@
 <template>
     <div class="dashboard">
+            <DeviceDataList />
             <Logo/>
             <div class="container">
                 <Title align="center" title="Your Own Dashboard" class="Title" />
@@ -7,7 +8,7 @@
                     This page is dedicated to you!
                 </p>
                 <div class="meters-wrapper">
-                    <Meter class="meter" :value="this.electricityReceived" valuePrecision=2
+                    <Meter class="meter" :value="this.electricityReceived" valuePrecision=3
                             textAbove="" description="Electricity received"/>
                     <Meter class="meter" :value="this.electricityDelivered" valuePrecision=0
                             textAbove="" description="Electricity delivered"/>
@@ -33,13 +34,14 @@
 </template>
 
 <script>
-    import Logo from '@/components/Logo.vue'
-    import Title from '@/components/common/Title.vue'
-    import Meter from "@/components/common/Meter.vue";
     import Button from "@/components/common/Button.vue";
+    import DeviceDataList from '@/components/stats/DeviceDataList.vue'
     import Footer from "@/components/footer/Footer.vue";
     import FooterClosing from "@/components/footer/FooterClosing.vue";
+    import Logo from '@/components/Logo.vue'
     import Map from "@/components/common/Map.vue";
+    import Meter from "@/components/common/Meter.vue";
+    import Title from '@/components/common/Title.vue'
 
     export default {
         name: "dashboard",
@@ -58,6 +60,7 @@
             Meter,
             Logo,
             Button,
+            DeviceDataList,
             Map,
             Title,
             Footer,
@@ -94,7 +97,6 @@
                 }
             },
             handleDevicesData(data) {
-                console.log(data)
                 this.devices.push({
                     id: data.deviceId,
                     position: {
@@ -106,6 +108,8 @@
                     gasReceived: data.metadata.gasReceived
                 })
                 this.electricityReceived = data.metadata.metadata.electricityReceived.total
+                this.electricityDelivered = data.metadata.metadata.electricityDelivered.total
+                this.gasReceived = data.metadata.metadata.gasReceived
             }
         },
         mounted() {
