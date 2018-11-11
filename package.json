@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "bulma": "^0.7.1",
     "chart.js": "^2.7.2",
+    "moment": "^2.22.2",
     "vue": "^2.5.17",
     "vue-axios": "^2.1.4",
     "vue-burger-menu": "^1.0.6",

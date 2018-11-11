@@ -1,33 +1,27 @@
 <template>
     <div class="dashboard">
-            <DeviceDataList />
-            <Logo/>
-            <div class="container">
-                <Title align="center" title="Your Own Dashboard" class="Title" />
-                <p align="center">
-                    This page is dedicated to you!
-                </p>
-                <div class="meters-wrapper">
-                    <Meter class="meter" :value="this.electricityReceived" valuePrecision=3
-                            textAbove="" description="Electricity received"/>
-                    <Meter class="meter" :value="this.electricityDelivered" valuePrecision=0
-                            textAbove="" description="Electricity delivered"/>
-                    <Meter class="meter" :value="this.gasReceived" valuePrecision=0
-                            textAbove="" description="Gas received"/>
-                </div>
-                <br />
-                <Map :markers="devices"></Map>
-                <dl>
-                    <dt><b>Electricity received:</b></dt>
-                    <dd>{{this.electricityReceived}}</dd>
-
-                    <dt><b>Electricity delivered:</b></dt>
-                    <dd>{{this.electricityDelivered}}</dd>
-
-                    <dt><b>Gas received:</b></dt>
-                    <dd>{{this.gasReceived}}</dd>
-                </dl>
+        <Logo/>
+        <div class="container">
+            <Title align="center" title="Your Own Dashboard" class="Title" />
+            <p align="center">
+                This page is dedicated to you!
+            </p>
+            <div class="meters-wrapper">
+                <Meter class="meter" :value="this.electricityReceived" valuePrecision=3
+                        textAbove="" description="Electricity received"/>
+                <Meter class="meter" :value="this.electricityDelivered" valuePrecision=0
+                        textAbove="" description="Electricity delivered"/>
+                <Meter class="meter" :value="this.gasReceived" valuePrecision=0
+                        textAbove="" description="Gas received"/>
             </div>
+            <br />
+            <Map :markers="devices"></Map>
+        </div>
+        <DeviceDataList />
+        <br />
+        <br />
+        <br />
+        <br />
         <Footer/>
         <FooterClosing/>
     </div>
