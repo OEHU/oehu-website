@@ -34,18 +34,18 @@
             <td>
                 <table>
                     <tr>
-                        <td>{{ tx.metadata.metadata.electricityReceived.total }}</td>
-                        <td>{{ tx.metadata.metadata.electricityReceived.tarrif1 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityReceived.tarrif2 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityReceived.total ? tx.metadata.metadata.electricityReceived.total.toFixed(2) : 0 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityReceived.tarrif1 ? tx.metadata.metadata.electricityReceived.tarrif1.toFixed(2) : 0 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityReceived.tarrif2 ? tx.metadata.metadata.electricityReceived.tarrif2.toFixed(2) : 0 }}</td>
                     </tr>
                 </table>
             </td>
             <td>
                 <table>
                     <tr>
-                        <td>{{ tx.metadata.metadata.electricityDelivered.total }}</td>
-                        <td>{{ tx.metadata.metadata.electricityDelivered.tarrif1 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityDelivered.tarrif2 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityDelivered.total ? tx.metadata.metadata.electricityDelivered.total.toFixed(2) : 0 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityDelivered.tarrif1 ? tx.metadata.metadata.electricityDelivered.tarrif1.toFixed(2) : 0 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityDelivered.tarrif2 ? tx.metadata.metadata.electricityDelivered.tarrif2.toFixed(2) : 0 }}</td>
                     </tr>
                 </table>
             </td>

@@ -54,8 +54,8 @@ export default {
     }
     @media (min-width: 960px) {
       font-size: 44px;
-      height: 184px;
-      width: 184px;
+      height: 200px;
+      width: 200px;
     }
   }
   .meter-text-above {
