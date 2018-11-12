@@ -10,7 +10,7 @@
             </Title>
 
             <p>
-                So, you want to have full access to your energy data and view nice usage charts. It's takes three steps
+                So, you want to have full access to your energy data and view nice usage charts. It takes three steps
                 to be up & running:
             </p>
 
@@ -136,7 +136,7 @@
                 </li>
                 <li>
                     Get yourself a nice cup of coffee, because the booting will take up to 20 minutes. Just let the
-                    Rpi do its thing. You know it is ready when you this website shows up: <a href="http://oehu.local" target="_blank">oehu.local</a>.
+                    Rpi do its thing. You know it is ready when you can open this website: <a href="http://oehu.local" target="_blank">oehu.local</a>.
                 </li>
             </ol>
 
