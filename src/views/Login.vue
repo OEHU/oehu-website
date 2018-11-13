@@ -3,10 +3,13 @@
     <Logo />
     <div class="container">
       <div class="form">
-          <form class="login-form">
-              <input type="text" placeholder="email" v-model="email"/>
-              <input type="password" placeholder="Password" v-model="password"/>
-              <button type="button" v-on:click="login">login</button>
+          <form>
+            <div class="error-message" v-if="error != ''">
+                <span class="error-text">Wrong login credentials!</span>
+            </div>
+            <input type="text" placeholder="E-mail" v-model="email"/>
+            <input type="password" placeholder="Password" v-model="password"/>
+            <button type="button" v-on:click="login">login</button>
           </form>
       </div>
     </div>
@@ -28,25 +31,25 @@ export default {
   },
   data() {
     return {
-      email: '',
-      password: ''
+      email: "",
+      password: "",
+      error: ""
     };
   },
   methods: {
     login: function() {
-     let self = this;
-     this.axios
+      let self = this;
+      this.axios
         .post("https://api.oehu.org/account/login", {
           email: this.email,
-          password: this.password,
+          password: this.password
         })
         .then(function(response) {
-          console.log('response', response.data.devices[0])
-          self.$cookies.set("devices", response.data.devices[0])
-          self.$router.push('/dashboard')
+          self.$cookies.set("devices", response.data.devices[0]);
+          self.$router.push("/dashboard");
         })
         .catch(function(error) {
-          console.log(error);
+          self.error = error;
         });
     }
   }
@@ -54,49 +57,51 @@ export default {
 </script>
 <style scoped lang="scss">
 .container {
-  height: 1090px;
-}
+  .form {
+    z-index: 1;
+    background: #ffffff;
+    max-width: 560px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
-.form {
-  position: relative;
-  top: 100px;
-  z-index: 1;
-  background: #ffffff;
-  max-width: 560px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    input {
+      width: 100%;
+      border: 0;
+      margin: 0 0 15px;
+      padding: 15px;
+      font-size: 14px;
+    }
 
-  input {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-
-  button {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #0086ff;
-    width: 100%;
-    border: 0;
-    padding: 15px;
-    color: #ffffff;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    &:hover,
-    &:focus,
-    &:active {
+    button {
+      text-transform: uppercase;
       background: #0086ff;
+      width: 100%;
+      border: 0;
+      padding: 15px;
+      color: #ffffff;
+      font-size: 14px;
+      cursor: pointer;
+      &:hover,
+      &:focus,
+      &:active {
+        background: #0085fae7;
+      }
+    }
+
+    .error-message {
+      position: relative;
+      bottom: 15px;
+      background-color: #fce4e4;
+      border: 1px solid #fcc2c3;
+      text-align: center;
+      padding: 20px 30px;
+
+      .error-text {
+        color: #ff0000;
+        font-size: 16px;
+      }
     }
   }
 }
