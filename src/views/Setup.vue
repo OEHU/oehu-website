@@ -66,15 +66,12 @@
             </tab-content>
 
             <tab-content  :before-change="validateCredentialsTab">
-                <div v-if="error == ''" class="tab">
+                <div class="tab">
                     <h1>Halfway there!</h1>
                     <h2>Step 3: Enter your credentials</h2>
-                    <p class="errorMessage">{{this.errorMessage}}</p>
+                    <p class="errorMessage">{{errorMessage}}</p>
                     <vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions"
                                         ref="credentialsTab"></vue-form-generator>
-                </div>
-                <div v-else>
-                    {{this.error}}
                 </div>
             </tab-content>
 
@@ -91,7 +88,7 @@
             </tab-content>
 
             <tab-content>
-                <div v-if="error == ''" class="tab">
+                <div v-if="error == ''" class="tab lastTab">
                     <h2>Step 5: Well done we're processing your request</h2>
                     <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
                     <img class="setup_finish_svg" src="../assets/images/oehu_setup_finish.svg" alt="" />
@@ -105,11 +102,8 @@
         <template slot="footer" slot-scope="props">
             <div v-if="error == ''"> 
                 <div v-show="showNext">
-                    <div class="wizard-footer-left">
-                    <a @click.native="props.prevTab()">Prev step</a>
-                    </div>
-                    <div class="wizard-footer-right">
-                        <wizard-button v-show="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+                    <div v-show="!props.isLastStep" class="wizard-footer-right">
+                        <wizard-button  @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
                     </div>
                 </div>
             </div>              
@@ -313,10 +307,9 @@ export default {
       },
       deep: true
     },
-    error: function(newError) {
-      if (newError == "Account already exists") {
+    errorMessage: function(newError) {
+      if (newError == "Try again with another e-mail address!") {
         this.$refs.wizard.prevTab();
-        this.errorMessage = this.error;
       }
     }
   },
@@ -361,7 +354,7 @@ export default {
             self.$cookies.set("devices", self.model.deviceId);
             self.startRunning();
             setTimeout(function() {
-              document.location = 'https://oehu.org/dashboard';
+              document.location = "https://oehu.org/dashboard";
             }, 5000);
           }
         })
@@ -414,7 +407,7 @@ export default {
           self.model.deviceId = response.data.deviceID;
         })
         .catch(function(error) {
-          self.error = error + " in registerDevice";
+          self.error = "Try again with another e-mail address!";
           console.log(error);
         });
     },
@@ -427,7 +420,7 @@ export default {
           deviceId: this.model.deviceId
         })
         .catch(function(error) {
-          self.error = error.response.data.message;
+          self.errorMessage = "Try again with another e-mail address!";
           console.log(error);
         });
     }
@@ -463,6 +456,10 @@ export default {
     height: 422px;
   }
 
+  .lastTab {
+    position: relative;
+    top: 100px;
+  }
   .tab {
     .permisson_text {
       color: white;
@@ -513,6 +510,7 @@ export default {
         bottom: 100px;
       }
     }
+
     .loading div {
       box-sizing: border-box;
       display: block;
