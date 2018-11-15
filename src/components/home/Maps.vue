@@ -94,9 +94,9 @@
                             + '<b>'+device.metadata.metadata.householdType+'</b><br />'
                             + '<p><b>'+device.metadata.metadata.occupants+' occupants</b></p>'
                             + '<hr />'
-                            + '<p>'+device.metadata.metadata.electricityReceived.total+' kWh received in total</p>'
-                            + '<p>'+device.metadata.metadata.electricityDelivered.total+' kWh delivered in total</p>'
-                            + '<p>'+device.metadata.metadata.gasReceived+' gas received in total</p>'
+                            + '<p>'+device.metadata.metadata.electricityReceived.total.toFixed(2)+' kWh received in total</p>'
+                            + '<p>'+device.metadata.metadata.electricityDelivered.total.toFixed(2)+' kWh delivered in total</p>'
+                            + '<p>'+device.metadata.metadata.gasReceived.toFixed(2)+' gas received in total</p>'
                             + '<hr /><small><a href="/explorer/'+device.deviceId+'">'+device.deviceId+'</a></small>'
                     })
                 })
