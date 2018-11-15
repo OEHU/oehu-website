@@ -111,3 +111,15 @@ Buttons
   color: $black !important;
   border-color: $yellow !important;
 }
+
+/* Leaflet maps */
+
+.leaflet-tooltip {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: hidden;
+}
+.leaflet-tooltip hr {
+  margin: 5px 0;
+}
