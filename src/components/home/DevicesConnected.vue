@@ -2,11 +2,6 @@
     <div class="devices-connected">
         <div class="container">
             <div class="devices-connected-columns ">
-                <Title
-                    title="These OEHU's already connected"
-                    color="black"
-                    class="title"
-                    />
                 <div class="meters-wrapper">
                     <Meter class="meter" :value="metersConnectedCount" valuePrecision=0
                             textAbove="" description="Meters active"/>
@@ -26,11 +21,10 @@
 <script>
     import axios from 'axios'
     import Meter from '@/components/common/Meter.vue'
-    import Title from '@/components/common/Title.vue'
 
     export default {
         name: 'DevicesConnected',
-        components: {Meter, Title},
+        components: {Meter},
         data () {
             return {
                 metersConnectedCount: 0,

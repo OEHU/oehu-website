@@ -1,23 +1,16 @@
 <template>
-    <div class="dashboard">
+    <div class="explorer">
         <Logo/>
         <div class="container">
-            <Title align="center" title="Your Own Dashboard" class="Title" />
+            <Title align="center" title="OEHU Data Explorer" class="Title" />
             <p align="center">
-                This page is dedicated to you!
+                This page shows info from all OEHU connected devices.
             </p>
-            <div class="meters-wrapper">
-                <Meter class="meter" :value="this.electricityReceived" valuePrecision=3
-                        textAbove="" description="Electricity received"/>
-                <Meter class="meter" :value="this.electricityDelivered" valuePrecision=0
-                        textAbove="" description="Electricity delivered"/>
-                <Meter class="meter" :value="this.gasReceived" valuePrecision=0
-                        textAbove="" description="Gas received"/>
-            </div>
             <br />
-            <Map :markers="devices"></Map>
+            <Maps />
         </div>
-        <DeviceDataList :deviceId="this.deviceId" />
+        <DevicesConnected />
+        <DeviceDataList />
         <br />
         <br />
         <br />
@@ -30,11 +23,13 @@
 <script>
     import Button from "@/components/common/Button.vue";
     import DeviceDataList from '@/components/stats/DeviceDataList.vue'
-    // import DayChart from '@/components/stats/DayChart.vue'
+    import DayChart from '@/components/stats/DayChart.vue'
     import Footer from "@/components/footer/Footer.vue";
+    import DevicesConnected from "@/components/home/DevicesConnected";
     import FooterClosing from "@/components/footer/FooterClosing.vue";
     import Logo from '@/components/Logo.vue'
     import Map from "@/components/common/Map.vue";
+    import Maps from "@/components/home/Maps";
     import Meter from "@/components/common/Meter.vue";
     import Title from '@/components/common/Title.vue'
 
@@ -55,9 +50,11 @@
             Meter,
             Logo,
             Button,
-            // DayChart,
+            DayChart,
             DeviceDataList,
+            DevicesConnected,
             Map,
+            Maps,
             Title,
             Footer,
             FooterClosing
@@ -108,15 +105,18 @@
                 this.gasReceived = data.metadata.metadata.gasReceived
             }
         },
-        beforeMount() {
-            this.deviceId = self.$cookies.get("devices");
-        },
         mounted() {
+            this.deviceId = self.$cookies.get("devices");
+
             // Redirect to login if not logged in
             if(this.deviceId == undefined)
               document.location = '/login';
             else
                 this.getDeviceData();
+    
+            if (this.$cookies.get("devices")) {
+                this.isCookieSet = true;
+            }
         }
     }
 </script>

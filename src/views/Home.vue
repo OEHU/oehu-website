@@ -4,6 +4,11 @@
         <WhatIs />
         <Social />
         <HowItWorks />
+        <Title
+            title="These OEHU's already connected"
+            color="black"
+            class="title"
+            />
         <DevicesConnected />
         <Maps/>
         <GetStarted />
@@ -13,6 +18,7 @@
 </template>
 
 <script>
+import Title from '@/components/common/Title.vue'
 import Logo from '@/components/Logo.vue'
 import WhatIs from "@/components/home/WhatIs.vue";
 import Social from "@/components/common/Social.vue";
@@ -29,6 +35,7 @@ export default {
     Logo,
     DevicesConnected,
     WhatIs,
+    Title,
     Social,
     HowItWorks,
     Maps,

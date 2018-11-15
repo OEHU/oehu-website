@@ -18,6 +18,21 @@ export default new Router({
             component: () => import('./views/Home.vue')
         },
         {
+            path: '/explorer',
+            name: 'explorer',
+            component: () => import('./views/Explorer.vue')
+        },
+        {
+            path: '/explorer/list',
+            name: 'explorer-list',
+            component: () => import('./views/Explorer.vue')
+        },
+        {
+            path: '/explorer/map',
+            name: 'explorer-map',
+            component: () => import('./views/Explorer.vue')
+        },
+        {
             path: '/about',
             name: 'about',
             component: () => import('./views/About.vue')

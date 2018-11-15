@@ -15,7 +15,7 @@
                 :icon="LIcon"
                 :lat-lng="marker.position">
             <!-- <l-popup :content="marker.tooltip" /> -->
-            <l-tooltip :content="marker.tooltip" />
+            <l-tooltip :content="marker.tooltip" :options="tooltipOptions" />
         </l-marker>
     </l-map>
 </template>
@@ -51,7 +51,8 @@
                     iconSize: [50, 50],
                     iconAnchor: [25, 25],
                     popupAnchor: [0, 0],
-                })
+                }),
+                tooltipOptions: { permanent: false }
             };
         },
         methods: {
@@ -86,7 +87,7 @@
                             + '<p>'+device.metadata.metadata.electricityReceived.total+' kWh received in total</p>'
                             + '<p>'+device.metadata.metadata.electricityDelivered.total+' kWh delivered in total</p>'
                             + '<p>'+device.metadata.metadata.gasReceived+' gas received in total</p>'
-                            + '<hr /><small>'+device.deviceId+'</small>'
+                            + '<hr /><small><a href="/explorer/'+device.deviceId+'">'+device.deviceId+'</a></small>'
                     })
                 })
             }

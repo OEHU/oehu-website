@@ -116,14 +116,7 @@
             }
         },
         mounted() {
-            // this.deviceId = self.$cookies.get("devices");
-
-            // // Redirect to login if not logged in
-            // if(this.deviceId == undefined)
-            //   console.log('Not logged in');
-            // else
-              this.getTransactions();
-
+          this.getTransactions();
         }
     }
 </script>
