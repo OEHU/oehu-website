@@ -62,12 +62,28 @@
     import Meter from "@/components/common/Meter.vue";
     import Title from '@/components/common/Title.vue'
 
+    let getApiUrl = (deviceId) => {
+        let apiUrl = 'https://api.oehu.org/transactions?raw=true';
+        return apiUrl + (deviceId ? '&deviceId=' + deviceId : '');
+    }
+
+    let onlyOneTransactionPerDevice = (transactions) => {
+        let ret = [], idsDone = [];
+        for (let i in transactions) {
+            if( idsDone[transactions[i].asset.id] == undefined ) {
+                ret.push(transactions[i]);
+                idsDone[transactions[i].asset.id] = true;
+            }
+        }
+        return ret;
+    }
+
     export default {
         name: "device-data-list",
+        props: ["deviceId"],
         data() {
             return {
-                transactions: [],
-                deviceId: 0
+                transactions: []
             }
         },
         components: {
@@ -77,13 +93,19 @@
         methods: {
             async getTransactions() {
                 try {
-                    var self = this; 
-                    let transactions = await this.axios.get('https://api.oehu.org/transactions?deviceId=' + this.deviceId);
+                    var self = this;
+                    // Get transactions
+                    let transactions = await this.axios.get(getApiUrl(this.deviceId));
+                    // Get formatted date
                     for (var i = 0; i <= transactions.data.length - 1; i++) {
                         transactions.data[i].metadata.metadata.lastUpdateFormatted =
                             moment(transactions.data[i].metadata.metadata.lastUpdate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     self.transactions = transactions.data;
+                    // If no deviceId is set: show only 1 tx per device
+                    if( ! this.deviceId) {
+                        self.transactions = onlyOneTransactionPerDevice(self.transactions);
+                    }
                     // After 60 seconds: reload data
                     setTimeout(function() {
                         self.getTransactions();
@@ -94,12 +116,12 @@
             }
         },
         mounted() {
-            this.deviceId = self.$cookies.get("devices");
+            // this.deviceId = self.$cookies.get("devices");
 
-            // Redirect to login if not logged in
-            if(this.deviceId == undefined)
-              console.log('Not logged in');
-            else
+            // // Redirect to login if not logged in
+            // if(this.deviceId == undefined)
+            //   console.log('Not logged in');
+            // else
               this.getTransactions();
 
         }
