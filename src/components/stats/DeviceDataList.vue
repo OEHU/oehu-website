@@ -13,8 +13,8 @@
                 <table>
                     <tr>
                         <td><small>Total</small></td>
-                        <td><small>Tarrif1</small></td>
-                        <td><small>Tarrif2</small></td>
+                        <td><small>Tariff1</small></td>
+                        <td><small>Tariff2</small></td>
                     </tr>
                 </table>
             </th>
@@ -22,8 +22,8 @@
                 <table>
                     <tr>
                         <td><small>Total</small></td>
-                        <td><small>Tarrif1</small></td>
-                        <td><small>Tarrif2</small></td>
+                        <td><small>Tariff1</small></td>
+                        <td><small>Tariff2</small></td>
                     </tr>
                 </table>
             </th>
@@ -35,8 +35,8 @@
                 <table>
                     <tr>
                         <td>{{ tx.metadata.metadata.electricityReceived.total ? tx.metadata.metadata.electricityReceived.total.toFixed(2) : 0 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityReceived.tarrif1 ? tx.metadata.metadata.electricityReceived.tarrif1.toFixed(2) : 0 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityReceived.tarrif2 ? tx.metadata.metadata.electricityReceived.tarrif2.toFixed(2) : 0 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityReceived.tariff1 ? tx.metadata.metadata.electricityReceived.tariff1.toFixed(2) : 0 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityReceived.tariff2 ? tx.metadata.metadata.electricityReceived.tariff2.toFixed(2) : 0 }}</td>
                     </tr>
                 </table>
             </td>
@@ -44,8 +44,8 @@
                 <table>
                     <tr>
                         <td>{{ tx.metadata.metadata.electricityDelivered.total ? tx.metadata.metadata.electricityDelivered.total.toFixed(2) : 0 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityDelivered.tarrif1 ? tx.metadata.metadata.electricityDelivered.tarrif1.toFixed(2) : 0 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityDelivered.tarrif2 ? tx.metadata.metadata.electricityDelivered.tarrif2.toFixed(2) : 0 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityDelivered.tariff1 ? tx.metadata.metadata.electricityDelivered.tariff1.toFixed(2) : 0 }}</td>
+                        <td>{{ tx.metadata.metadata.electricityDelivered.tariff2 ? tx.metadata.metadata.electricityDelivered.tariff2.toFixed(2) : 0 }}</td>
                     </tr>
                 </table>
             </td>
