@@ -48,6 +48,8 @@ export default {
 
 <style scoped lang="scss">
 
+@import '../assets/sass/mix.scss';
+
 .title {
     text-align: center;
 

@@ -2,6 +2,7 @@
     <l-map
             class="oehu-map"
             :zoom="zoom"
+            :bounds="bounds"
             :center="center"
             :options="{zoomControl: true, touchZoom: true, scrollWheelZoom: false, doubleClickZoom: true, boxZoom: true}"
             @update:center="centerUpdate"
@@ -24,10 +25,19 @@
     import { LMap, LTileLayer, LMarker, LTooltip } from 'vue2-leaflet';
     import moment from 'moment';
     import L from 'leaflet';
+    import * as R from 'ramda';
     import axios from 'axios';
 
     let oneMonthAgo = moment().subtract(1, 'month').valueOf();
     let oneWeekAgo = moment().subtract(1, 'week').valueOf();
+
+    let getLatLngBounds = (markers) => {
+        let ret = [];
+        R.map((marker) => {
+            ret.push([marker.position.lat, marker.position.lng]);
+        }, markers);
+        return ret;
+    }
 
     export default {
         name: 'Maps',
@@ -90,6 +100,7 @@
                             + '<hr /><small><a href="/explorer/'+device.deviceId+'">'+device.deviceId+'</a></small>'
                     })
                 })
+                // this.bounds = getLatLngBounds(this.markers);
             }
         },
         mounted() {
