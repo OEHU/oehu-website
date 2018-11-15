@@ -49,7 +49,7 @@
         },
         data () {
             return {
-                zoom: 10,
+                zoom: 8,
                 center: {lat: 52.0182305, lng: 4.6910549},
                 // Found some of the map styles below style on https://wiki.openstreetmap.org/wiki/Tiles#Servers
                 url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png',
