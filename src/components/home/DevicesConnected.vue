@@ -69,14 +69,6 @@
         }
     }
 
-    .title {
-        text-align: center;
-
-        @include minimum-desktop() {
-            margin-bottom: 80px;
-        }
-    }
-
     .meters-wrapper {
         width: 80vw;
         margin: 0 auto 0 auto;

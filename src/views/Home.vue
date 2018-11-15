@@ -47,4 +47,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.title {
+    text-align: center;
+
+    @include minimum-desktop() {
+        margin-bottom: 80px;
+    }
+}
+
 </style>
