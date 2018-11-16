@@ -60,8 +60,8 @@
                     <vue-form-generator :model="model" :schema="selectHouseholdType" :options="formOptions"
                                         ref="selectHouseholdType"></vue-form-generator>
                 </div>
-                <div v-else>
-                    {{this.error}}
+                <div class="general-error" v-else>
+                    <span class="general-error-message">{{error}}</span>
                 </div>
             </tab-content>
 
@@ -69,7 +69,9 @@
                 <div class="tab">
                     <h1>Halfway there!</h1>
                     <h2>Step 3: Enter your credentials</h2>
-                    <p class="errorMessage">{{errorMessage}}</p>
+                    <div v-if="errorMessage != ''">
+                        <p class="error-message"><span class="error-text">{{errorMessage}}</span></p>
+                    </div>
                     <vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions"
                                         ref="credentialsTab"></vue-form-generator>
                 </div>
@@ -82,8 +84,8 @@
                     <vue-form-generator :model="model" :schema="backupTab" :options="formOptions"
                                         ref="backupTab"></vue-form-generator>
                 </div>
-                <div v-else>
-                    {{this.error}}
+                <div class="general-error" v-else>
+                    <span class="general-error-message">{{error}}</span>
                 </div>
             </tab-content>
 
@@ -94,8 +96,8 @@
                     <img class="setup_finish_svg" src="../assets/images/oehu_setup_finish.svg" alt="" />
                     <div class="loading"><div></div><div></div><div></div><div></div></div>
                 </div>
-                <div v-else>
-                    {{this.error}}
+                 <div class="general-error" v-else>
+                    <span class="general-error-message">{{error}}</span>
                 </div>
             </tab-content>
 
@@ -359,7 +361,7 @@ export default {
           }
         })
         .catch(function(error) {
-          self.error = error + " in GetConfigurated";
+          self.error = "Ooehuups, something went wrong!";
           console.log(error);
         });
     },
@@ -371,7 +373,7 @@ export default {
           self.model.phrase = response.data.phrase;
         })
         .catch(function(error) {
-          self.error = error + " in GenerateNewPhrase";
+          self.error = "Ooehuups, something went wrong!";
           console.log(error);
         });
     },
@@ -382,7 +384,7 @@ export default {
           console.log("start response: ", response);
         })
         .catch(function(error) {
-          self.error = error + " in start";
+          self.error = "Ooehuups, something went wrong!";
           console.log(error);
         });
     },
@@ -441,9 +443,49 @@ export default {
     top: 25px;
   }
 
-  .errorMessage {
-    color: #ca0707 !important;
-    font-size: 25px !important;
+  .general-error {
+    position: relative;
+    top: 30px;
+    background-color: #fce4e4;
+    border: 2px solid #fcc2c3;
+    text-align: center;
+  }
+
+  .general-error-message {
+    color: #ff0000;
+    font-size: 24px;
+  }
+
+  .error-message {
+    position: relative;
+    bottom: 15px;
+    background-color: #fce4e4;
+    border: 2px solid #fcc2c3;
+    text-align: center;
+    width: 100%;
+
+    @include mobile() {
+      height: 50px;
+    }
+
+    @include tablet() {
+      height: 50px;
+    }
+
+    .error-text {
+      color: #ff0000;
+      font-size: 20px;
+      position: relative;
+      bottom: 5px;
+      @include mobile() {
+        position: relative;
+        bottom: 40px;
+      }
+      @include tablet() {
+        position: relative;
+        bottom: 40px;
+      }
+    }
   }
 
   .setup_finish_svg {
