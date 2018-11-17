@@ -253,7 +253,7 @@
                 document.location = 'https://www.sossolutions.nl/raspberry-smartmeter-voor-oehu-leden';
             },
             downloadOehuPackage: function() {
-                document.location = 'https://api.oehu.org/downloads/oehu-pi.zip';
+                document.location = 'https://api.oehu.org/downloads/OEHU_v1.0.0.zip';
             }
         }
     };
