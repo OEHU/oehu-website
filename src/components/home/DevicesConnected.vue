@@ -19,76 +19,78 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import Meter from '@/components/common/Meter.vue'
+import axios from "axios";
+import Meter from "@/components/common/Meter.vue";
 
-    export default {
-        name: 'DevicesConnected',
-        components: {Meter},
-        data () {
-            return {
-                metersConnectedCount: 0,
-                averageKwHUsage: 0,
-                averageKwHGenerated: 0,
-                averageGasUsed: 0,
-            }
-        },
-        methods: {
-            async getStatistics() {
-                try {
-                    const response = await axios.get('https://api.oehu.org/statistics');
-                    this.handleStatisticData(response.data);
-                } catch (error) {
-                    console.error(error);
-                }
-            },
-            handleStatisticData(statistics) {
-                console.log('statistics', statistics, statistics.devicesConnected);
-                this.metersConnectedCount = statistics.devicesConnected;
-                this.averageKwHUsage = statistics.averageUseEnergy;
-                this.averageKwHGenerated = statistics.averageGeneratedEnergy;
-                this.averageGasUsed = statistics.averageUseGas;
-            }
-        },
-        mounted() {
-            this.getStatistics();
-        }
+export default {
+  name: "DevicesConnected",
+  components: { Meter },
+  data() {
+    return {
+      metersConnectedCount: 0,
+      averageKwHUsage: 0,
+      averageKwHGenerated: 0,
+      averageGasUsed: 0
+    };
+  },
+  methods: {
+    async getStatistics() {
+      try {
+        let self = this;
+        const response = await axios.get("https://api.oehu.org/statistics");
+        this.handleStatisticData(response.data);
+        setTimeout(function() {
+          self.getStatistics();
+        }, 30000);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    handleStatisticData(statistics) {
+      this.metersConnectedCount = statistics.devicesConnected;
+      this.averageKwHUsage = statistics.averageUseEnergy;
+      this.averageKwHGenerated = statistics.averageGeneratedEnergy;
+      this.averageGasUsed = statistics.averageUseGas;
     }
+  },
+  mounted() {
+    this.getStatistics();
+  }
+};
 </script>
 
 <style scoped lang="scss">
-    @import '../../assets/sass/mix.scss';
+@import "../../assets/sass/mix.scss";
 
-    .devices-connected {
-        margin-bottom: 60px;
-        margin-top: 100px;
+.devices-connected {
+  margin-bottom: 60px;
+  margin-top: 100px;
 
-        @include mobile() {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
+  @include mobile() {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.meters-wrapper {
+  width: 80vw;
+  margin: 0 auto 0 auto;
+
+  @media (min-width: 480px) {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .meter {
+    border-bottom: solid #fff 2px;
+
+    @media (min-width: 480px) {
+      border-bottom: none;
     }
-
-    .meters-wrapper {
-        width: 80vw;
-        margin: 0 auto 0 auto;
-
-        @media (min-width: 480px) {
-            width: auto;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .meter {
-            border-bottom: solid #fff 2px;
-
-            @media (min-width: 480px) {
-                border-bottom: none;
-            }
-        }
-        .meter:last-child {
-            border-bottom: none;
-        }
-    }
-
+  }
+  .meter:last-child {
+    border-bottom: none;
+  }
+}
 </style>
