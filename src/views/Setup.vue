@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <img class="logo" src="../assets/images/oehu-logo-small.svg" />
+        <img class="logo" v-bind:class="{ hasScrolled: this.scrolled }" src="../assets/images/oehu-logo-small.svg" />
         <form-wizard shape="tab" color="#26292d" ref="wizard">
             <wizard-step 
                 slot-scope="props"
@@ -132,6 +132,7 @@ export default {
       deviceId: 0,
       showNext: false,
       error: "",
+      scrolled: false,
       errorMessage: "",
       map: {
         marker: {
@@ -315,7 +316,17 @@ export default {
       }
     }
   },
+  created() {
+    document.body.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    document.body.removeEventListener("scroll", this.handleScroll);
+  },
   methods: {
+    handleScroll() {
+      let xyz = document.getElementById("app").getBoundingClientRect();
+      this.scrolled = Math.abs(xyz.top) > 20;
+    },
     validateLocationTab: function() {
       this.generateNewPhrase();
       return this.$refs.selectLocation.validate();
@@ -441,6 +452,21 @@ export default {
     position: fixed;
     left: 25px;
     top: 25px;
+    opacity: 1;
+    transition: opacity 0.4s;
+
+    @include mobile() {
+      height: 45px;
+    }
+
+    @include tablet() {
+      height: 45px;
+    }
+  }
+
+  .hasScrolled {
+    opacity: 0;
+    transition: opacity 0.4s;
   }
 
   .general-error {
