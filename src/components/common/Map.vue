@@ -36,7 +36,7 @@
         data() {
             return {
                 map: {
-                    zoom: 10,
+                    zoom: 7,
                     currentZoom: 10,
                     center: {lat: 52.0182305, lng: 4.6910549},
                     currentCenter: {lat: 52.0182305, lng: 4.6910549},

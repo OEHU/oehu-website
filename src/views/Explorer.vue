@@ -23,7 +23,7 @@
 <script>
     import Button from "@/components/common/Button.vue";
     import DeviceDataList from '@/components/stats/DeviceDataList.vue'
-    import DayChart from '@/components/stats/DayChart.vue'
+    // import DayChart from '@/components/stats/DayChart.vue'
     import Footer from "@/components/footer/Footer.vue";
     import DevicesConnected from "@/components/home/DevicesConnected";
     import FooterClosing from "@/components/footer/FooterClosing.vue";
@@ -50,7 +50,7 @@
             Meter,
             Logo,
             Button,
-            DayChart,
+            // DayChart,
             DeviceDataList,
             DevicesConnected,
             Map,
