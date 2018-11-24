@@ -1,59 +1,90 @@
 <template>
-    <div class="device-data-list">
-        <table>
-          <tr>
-            <th>Time</th>
-            <th>Electricity received</th>
-            <th>Electricity delivered</th>
-            <th>Gas received</th>
-          </tr>
-          <tr>
-            <th></th>
-            <th>
-                <table>
-                    <tr>
-                        <td><small>Total</small></td>
-                        <td><small>Tariff1</small></td>
-                        <td><small>Tariff2</small></td>
-                    </tr>
-                </table>
-            </th>
-            <th>
-                <table>
-                    <tr>
-                        <td><small>Total</small></td>
-                        <td><small>Tariff1</small></td>
-                        <td><small>Tariff2</small></td>
-                    </tr>
-                </table>
-            </th>
-            <th></th>
-          </tr>
-          <tr v-for="tx in transactions">
-            <td>{{ tx.metadata.metadata.lastUpdateFormatted }}</td>
-            <td>
-                <table>
-                    <tr>
-                        <td>{{ tx.metadata.metadata.electricityReceived.total ? tx.metadata.metadata.electricityReceived.total.toFixed(2) : 0 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityReceived.tariff1 ? tx.metadata.metadata.electricityReceived.tariff1.toFixed(2) : 0 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityReceived.tariff2 ? tx.metadata.metadata.electricityReceived.tariff2.toFixed(2) : 0 }}</td>
-                    </tr>
-                </table>
-            </td>
-            <td>
-                <table>
-                    <tr>
-                        <td>{{ tx.metadata.metadata.electricityDelivered.total ? tx.metadata.metadata.electricityDelivered.total.toFixed(2) : 0 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityDelivered.tariff1 ? tx.metadata.metadata.electricityDelivered.tariff1.toFixed(2) : 0 }}</td>
-                        <td>{{ tx.metadata.metadata.electricityDelivered.tariff2 ? tx.metadata.metadata.electricityDelivered.tariff2.toFixed(2) : 0 }}</td>
-                    </tr>
-                </table>
-            </td>
-            <td>{{ tx.metadata.metadata.gasReceived }}</td>
-          </tr>
-        </table>
+  <div class="device-data-list flex flex-wrap">
+    <div class="device-data-list_item" v-for="tx in transactions">
+      <div class="lastUpdateFormatted">
+        {{ tx.metadata.metadata.lastUpdateFormatted }}
+      </div>
+
+      <div class="electricityReceived">
+        <label>Electricity received</label>
+        <small>Total</small>
+        <span>{{ tx.metadata.metadata.electricityReceived.total ? tx.metadata.metadata.electricityReceived.total.toFixed(2) : 0 }}</span>
+        <small>Tariff1</small>
+        <span>{{ tx.metadata.metadata.electricityReceived.tariff1 ? tx.metadata.metadata.electricityReceived.tariff1.toFixed(2) : 0 }}</span>
+        <small>Tariff2</small>
+        <span>{{ tx.metadata.metadata.electricityReceived.tariff2 ? tx.metadata.metadata.electricityReceived.tariff2.toFixed(2) : 0 }}</span>
+      </div>
+
+      <div class="electricityDelivered">
+        <label>Electricity delivered</label>
+        <small>Total</small>
+        <span>{{ tx.metadata.metadata.electricityDelivered.total ? tx.metadata.metadata.electricityDelivered.total.toFixed(2) : 0 }}</span>
+        <small>Tariff1</small>
+        <span>{{ tx.metadata.metadata.electricityDelivered.tariff1 ? tx.metadata.metadata.electricityDelivered.tariff1.toFixed(2) : 0 }}</span>
+        <small>Tariff2</small>
+        <span>{{ tx.metadata.metadata.electricityDelivered.tariff2 ? tx.metadata.metadata.electricityDelivered.tariff2.toFixed(2) : 0 }}</span>
+      </div>
+
+      <div>
+        <label>Gas received</label>
+        {{ tx.metadata.metadata.gasReceived }}
+      </div>
     </div>
+  </div>
 </template>
+
+<style scoped lang="scss">
+.device-data-list {
+  width: 90%;
+  margin: 0 auto;
+}
+.device-data-list_item {
+  max-width: 100vw;
+  overflow: auto;
+  margin-bottom: 30px;
+  transition: color 0.1s 0.8s;
+  padding: 2px;
+  text-align: center;
+}
+@media(min-width: 1200px) {
+  .device-data-list_item {
+    max-width: 28vw;
+    padding: 15px;
+  }
+}
+.device-data-list_item:hover,
+.device-data-list_item:focus,
+.device-data-list_item.is-active {
+  background-color: #fff;
+  color: #000;
+  transition: color 0s, background 0s 0.8s;
+}
+label {
+  font-weight: bold;
+  color: #000;
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+}
+small {
+  margin: 0 10px;
+}
+.lastUpdateFormatted {
+  font-size: 1.2em;
+  margin: 15px 0;
+  color: #000;
+  background: #fff;
+  padding: 1px 2px; 
+  width:100%;
+}
+.lastUpdateFormatted label {
+  margin-top: 0;
+}
+
+.flex > div {
+  width: 100%;
+}
+</style>
 
 <script>
     import moment from 'moment';
@@ -120,17 +151,3 @@
         }
     }
 </script>
-
-<style scoped lang="scss">
-    .device-data-list > table {
-        width: 80vw;
-        max-width: 100%;
-        margin: 0 auto;
-    }
-    .device-data-list table table {
-        width: 100%;
-    }
-    .device-data-list table table td {
-        width: 33%;
-    }
-</style>

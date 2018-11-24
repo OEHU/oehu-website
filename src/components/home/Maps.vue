@@ -123,7 +123,6 @@
         position: relative;
 
         @include mobile() {
-            width: 90%;
         }
     }
 </style>

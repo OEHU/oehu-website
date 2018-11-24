@@ -149,10 +149,10 @@
             width: 50vw;
             max-width: 100vw;
             margin: 0 auto;
-            padding-bottom: 100px;
+            padding-bottom: 70px;
 
             @include mobile() {
-                width: 90%;
+                width: 100%;
             }
         }
     }
