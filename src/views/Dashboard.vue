@@ -142,6 +142,7 @@
 
         .meters-wrapper {
             display: flex;
+            flex-wrap: wrap;
         }
 
         .container {
