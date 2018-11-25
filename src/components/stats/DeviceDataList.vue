@@ -35,7 +35,7 @@
 
 <style scoped lang="scss">
 .device-data-list {
-  width: 90%;
+  width: 81%;
   margin: 0 auto;
 }
 .device-data-list_item {
@@ -48,7 +48,7 @@
 }
 @media(min-width: 1200px) {
   .device-data-list_item {
-    max-width: 28vw;
+    max-width: 26vw;
     padding: 15px;
   }
 }
@@ -65,6 +65,7 @@ label {
   display: block;
   width: 100%;
   margin-top: 15px;
+  border-radius: 15px;
 }
 small {
   margin: 0 10px;
@@ -74,8 +75,7 @@ small {
   margin: 15px 0;
   color: #000;
   background: #fff;
-  padding: 1px 2px; 
-  width:100%;
+  padding: 1px 15px; 
 }
 .lastUpdateFormatted label {
   margin-top: 0;
