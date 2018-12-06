@@ -4,6 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
+import Buefy from 'buefy'
  
 //Sass styling
 import '@/assets/sass/main.scss'
@@ -30,6 +31,7 @@ Vue.use(VueFormWizard)
 Vue.use(VueFormGenerator)
 Vue.use(VueAxios, axios)
 Vue.use(VueCookies)
+Vue.use(Buefy)
 
 new Vue({
     router,
