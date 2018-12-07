@@ -42,38 +42,17 @@
 
         <b-tab-item label="Last 7 days">
           <div class="small">
-            <bar-chart :chart-data="lineChartData"></bar-chart>
-          </div>
-        </b-tab-item>
-
-        <b-tab-item label="Last Month">
-          <div class="small">
-            <bar-chart :chart-data="barChartData"></bar-chart>
-          </div>
-        </b-tab-item>
-      </b-tabs>
-
-      <h1>Electricity received</h1>
-
-      <b-tabs type="is-boxed" v-model="activeTab" expanded>
-        <b-tab-item label="Last 24 hours">
-          <div class="small">
             <line-chart :chart-data="lineChartData"></line-chart>
           </div>
         </b-tab-item>
 
-        <b-tab-item label="Last 7 days">
+        <b-tab-item label="Last Month">
           <div class="small">
             <bar-chart :chart-data="barChartData"></bar-chart>
           </div>
         </b-tab-item>
-
-        <b-tab-item label="Last Month">
-          <div class="small">
-            <bar-chart :chart-data="lineChartData"></bar-chart>
-          </div>
-        </b-tab-item>
       </b-tabs>
+
     </div>
 
     <DeviceDataList :deviceId="this.deviceId"/>
@@ -109,7 +88,8 @@ export default {
       gasReceived: 0,
       barChartData: null,
       lineChartData: null,
-      tab: "24hours"
+      tab: "24hours",
+      activeTab: null
     };
   },
   components: {
@@ -148,9 +128,9 @@ export default {
     },
     async getDeviceData() {
       try {
-        var self = this;
+        let self = this;
         const response = await this.axios.get(
-          "https://api.oehu.org/devices?deviceId=" + this.deviceId
+          "https://api.oehu.org/devices?deviceId=" + self.deviceId
         );
         this.handleDevicesData(response.data[0]);
         // After 10 seconds: reload data
