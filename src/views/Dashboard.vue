@@ -36,23 +36,22 @@
       <b-tabs type="is-boxed" v-model="activeTab" expanded>
         <b-tab-item label="Last 24 hours">
           <div class="small">
-            <bar-chart :chart-data="barChartData"></bar-chart>
+            <bar-chart :chart-data="barChartData, options"></bar-chart>
           </div>
         </b-tab-item>
 
         <b-tab-item label="Last 7 days">
           <div class="small">
-            <line-chart :chart-data="lineChartData"></line-chart>
+            <line-chart :chart-data="lineChartData, options"></line-chart>
           </div>
         </b-tab-item>
 
         <b-tab-item label="Last Month">
           <div class="small">
-            <bar-chart :chart-data="barChartData"></bar-chart>
+            <bar-chart :chart-data="barChartData, options"></bar-chart>
           </div>
         </b-tab-item>
       </b-tabs>
-
     </div>
 
     <DeviceDataList :deviceId="this.deviceId"/>
@@ -75,6 +74,7 @@ import Title from "@/components/common/Title.vue";
 import BarChart from "@/components/common/BarChart.vue";
 import LineChart from "@/components/common/LineChart.vue";
 
+
 export default {
   name: "dashboard",
   data() {
@@ -89,7 +89,34 @@ export default {
       barChartData: null,
       lineChartData: null,
       tab: "24hours",
-      activeTab: null
+      activeTab: null,
+      options: {
+        legend: {
+          labels: {
+            fontColor: "white",
+            fontSize: 18
+          }
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "white",
+                fontSize: 16,                
+
+              }
+            }
+          ],
+          xAxes: [
+            {
+              ticks: {
+                fontColor: "white",
+                fontSize: 14,
+              }
+            }
+          ]
+        }
+      }
     };
   },
   components: {
@@ -183,7 +210,7 @@ export default {
           },
           {
             label: "Data One",
-            backgroundColor: "#f87979",
+            backgroundColor: "#000000",
             data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
           }
         ]
@@ -206,8 +233,8 @@ export default {
           datasets: [
             {
               label: "GitHub Commits",
-              backgroundColor: "#f87979",
-              data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
+              backgroundColor: "#FFE200",
+              data: [40, 45, 50, 53, 56, 55, 52, 51, 48, 49, 50, 51]
             }
           ]
         });
