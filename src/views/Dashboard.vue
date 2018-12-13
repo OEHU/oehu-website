@@ -36,19 +36,19 @@
       <b-tabs type="is-boxed" v-model="activeTab" expanded>
         <b-tab-item label="Last 24 hours">
           <div class="small">
-            <bar-chart :chart-data="barChartData, options"></bar-chart>
+            <bar-chart v-if="loaded" :chart-data="barChartData, options"></bar-chart>
           </div>
         </b-tab-item>
 
         <b-tab-item label="Last 7 days">
           <div class="small">
-            <line-chart :chart-data="lineChartData, options"></line-chart>
+            <line-chart v-if="loaded" :chart-data="lineChartData, options"></line-chart>
           </div>
         </b-tab-item>
 
         <b-tab-item label="Last Month">
-          <div class="small">
-            <bar-chart :chart-data="barChartData, options"></bar-chart>
+          <div  class="small">
+            <bar-chart v-if="loaded" :chart-data="barChartData, options"></bar-chart>
           </div>
         </b-tab-item>
       </b-tabs>
@@ -74,12 +74,13 @@ import Title from "@/components/common/Title.vue";
 import BarChart from "@/components/common/BarChart.vue";
 import LineChart from "@/components/common/LineChart.vue";
 
-
 export default {
   name: "dashboard",
   data() {
     return {
       data: [],
+      loaded: false,
+      dashboardData: [],
       isCookieSet: false,
       deviceId: 0,
       devices: [],
@@ -102,8 +103,7 @@ export default {
             {
               ticks: {
                 fontColor: "white",
-                fontSize: 16,                
-
+                fontSize: 16
               }
             }
           ],
@@ -111,7 +111,7 @@ export default {
             {
               ticks: {
                 fontColor: "white",
-                fontSize: 14,
+                fontSize: 14
               }
             }
           ]
@@ -153,7 +153,7 @@ export default {
         console.error(error);
       }
     },
-    async getDeviceData() {
+    getDeviceData: async function() {
       try {
         let self = this;
         const response = await this.axios.get(
@@ -164,6 +164,40 @@ export default {
         setTimeout(function() {
           self.getDeviceData();
         }, 10000);
+      } catch (error) {
+        // console.error(error);
+      }
+    },
+    getDashboardStatistics: async function() {
+      this.loaded = false;
+      try {
+        const response = await this.axios.get(
+          "https://api.oehu.org/statistics/dashboard"
+        );
+
+        //fill BarChart example
+        this.barChartData = {
+          labels: response.data.xAxis,
+          datasets: [
+            {
+              label: "KwH usage",
+              backgroundColor: "#FFE200",
+              data: response.data.yAxis
+            }
+          ]
+        };
+        //fill LineChart example
+        this.lineChartData = {
+          labels: response.data.xAxis,
+          datasets: [
+            {
+              label: "KwH usage",
+              backgroundColor: "#FFE200",
+              data: response.data.yAxis
+            }
+          ]
+        };
+        this.loaded = true;
       } catch (error) {
         console.error(error);
       }
@@ -185,60 +219,6 @@ export default {
         data.metadata.metadata.electricityDelivered.total;
       this.gasReceived = data.metadata.metadata.gasReceived;
     },
-
-    fillData() {
-      (this.barChartData = {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December"
-        ],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: "#FFE200",
-            data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-          },
-          {
-            label: "Data One",
-            backgroundColor: "#000000",
-            data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-          }
-        ]
-      }),
-        (this.lineChartData = {
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-          ],
-          datasets: [
-            {
-              label: "GitHub Commits",
-              backgroundColor: "#FFE200",
-              data: [40, 45, 50, 53, 56, 55, 52, 51, 48, 49, 50, 51]
-            }
-          ]
-        });
-    }
   },
   beforeMount() {
     this.deviceId = self.$cookies.get("devices");
@@ -247,8 +227,7 @@ export default {
     // Redirect to login if not logged in
     if (this.deviceId == undefined) document.location = "/login";
     else this.getDeviceData();
-
-    this.fillData();
+    this.getDashboardStatistics();
   }
 };
 </script>
