@@ -269,8 +269,8 @@ export default {
 }
 
 .small {
-  max-width: 600px;
-  max-height: 600px;
+  width: 600px;
+  height: 600px;
 }
 
 .Title {
