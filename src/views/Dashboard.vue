@@ -31,26 +31,30 @@
 
       <Map :markers="devices"></Map>
 
-      <h1>Gas received</h1>
+      <br />
+
+      <h1>KwH in the last 7 days</h1>
+
+      <br />
 
       <b-tabs type="is-boxed" v-model="activeTab" expanded>
-        <b-tab-item label="Last 24 hours">
+<!--         <b-tab-item label="Last 24 hours">
           <div class="small">
             <bar-chart v-if="loaded" :chart-data="barChartData, options"></bar-chart>
           </div>
         </b-tab-item>
-
+ -->
         <b-tab-item label="Last 7 days">
           <div class="small">
             <line-chart v-if="loaded" :chart-data="lineChartData, options"></line-chart>
           </div>
         </b-tab-item>
-
-        <b-tab-item label="Last Month">
+<!--         <b-tab-item label="Last Month">
           <div  class="small">
             <bar-chart v-if="loaded" :chart-data="barChartData, options"></bar-chart>
           </div>
         </b-tab-item>
+-->
       </b-tabs>
     </div>
 
