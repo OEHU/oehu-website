@@ -176,7 +176,7 @@ export default {
       this.loaded = false;
       try {
         const response = await this.axios.get(
-          "https://api.oehu.org/dashboard?deviceId=" + this.deviceId
+          "https://api.oehu.org/statistics/dashboard?deviceId=" + this.deviceId
         );
 
         //fill BarChart example
