@@ -46,15 +46,15 @@
  -->
         <b-tab-item label="Last 7 days">
           <div class="small">
-            <line-chart v-if="loaded" :chart-data="lineChartData, options"></line-chart>
+            <line-chart v-if="loaded7Days" :chart-data="lineChartData7Days, options"></line-chart>
           </div>
         </b-tab-item>
-<!--         <b-tab-item label="Last Month">
-          <div  class="small">
-            <bar-chart v-if="loaded" :chart-data="barChartData, options"></bar-chart>
+        <b-tab-item label="Last Month">
+          <div class="small">
+            <line-chart v-if="loaded31Days" :chart-data="lineChartData31Days, options"></line-chart>
           </div>
         </b-tab-item>
--->
+
       </b-tabs>
     </div>
 
@@ -83,7 +83,8 @@ export default {
   data() {
     return {
       data: [],
-      loaded: false,
+      loaded7Days: false,
+      loaded31Days: false,
       dashboardData: [],
       isCookieSet: false,
       deviceId: 0,
@@ -92,7 +93,8 @@ export default {
       electricityDelivered: 0,
       gasReceived: 0,
       barChartData: null,
-      lineChartData: null,
+      lineChartData7Days: null,
+      lineChartData31Days: null,
       tab: "24hours",
       activeTab: null,
       options: {
@@ -172,20 +174,17 @@ export default {
         // console.error(error);
       }
     },
-    getDashboardStatistics: async function(days) {
-      this.loaded = false;
-      try {
-        let dayQuery = '';
-        if (days) {
-            dayQuery = '&days=' + days;
-        }
+    getDashboardStatistics: async function() {
+      this.loaded7Days = false;
+      this.loaded31Days = false;
 
+      try {
         const response = await this.axios.get(
-          "https://api.oehu.org/statistics/dashboard?deviceId=" + this.deviceId + dayQuery
+          "http://localhost:8000/statistics/dashboard?deviceId=" + this.deviceId
         );
 
-        //fill BarChart example
-        this.barChartData = {
+        //fill LineChart
+        this.lineChartData7Days = {
           labels: response.data.xAxis,
           datasets: [
             {
@@ -195,21 +194,31 @@ export default {
             }
           ]
         };
-        //fill LineChart example
-        this.lineChartData = {
-          labels: response.data.xAxis,
-          datasets: [
-            {
-              label: "KwH usage",
-              backgroundColor: "#FFE200",
-              data: response.data.yAxis
-            }
-          ]
-        };
-        this.loaded = true;
+        this.loaded7Days = true;
       } catch (error) {
         console.error(error);
       }
+
+      try {
+        const response = await this.axios.get(
+            "http://localhost:8000/statistics/dashboard?days=31&deviceId=" + this.deviceId
+        );
+
+        //fill LineChart
+        this.lineChartData31Days = {
+          labels: response.data.xAxis,
+          datasets: [
+            {
+              label: "KwH usage",
+              backgroundColor: "#FFE200",
+              data: response.data.yAxis
+            }
+          ]
+        };
+        this.loaded31Days = true;
+        } catch (error) {
+          console.error(error);
+        }
     },
     handleDevicesData(data) {
       this.devices.push({
