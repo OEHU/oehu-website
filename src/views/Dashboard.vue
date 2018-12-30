@@ -172,11 +172,16 @@ export default {
         // console.error(error);
       }
     },
-    getDashboardStatistics: async function() {
+    getDashboardStatistics: async function(days) {
       this.loaded = false;
       try {
+        let dayQuery = '';
+        if (days) {
+            dayQuery = '&days=' + days;
+        }
+
         const response = await this.axios.get(
-          "https://api.oehu.org/statistics/dashboard?deviceId=" + this.deviceId
+          "https://api.oehu.org/statistics/dashboard?deviceId=" + this.deviceId + dayQuery
         );
 
         //fill BarChart example
@@ -229,9 +234,12 @@ export default {
   },
   mounted() {
     // Redirect to login if not logged in
-    if (this.deviceId == undefined) document.location = "/login";
-    else this.getDeviceData();
-    this.getDashboardStatistics();
+    if (this.deviceId == undefined) {
+        document.location = "/login";
+    } else {
+        this.getDeviceData();
+        this.getDashboardStatistics(7);
+    }
   }
 };
 </script>
