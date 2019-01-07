@@ -39,12 +39,12 @@
       <b-tabs type="is-boxed" v-model="activeTab" expanded>
         <b-tab-item label="Last 7 days">
           <div class="small">
-            <line-chart v-if="loadedKwh7Days" :chart-data="lineChartDataKwh7Days, options"></line-chart>
+            <bar-chart v-if="loadedKwh7Days" :chart-data="chartDataKwh7Days, options"></bar-chart>
           </div>
         </b-tab-item>
         <b-tab-item label="Last 31 days">
           <div class="small">
-            <line-chart v-if="loadedKwh31Days" :chart-data="lineChartDataKwh31Days, options"></line-chart>
+            <bar-chart v-if="loadedKwh31Days" :chart-data="chartDataKwh31Days, options"></bar-chart>
           </div>
         </b-tab-item>
       </b-tabs>
@@ -55,12 +55,12 @@
         <b-tabs type="is-boxed" v-model="activeTab" expanded>
             <b-tab-item label="Last 7 days">
                 <div class="small">
-                    <line-chart v-if="loadedGas7Days" :chart-data="lineChartDataGas7Days, options"></line-chart>
+                    <bar-chart v-if="loadedGas7Days" :chart-data="chartDataGas7Days, options"></bar-chart>
                 </div>
             </b-tab-item>
             <b-tab-item label="Last 31 days">
                 <div class="small">
-                    <line-chart v-if="loadedGas31Days" :chart-data="lineChartDataGas31Days, options"></line-chart>
+                    <bar-chart v-if="loadedGas31Days" :chart-data="chartDataGas31Days, options"></bar-chart>
                 </div>
             </b-tab-item>
         </b-tabs>
@@ -101,10 +101,10 @@ export default {
       electricityDelivered: 0,
       gasReceived: 0,
       barChartData: null,
-      lineChartDataKwh7Days: null,
-      lineChartDataKwh31Days: null,
-      lineChartDataGas7Days: null,
-      lineChartDataGas31Days: null,
+      chartDataKwh7Days: null,
+      chartDataKwh31Days: null,
+      chartDataGas7Days: null,
+      chartDataGas31Days: null,
       tab: "24hours",
       activeTab: null,
       options: {
@@ -195,11 +195,11 @@ export default {
        */
       try {
         const response = await this.axios.get(
-          "https://api.oehu.org/statistics/dashboard?data=kwh&days=7&deviceId=" + this.deviceId
+          "http://localhost:8000/statistics/dashboard?data=kwh&days=7&deviceId=" + this.deviceId
         );
 
         //fill LineChart
-        this.lineChartDataKwh7Days = {
+        this.chartDataKwh7Days = {
           labels: response.data.xAxis,
           datasets: [
             {
@@ -216,11 +216,11 @@ export default {
 
       try {
         const response = await this.axios.get(
-            "https://api.oehu.org/statistics/dashboard?data=kwh&days=31&deviceId=" + this.deviceId
+            "http://localhost:8000/statistics/dashboard?data=kwh&days=31&deviceId=" + this.deviceId
         );
 
         //fill LineChart
-        this.lineChartDataKwh31Days = {
+        this.chartDataKwh31Days = {
           labels: response.data.xAxis,
           datasets: [
             {
@@ -240,11 +240,11 @@ export default {
          */
         try {
             const response = await this.axios.get(
-                "https://api.oehu.org/statistics/dashboard?data=gas&days=7&deviceId=" + this.deviceId
+                "http://localhost:8000/statistics/dashboard?data=gas&days=7&deviceId=" + this.deviceId
             );
 
             //fill LineChart
-            this.lineChartDataGas7Days = {
+            this.chartDataGas7Days = {
                 labels: response.data.xAxis,
                 datasets: [
                     {
@@ -261,11 +261,11 @@ export default {
 
         try {
             const response = await this.axios.get(
-                "https://api.oehu.org/statistics/dashboard?data=gas&days=31&deviceId=" + this.deviceId
+                "http://localhost:8000/statistics/dashboard?data=gas&days=31&deviceId=" + this.deviceId
             );
 
             //fill LineChart
-            this.lineChartDataGas31Days = {
+            this.chartDataGas31Days = {
                 labels: response.data.xAxis,
                 datasets: [
                     {
