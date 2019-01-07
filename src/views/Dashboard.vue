@@ -195,7 +195,7 @@ export default {
        */
       try {
         const response = await this.axios.get(
-          "http://localhost:8000/statistics/dashboard?data=kwh&days=7&deviceId=" + this.deviceId
+          "https://api.oehu.org/statistics/dashboard?data=kwh&days=7&deviceId=" + this.deviceId
         );
 
         //fill LineChart
@@ -216,7 +216,7 @@ export default {
 
       try {
         const response = await this.axios.get(
-            "http://localhost:8000/statistics/dashboard?data=kwh&days=31&deviceId=" + this.deviceId
+            "https://api.oehu.org/statistics/dashboard?data=kwh&days=31&deviceId=" + this.deviceId
         );
 
         //fill LineChart
@@ -240,7 +240,7 @@ export default {
          */
         try {
             const response = await this.axios.get(
-                "http://localhost:8000/statistics/dashboard?data=gas&days=7&deviceId=" + this.deviceId
+                "https://api.oehu.org/statistics/dashboard?data=gas&days=7&deviceId=" + this.deviceId
             );
 
             //fill LineChart
@@ -261,7 +261,7 @@ export default {
 
         try {
             const response = await this.axios.get(
-                "http://localhost:8000/statistics/dashboard?data=gas&days=31&deviceId=" + this.deviceId
+                "https://api.oehu.org/statistics/dashboard?data=gas&days=31&deviceId=" + this.deviceId
             );
 
             //fill LineChart
