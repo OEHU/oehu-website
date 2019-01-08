@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="WeekChart">
     <bar-chart :chart-data="chartData, options"></bar-chart>
   </div>
 </template>
@@ -136,4 +136,8 @@ export default {
 
 <style scoped lang="scss">
 @import "../../assets/sass/mix.scss";
+
+.WeekChart {
+  margin: 0 auto;
+}
 </style>

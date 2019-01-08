@@ -4,6 +4,25 @@
     <div class="container">
       <Title align="center" title="Your Own Dashboard" class="Title"/>
 
+      <b-tabs type="is-boxed" v-model="activeTab" expanded>
+        <b-tab-item label="KwH last week">
+          <WeekChart days=7 dataType="kwh" title="KwH last week" />
+        </b-tab-item>
+        <b-tab-item label="KwH last month">
+          <WeekChart days=31 dataType="kwh" title="KwH last month" />
+        </b-tab-item>
+        <b-tab-item label="Gas last week">
+          <WeekChart days=7 dataType="gas" title="Gas last month" />
+        </b-tab-item>
+        <b-tab-item label="Gas last month">
+          <WeekChart days=31 dataType="gas" title="Gas last month" />
+        </b-tab-item>
+      </b-tabs>
+
+      <br />
+
+      <Map :markers="devices"></Map>
+
       <div class="meters-wrapper">
         <Meter
           class="meter"
@@ -28,28 +47,6 @@
         />
       </div>
 
-      <Map :markers="devices"></Map>
-
-      <br />
-
-      <h1>KwH usage</h1>
-
-      <br />
-
-      <b-tabs type="is-boxed" v-model="activeTab" expanded>
-        <b-tab-item label="KwH last week">
-          <WeekChart days=7 dataType="kwh" title="KwH last week" />
-        </b-tab-item>
-        <b-tab-item label="KwH last month">
-          <WeekChart days=31 dataType="kwh" title="KwH last month" />
-        </b-tab-item>
-        <b-tab-item label="Gas last week">
-          <WeekChart days=7 dataType="gas" title="Gas last month" />
-        </b-tab-item>
-        <b-tab-item label="Gas last month">
-          <WeekChart days=31 dataType="gas" title="Gas last month" />
-        </b-tab-item>
-      </b-tabs>
     </div>
 
     <DeviceDataList :deviceId="this.deviceId"/>
@@ -172,6 +169,7 @@ export default {
   }
 
   .container {
+    padding: 0;
     width: 50vw;
     max-width: 100vw;
     margin: 0 auto;

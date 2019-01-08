@@ -73,9 +73,5 @@
         height: 400px;
         z-index: 8;
         position: relative;
-
-        @include mobile() {
-            width: 90%;
-        }
     }
 </style>
