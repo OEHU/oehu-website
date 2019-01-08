@@ -124,3 +124,16 @@ Buttons
 .leaflet-tooltip hr {
   margin: 5px 0;
 }
+
+/* Design tabs */
+
+.tabs.is-boxed a {
+  border-radius: 0 !important;
+  background-color: #fff !important;
+  height: 43px !important;
+}
+.tabs.is-boxed .is-active a {
+  background-color: #ffde00 !important;
+  color: #000000 !important;
+  border-color: #ffde00 !important;
+}
