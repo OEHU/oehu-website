@@ -86,6 +86,8 @@ import Title from "@/components/common/Title.vue";
 import BarChart from "@/components/common/BarChart.vue";
 import LineChart from "@/components/common/LineChart.vue";
 
+let apiUrl = 'https://api.oehu.org/';
+
 export default {
   name: "dashboard",
   data() {
@@ -93,6 +95,8 @@ export default {
       data: [],
       loadedKwh7Days: false,
       loadedKwh31Days: false,
+      loadedGas7Days: false,
+      loadedGas31Days: false,
       dashboardData: [],
       isCookieSet: false,
       deviceId: 0,
@@ -108,6 +112,8 @@ export default {
       tab: "24hours",
       activeTab: null,
       options: {
+        responsive: true,
+        maintainAspectRatio: true,
         legend: {
           labels: {
             fontColor: "white",
@@ -173,7 +179,7 @@ export default {
       try {
         let self = this;
         const response = await this.axios.get(
-          "https://api.oehu.org/devices?deviceId=" + self.deviceId
+          apiUrl + "devices?deviceId=" + self.deviceId
         );
         this.handleDevicesData(response.data[0]);
         // After 10 seconds: reload data
@@ -195,7 +201,7 @@ export default {
        */
       try {
         const response = await this.axios.get(
-          "http://localhost:8000/statistics/dashboard?data=kwh&days=7&deviceId=" + this.deviceId
+          apiUrl + "statistics/dashboard?data=kwh&days=7&deviceId=" + this.deviceId
         );
 
         //fill LineChart
@@ -216,7 +222,7 @@ export default {
 
       try {
         const response = await this.axios.get(
-            "http://localhost:8000/statistics/dashboard?data=kwh&days=31&deviceId=" + this.deviceId
+            apiUrl + "statistics/dashboard?data=kwh&days=31&deviceId=" + this.deviceId
         );
 
         //fill LineChart
@@ -240,7 +246,7 @@ export default {
          */
         try {
             const response = await this.axios.get(
-                "http://localhost:8000/statistics/dashboard?data=gas&days=7&deviceId=" + this.deviceId
+                apiUrl + "statistics/dashboard?data=gas&days=7&deviceId=" + this.deviceId
             );
 
             //fill LineChart
@@ -261,7 +267,7 @@ export default {
 
         try {
             const response = await this.axios.get(
-                "http://localhost:8000/statistics/dashboard?data=gas&days=31&deviceId=" + this.deviceId
+                apiUrl + "statistics/dashboard?data=gas&days=31&deviceId=" + this.deviceId
             );
 
             //fill LineChart
@@ -347,11 +353,6 @@ export default {
       width: 100%;
     }
   }
-}
-
-.small {
-  width: 600px;
-  height: 600px;
 }
 
 .Title {
