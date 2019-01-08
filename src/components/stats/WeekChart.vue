@@ -1,6 +1,6 @@
 <template>
   <div>
-    <bar-chart v-if="loadedKwh7Days" :chart-data="chartData, options"></bar-chart>
+    <bar-chart :chart-data="chartData, options"></bar-chart>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       data: [],
-      loadedKwh7Days: false,
+      // loadedKwh7Days: false,
       isCookieSet: false,
       deviceId: 0,
       devices: [],
@@ -78,7 +78,7 @@ export default {
       }
     },
     getDashboardStatistics: async function(days) {
-      this.loadedKwh7Days = false;
+      // this.loadedKwh7Days = false;
 
       /**
        * KwH
@@ -99,7 +99,7 @@ export default {
             }
           ]
         };
-        this.loadedKwh7Days = true;
+        // this.loadedKwh7Days = true;
       } catch (error) {
         console.error(error);
       }
@@ -125,12 +125,12 @@ export default {
   beforeMount() {
     this.deviceId = self.$cookies.get("devices");
   },
-  mounted() {
+  async mounted() {
     // Redirect to login if not logged in
     if (this.deviceId == undefined) {
         document.location = "/login";
     } else {
-        this.getDeviceData();
+        await this.getDeviceData();
         this.getDashboardStatistics(7);
     }
   }
