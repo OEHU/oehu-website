@@ -316,6 +316,9 @@ export default {
       }
     }
   },
+  mounted() {
+      setTimeout(function() { window.dispatchEvent(new Event('resize')) }, 250);
+  }, 
   created() {
     document.body.addEventListener("scroll", this.handleScroll);
   },
