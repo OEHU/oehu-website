@@ -37,33 +37,19 @@
       <br />
 
       <b-tabs type="is-boxed" v-model="activeTab" expanded>
-        <b-tab-item label="Last 7 days">
-          <div class="small">
-            <WeekChart />
-          </div>
+        <b-tab-item label="KwH last week">
+          <WeekChart days=7 dataType="kwh" title="KwH last week" />
         </b-tab-item>
-        <b-tab-item label="Last 31 days">
-          <div class="small">
-            <bar-chart v-if="loadedKwh31Days" :chart-data="chartDataKwh31Days, options"></bar-chart>
-          </div>
+        <b-tab-item label="KwH last month">
+          <WeekChart days=31 dataType="kwh" title="KwH last month" />
+        </b-tab-item>
+        <b-tab-item label="Gas last week">
+          <WeekChart days=7 dataType="gas" title="Gas last month" />
+        </b-tab-item>
+        <b-tab-item label="Gas last month">
+          <WeekChart days=31 dataType="gas" title="Gas last month" />
         </b-tab-item>
       </b-tabs>
-
-        <h1>Gas usage</h1>
-
-        <br />
-        <b-tabs type="is-boxed" v-model="activeTab" expanded>
-            <b-tab-item label="Last 7 days">
-                <div class="small">
-                    <bar-chart v-if="loadedGas7Days" :chart-data="chartDataGas7Days, options"></bar-chart>
-                </div>
-            </b-tab-item>
-            <b-tab-item label="Last 31 days">
-                <div class="small">
-                    <bar-chart v-if="loadedGas31Days" :chart-data="chartDataGas31Days, options"></bar-chart>
-                </div>
-            </b-tab-item>
-        </b-tabs>
     </div>
 
     <DeviceDataList :deviceId="this.deviceId"/>
@@ -93,52 +79,13 @@ export default {
   data() {
     return {
       data: [],
-      loadedKwh7Days: false,
-      loadedKwh31Days: false,
-      loadedGas7Days: false,
-      loadedGas31Days: false,
-      dashboardData: [],
       isCookieSet: false,
       deviceId: 0,
       devices: [],
       electricityReceived: 0,
       electricityDelivered: 0,
       gasReceived: 0,
-      barChartData: null,
-      chartDataKwh7Days: null,
-      chartDataKwh31Days: null,
-      chartDataGas7Days: null,
-      chartDataGas31Days: null,
-      tab: "24hours",
-      activeTab: null,
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        legend: {
-          labels: {
-            fontColor: "white",
-            fontSize: 18
-          }
-        },
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                fontColor: "white",
-                fontSize: 16
-              }
-            }
-          ],
-          xAxes: [
-            {
-              ticks: {
-                fontColor: "white",
-                fontSize: 14
-              }
-            }
-          ]
-        }
-      }
+      activeTab: null
     };
   },
   components: {
@@ -150,31 +97,9 @@ export default {
     Map,
     Title,
     Footer,
-    FooterClosing,
-    BarChart,
-    LineChart
+    FooterClosing
   },
   methods: {
-    start: async function() {
-      try {
-        const response = await this.axios.get(
-          "http://oehu.local:8000/oehu/start"
-        );
-        console.log("Start response: ", response);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    stop: async function() {
-      try {
-        const response = await this.axios.get(
-          "http://oehu.local:8000/oehu/stop"
-        );
-        console.log("Stop response: ", response);
-      } catch (error) {
-        console.error(error);
-      }
-    },
     getDeviceData: async function() {
       try {
         let self = this;
@@ -187,104 +112,8 @@ export default {
           self.getDeviceData();
         }, 10000);
       } catch (error) {
-        // console.error(error);
-      }
-    },
-    getDashboardStatistics: async function() {
-      this.loadedKwh7Days = false;
-      this.loadedKwh31Days = false;
-      this.loadedGas7Days = false;
-      this.loadedGas31Days = false;
-
-      /**
-       * KwH
-       */
-      try {
-        const response = await this.axios.get(
-          apiUrl + "statistics/dashboard?data=kwh&days=7&deviceId=" + this.deviceId
-        );
-
-        //fill LineChart
-        this.chartDataKwh7Days = {
-          labels: response.data.xAxis,
-          datasets: [
-            {
-              label: "KwH usage",
-              backgroundColor: "#FFE200",
-              data: response.data.yAxis
-            }
-          ]
-        };
-        this.loadedKwh7Days = true;
-      } catch (error) {
         console.error(error);
       }
-
-      try {
-        const response = await this.axios.get(
-            apiUrl + "statistics/dashboard?data=kwh&days=31&deviceId=" + this.deviceId
-        );
-
-        //fill LineChart
-        this.chartDataKwh31Days = {
-          labels: response.data.xAxis,
-          datasets: [
-            {
-              label: "KwH usage",
-              backgroundColor: "#FFE200",
-              data: response.data.yAxis
-            }
-          ]
-        };
-        this.loadedKwh31Days = true;
-        } catch (error) {
-          console.error(error);
-        }
-
-        /**
-         * Gas
-         */
-        try {
-            const response = await this.axios.get(
-                apiUrl + "statistics/dashboard?data=gas&days=7&deviceId=" + this.deviceId
-            );
-
-            //fill LineChart
-            this.chartDataGas7Days = {
-                labels: response.data.xAxis,
-                datasets: [
-                    {
-                        label: "Gas usage",
-                        backgroundColor: "#FFE200",
-                        data: response.data.yAxis
-                    }
-                ]
-            };
-            this.loadedGas7Days = true;
-        } catch (error) {
-            console.error(error);
-        }
-
-        try {
-            const response = await this.axios.get(
-                apiUrl + "statistics/dashboard?data=gas&days=31&deviceId=" + this.deviceId
-            );
-
-            //fill LineChart
-            this.chartDataGas31Days = {
-                labels: response.data.xAxis,
-                datasets: [
-                    {
-                        label: "Gas usage",
-                        backgroundColor: "#FFE200",
-                        data: response.data.yAxis
-                    }
-                ]
-            };
-            this.loadedGas31Days = true;
-        } catch (error) {
-            console.error(error);
-        }
     },
     handleDevicesData(data) {
       this.devices.push({
@@ -313,7 +142,6 @@ export default {
         document.location = "/login";
     } else {
         this.getDeviceData();
-        this.getDashboardStatistics(7);
     }
   }
 };

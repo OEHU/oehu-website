@@ -11,6 +11,7 @@ let apiUrl = 'https://api.oehu.org/';
 
 export default {
   name: "weekchart",
+  props: ['title', 'days', 'dataType'],
   data() {
     return {
       data: [],
@@ -23,11 +24,6 @@ export default {
       gasReceived: 0,
       barChartData: null,
       chartData: null,
-      chartDataKwh31Days: null,
-      chartDataGas7Days: null,
-      chartDataGas31Days: null,
-      tab: "24hours",
-      activeTab: null,
       options: {
         responsive: true,
         maintainAspectRatio: true,
@@ -77,32 +73,33 @@ export default {
         // console.error(error);
       }
     },
-    getDashboardStatistics: async function(days) {
-      // this.loadedKwh7Days = false;
+    initChart: async function(days, dataType, title) {
 
-      /**
-       * KwH
-       */
-      try {
-        const response = await this.axios.get(
-          apiUrl + `statistics/dashboard?data=kwh&days=${days}&deviceId=${this.deviceId}`
-        );
+      console.log(days, dataType, title)
 
-        // Fill chart
-        this.chartData = {
-          labels: response.data.xAxis,
-          datasets: [
-            {
-              label: "KwH usage",
-              backgroundColor: "#FFE200",
-              data: response.data.yAxis
-            }
-          ]
-        };
-        // this.loadedKwh7Days = true;
-      } catch (error) {
-        console.error(error);
-      }
+      // Days must be integer
+      days = parseInt(days);
+
+      // Default to kwh if no dataType is given
+      if(dataType != 'kwh' && dataType != 'gas')
+        dataType = 'kwh'
+
+      // Do API call
+      const response = await this.axios.get(
+        apiUrl + `statistics/dashboard?data=${dataType}&days=${days}&deviceId=${this.deviceId}`
+      );
+
+      // Fill chart
+      this.chartData = {
+        labels: response.data.xAxis,
+        datasets: [
+          {
+            label: title,
+            backgroundColor: "#FFE200",
+            data: response.data.yAxis
+          }
+        ]
+      };
     },
     handleDevicesData(data) {
       this.devices.push({
@@ -131,7 +128,7 @@ export default {
         document.location = "/login";
     } else {
         await this.getDeviceData();
-        this.getDashboardStatistics(7);
+        this.initChart(this.days, this.dataType, this.title);
     }
   }
 };
