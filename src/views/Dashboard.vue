@@ -39,7 +39,7 @@
       <b-tabs type="is-boxed" v-model="activeTab" expanded>
         <b-tab-item label="Last 7 days">
           <div class="small">
-            <bar-chart v-if="loadedKwh7Days" :chart-data="chartDataKwh7Days, options"></bar-chart>
+            <WeekChart />
           </div>
         </b-tab-item>
         <b-tab-item label="Last 31 days">
@@ -76,7 +76,7 @@
 <script>
 import Button from "@/components/common/Button.vue";
 import DeviceDataList from "@/components/stats/DeviceDataList.vue";
-// import DayChart from '@/components/stats/DayChart.vue'
+import WeekChart from '@/components/stats/WeekChart.vue'
 import Footer from "@/components/footer/Footer.vue";
 import FooterClosing from "@/components/footer/FooterClosing.vue";
 import Logo from "@/components/Logo.vue";
@@ -145,7 +145,7 @@ export default {
     Meter,
     Logo,
     Button,
-    // DayChart,
+    WeekChart,
     DeviceDataList,
     Map,
     Title,
