@@ -7,11 +7,11 @@
 <script>
 import BarChart from "@/components/common/BarChart.vue";
 
-let apiUrl = 'https://api.oehu.org/';
+let apiUrl = "https://api.oehu.org/";
 
 export default {
   name: "weekchart",
-  props: ['title', 'days', 'dataType'],
+  props: ["title", "days", "dataType"],
   data() {
     return {
       data: [],
@@ -33,6 +33,13 @@ export default {
             fontSize: 18
           }
         },
+        tooltips: {
+          callbacks: {
+            title: function(t, d) {
+              return d.labels[t[0].index];
+            }
+          }
+        },
         scales: {
           yAxes: [
             {
@@ -46,7 +53,13 @@ export default {
             {
               ticks: {
                 fontColor: "white",
-                fontSize: 14
+                fontSize: 14,
+                callback: function(t) {
+                  var maxLabelLength = 6;
+                  if (t.length > maxLabelLength)
+                    return t.substr(0, maxLabelLength);
+                  else return t;
+                }
               }
             }
           ]
@@ -74,19 +87,20 @@ export default {
       }
     },
     initChart: async function(days, dataType, title) {
-
-      console.log(days, dataType, title)
+      console.log(days, dataType, title);
 
       // Days must be integer
       days = parseInt(days);
 
       // Default to kwh if no dataType is given
-      if(dataType != 'kwh' && dataType != 'gas')
-        dataType = 'kwh'
+      if (dataType != "kwh" && dataType != "gas") dataType = "kwh";
 
       // Do API call
       const response = await this.axios.get(
-        apiUrl + `statistics/dashboard?data=${dataType}&days=${days}&deviceId=${this.deviceId}`
+        apiUrl +
+          `statistics/dashboard?data=${dataType}&days=${days}&deviceId=${
+            this.deviceId
+          }`
       );
 
       // Fill chart
@@ -117,7 +131,7 @@ export default {
       this.electricityDelivered =
         data.metadata.metadata.electricityDelivered.total;
       this.gasReceived = data.metadata.metadata.gasReceived;
-    },
+    }
   },
   beforeMount() {
     this.deviceId = self.$cookies.get("devices");
@@ -125,10 +139,10 @@ export default {
   async mounted() {
     // Redirect to login if not logged in
     if (this.deviceId == undefined) {
-        document.location = "/login";
+      document.location = "/login";
     } else {
-        await this.getDeviceData();
-        this.initChart(this.days, this.dataType, this.title);
+      await this.getDeviceData();
+      this.initChart(this.days, this.dataType, this.title);
     }
   }
 };
