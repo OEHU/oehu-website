@@ -1,9 +1,7 @@
 <template>
   <div class="device-data-list flex flex-wrap">
-    <div class="device-data-list_item" v-for="tx in transactions">
-      <div class="lastUpdateFormatted">
-        {{ tx.metadata.metadata.lastUpdateFormatted }}
-      </div>
+    <div class="device-data-list_item" :key="tx.id" v-for="tx in transactions">
+      <div class="lastUpdateFormatted">{{ tx.metadata.metadata.lastUpdateFormatted }}</div>
 
       <div class="electricityReceived">
         <label>Electricity received</label>
@@ -33,6 +31,74 @@
   </div>
 </template>
 
+
+
+<script>
+import moment from "moment";
+import Button from "@/components/common/Button.vue";
+import Title from "@/components/common/Title.vue";
+
+let getApiUrl = deviceId => {
+  let apiUrl = "https://api.oehu.org/transactions?raw=true";
+  return apiUrl + (deviceId ? "&deviceId=" + deviceId : "");
+};
+
+let onlyOneTransactionPerDevice = transactions => {
+  let ret = [],
+    idsDone = [];
+  for (let i in transactions) {
+    if (idsDone[transactions[i].asset.id] == undefined) {
+      ret.push(transactions[i]);
+      idsDone[transactions[i].asset.id] = true;
+    }
+  }
+  return ret;
+};
+
+export default {
+  name: "device-data-list",
+  props: ["deviceId"],
+  data() {
+    return {
+      transactions: []
+    };
+  },
+  components: {
+    Button,
+    Title
+  },
+  methods: {
+    async getTransactions() {
+      try {
+        var self = this;
+        // Get transactions
+        let transactions = await this.axios.get(getApiUrl(this.deviceId));
+        // Get formatted date
+        for (var i = 0; i <= transactions.data.length - 1; i++) {
+          transactions.data[i].metadata.metadata.lastUpdateFormatted = moment(
+            transactions.data[i].metadata.metadata.lastUpdate
+          ).format("YYYY-MM-DD HH:mm:ss");
+        }
+        self.transactions = transactions.data;
+        // If no deviceId is set: show only 1 tx per device
+        if (!this.deviceId) {
+          self.transactions = onlyOneTransactionPerDevice(self.transactions);
+        }
+        // After 60 seconds: reload data
+        setTimeout(function() {
+          self.getTransactions();
+        }, 60000);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  mounted() {
+    this.getTransactions();
+  }
+};
+</script>
+
 <style scoped lang="scss">
 .device-data-list {
   width: 81%;
@@ -46,7 +112,7 @@
   padding: 2px;
   text-align: center;
 }
-@media(min-width: 1200px) {
+@media (min-width: 1200px) {
   .device-data-list_item {
     max-width: 26vw;
     padding: 15px;
@@ -75,7 +141,7 @@ small {
   margin: 15px 0;
   color: #000;
   background: #fff;
-  padding: 1px 15px; 
+  padding: 1px 15px;
 }
 .lastUpdateFormatted label {
   margin-top: 0;
@@ -85,69 +151,3 @@ small {
   width: 100%;
 }
 </style>
-
-<script>
-    import moment from 'moment';
-
-    import Button from "@/components/common/Button.vue";
-    import Meter from "@/components/common/Meter.vue";
-    import Title from '@/components/common/Title.vue'
-
-    let getApiUrl = (deviceId) => {
-        let apiUrl = 'https://api.oehu.org/transactions?raw=true';
-        return apiUrl + (deviceId ? '&deviceId=' + deviceId : '');
-    }
-
-    let onlyOneTransactionPerDevice = (transactions) => {
-        let ret = [], idsDone = [];
-        for (let i in transactions) {
-            if( idsDone[transactions[i].asset.id] == undefined ) {
-                ret.push(transactions[i]);
-                idsDone[transactions[i].asset.id] = true;
-            }
-        }
-        return ret;
-    }
-
-    export default {
-        name: "device-data-list",
-        props: ["deviceId"],
-        data() {
-            return {
-                transactions: []
-            }
-        },
-        components: {
-            Button,
-            Title
-        },
-        methods: {
-            async getTransactions() {
-                try {
-                    var self = this;
-                    // Get transactions
-                    let transactions = await this.axios.get(getApiUrl(this.deviceId));
-                    // Get formatted date
-                    for (var i = 0; i <= transactions.data.length - 1; i++) {
-                        transactions.data[i].metadata.metadata.lastUpdateFormatted =
-                            moment(transactions.data[i].metadata.metadata.lastUpdate).format('YYYY-MM-DD HH:mm:ss');
-                    }
-                    self.transactions = transactions.data;
-                    // If no deviceId is set: show only 1 tx per device
-                    if( ! this.deviceId) {
-                        self.transactions = onlyOneTransactionPerDevice(self.transactions);
-                    }
-                    // After 60 seconds: reload data
-                    setTimeout(function() {
-                        self.getTransactions();
-                    }, 60000)
-                } catch (error) {
-                    console.error(error);
-                }
-            }
-        },
-        mounted() {
-          this.getTransactions();
-        }
-    }
-</script>

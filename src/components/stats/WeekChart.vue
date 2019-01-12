@@ -1,6 +1,6 @@
 <template>
   <div class="WeekChart">
-    <bar-chart :chart-data="chartData, options"></bar-chart>
+    <bar-chart :chart-data="chartData" :options="options"></bar-chart>
   </div>
 </template>
 
@@ -87,8 +87,6 @@ export default {
       }
     },
     initChart: async function(days, dataType, title) {
-      console.log(days, dataType, title);
-
       // Days must be integer
       days = parseInt(days);
 
