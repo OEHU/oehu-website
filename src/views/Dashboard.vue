@@ -4,22 +4,32 @@
     <div class="container">
       <Title align="center" title="Your Own Dashboard" class="Title"/>
 
+      <Title align="center" title="Current usage"/>
+      <div class="gauges">
+        <Gauges :value="currentElectricity" unit="KwH"/>
+        <Gauges :value="currentGas" unit="Gas"/>
+      </div>
+
+      <br>
+      <br>
+
       <b-tabs type="is-boxed" v-model="activeTab" expanded>
         <b-tab-item label="KwH last week">
-          <WeekChart days=7 dataType="kwh" title="KwH last week" />
+          <WeekChart days="7" data-type="kwh" title="KwH last week"/>
         </b-tab-item>
         <b-tab-item label="KwH last month">
-          <WeekChart days=31 dataType="kwh" title="KwH last month" />
+          <WeekChart days="31" data-type="kwh" title="KwH last month"/>
         </b-tab-item>
         <b-tab-item label="Gas last week">
-          <WeekChart days=7 dataType="gas" title="Gas last week" />
+          <WeekChart days="7" data-type="gas" title="Gas last week"/>
         </b-tab-item>
         <b-tab-item label="Gas last month">
-          <WeekChart days=31 dataType="gas" title="Gas last month" />
+          <WeekChart days="31" data-type="gas" title="Gas last month"/>
         </b-tab-item>
       </b-tabs>
 
-      <br />
+      <br>
+      <br>
 
       <Map :markers="devices"></Map>
 
@@ -46,7 +56,6 @@
           description="Gas received"
         />
       </div>
-
     </div>
 
     <DeviceDataList :deviceId="this.deviceId"/>
@@ -59,17 +68,16 @@
 <script>
 import Button from "@/components/common/Button.vue";
 import DeviceDataList from "@/components/stats/DeviceDataList.vue";
-import WeekChart from '@/components/stats/WeekChart.vue'
+import WeekChart from "@/components/stats/WeekChart.vue";
 import Footer from "@/components/footer/Footer.vue";
 import FooterClosing from "@/components/footer/FooterClosing.vue";
 import Logo from "@/components/Logo.vue";
 import Map from "@/components/common/Map.vue";
 import Meter from "@/components/common/Meter.vue";
 import Title from "@/components/common/Title.vue";
-import BarChart from "@/components/common/BarChart.vue";
-import LineChart from "@/components/common/LineChart.vue";
+import Gauges from "@/components/stats/Gauges.vue";
 
-let apiUrl = 'https://api.oehu.org/';
+let apiUrl = "https://api.oehu.org/";
 
 export default {
   name: "dashboard",
@@ -82,7 +90,9 @@ export default {
       electricityReceived: 0,
       electricityDelivered: 0,
       gasReceived: 0,
-      activeTab: null
+      activeTab: null,
+      currentElectricity: null,
+      currentGas: null
     };
   },
   components: {
@@ -91,6 +101,7 @@ export default {
     Button,
     WeekChart,
     DeviceDataList,
+    Gauges,
     Map,
     Title,
     Footer,
@@ -128,7 +139,7 @@ export default {
       this.electricityDelivered =
         data.metadata.metadata.electricityDelivered.total;
       this.gasReceived = data.metadata.metadata.gasReceived;
-    },
+    }
   },
   beforeMount() {
     this.deviceId = self.$cookies.get("devices");
@@ -136,10 +147,19 @@ export default {
   mounted() {
     // Redirect to login if not logged in
     if (this.deviceId == undefined) {
-        document.location = "/login";
+      document.location = "/login";
     } else {
-        this.getDeviceData();
+      this.getDeviceData();
     }
+    
+    let self = this
+    this.$root.$on("currentElectricity", function(value) {
+      self.currentElectricity = value;
+    });
+
+    this.$root.$on("currentGas", function(value) {
+      self.currentGas = value;
+    });
   }
 };
 </script>
@@ -161,6 +181,22 @@ export default {
 
   p {
     margin: 30px 0;
+  }
+  .gauges {
+    display: flex;
+    justify-content: space-between;
+
+    @include mobile() {
+      display: unset;
+      position: relative;
+      left: 5%;
+    }
+
+    @include tablet() {
+      display: unset;
+      position: relative;
+      left: 15%;
+    }
   }
 
   .meters-wrapper {
