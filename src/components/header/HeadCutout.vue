@@ -35,6 +35,7 @@
 
                     <nav>
                         <a href="/">Home</a>
+                        <a href="/explorer">Explorer</a>
                         <a href="/dashboard">My dashboard</a>
                         <a href="/get-started">Get started<i>!</i></a>
                         <a href="/about">About</a>
