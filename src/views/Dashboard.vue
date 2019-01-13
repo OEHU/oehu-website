@@ -6,8 +6,8 @@
 
       <Title align="center" title="Current usage"/>
       <div class="gauges">
-        <Gauges unit="KwH"/>
-        <Gauges unit="Gas"/>
+        <Gauges :value="currentElectricity" unit="KwH"/>
+        <Gauges :value="currentGas" unit="Gas"/>
       </div>
 
       <br>
@@ -90,7 +90,9 @@ export default {
       electricityReceived: 0,
       electricityDelivered: 0,
       gasReceived: 0,
-      activeTab: null
+      activeTab: null,
+      currentElectricity: null,
+      currentGas: null
     };
   },
   components: {
@@ -149,6 +151,15 @@ export default {
     } else {
       this.getDeviceData();
     }
+    
+    let self = this
+    this.$root.$on("currentElectricity", function(value) {
+      self.currentElectricity = value;
+    });
+
+    this.$root.$on("currentGas", function(value) {
+      self.currentGas = value;
+    });
   }
 };
 </script>
@@ -180,7 +191,6 @@ export default {
       position: relative;
       left: 5%;
     }
-
 
     @include tablet() {
       display: unset;

@@ -60,7 +60,7 @@ export default {
   props: ["deviceId"],
   data() {
     return {
-      transactions: []
+      transactions: [],
     };
   },
   components: {
@@ -84,6 +84,21 @@ export default {
         if (!this.deviceId) {
           self.transactions = onlyOneTransactionPerDevice(self.transactions);
         }
+
+        let electricity = []
+        let gas = []
+        let lastTwoTransactions = transactions.data.slice(1,3)
+        for(var j = 0; j < lastTwoTransactions.length; j++){
+            electricity.push(lastTwoTransactions[j].metadata.metadata.electricityReceived.total)
+            gas.push(lastTwoTransactions[j].metadata.metadata.gasReceived)
+        }
+
+        let currentElectricity = electricity[0] - electricity[1]
+        let currentGas = gas[0] - gas[1]
+
+        this.$root.$emit('currentElectricity',currentElectricity);
+        this.$root.$emit('currentGas', currentGas);
+
         // After 60 seconds: reload data
         setTimeout(function() {
           self.getTransactions();

@@ -13,8 +13,8 @@ export default {
   },
   props: {
     unit: {
-        type: String,
-        default: ''
+      type: String,
+      default: ""
     },
     value: {
       type: Number,
@@ -31,17 +31,17 @@ export default {
         height: 350,
         units: "",
         minValue: 0,
-        maxValue: 10,
-        majorTicks: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-        minorTicks: 5,
+        maxValue: 1,
+        majorTicks: ["0","1"],
+        minorTicks: 10,
         strokeTicks: true,
         highlights: [
-          { from: 0, to: 5, color: "#0086FF" },
-          { from: 5, to: 9, color: "#FFDE00" },
-          { from: 9, to: 10, color: "rgba(225, 7, 23, 0.75)" }
+          { from: 0, to: 0.5, color: "#0086FF" },
+          { from: 0.5, to: 0.9, color: "#FFDE00" },
+          { from: 0.9, to: 1, color: "rgba(225, 7, 23, 0.75)" }
         ],
         valueInt: 1,
-        valueDec: 0,
+        valueDec: 3,
         colarBar: "#fff",
         colorPlate: "#fff",
         colorMajorTicks: "#00000",
@@ -80,8 +80,8 @@ export default {
       })
     }
   },
-  created(){
-      this.options.units = this.unit
+  created() {
+    this.options.units = this.unit;
   }
 };
 </script>
