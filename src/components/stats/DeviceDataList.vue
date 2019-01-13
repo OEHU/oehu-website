@@ -1,33 +1,49 @@
 <template>
   <div class="device-data-list flex flex-wrap">
+    <div class="device-data-list_item table-header">
+      <div class="deviceId">Device</div>
+      <div class="lastUpdateFormatted">Date/time</div>
+      <div class="electricityReceived">
+        KwH received
+        <div>
+          <span>Total</span>
+          <span>Tariff1</span>
+          <span>Tariff2</span>
+        </div>
+      </div>
+      <div class="electricityDelivered">
+        KwH delivered
+        <div>
+          <span>Total</span>
+          <span>Tariff1</span>
+          <span>Tariff2</span>
+        </div>
+      </div>
+      <div class="gasReceived">Gas received</div>
+    </div>
     <div class="device-data-list_item" v-for="tx in transactions">
       <div class="lastUpdateFormatted">
         {{ tx.metadata.metadata.lastUpdateFormatted }}
       </div>
 
       <div class="electricityReceived">
-        <label>Electricity received</label>
-        <small>Total</small>
         <span>{{ tx.metadata.metadata.electricityReceived.total ? tx.metadata.metadata.electricityReceived.total.toFixed(2) : 0 }}</span>
-        <small>Tariff1</small>
         <span>{{ tx.metadata.metadata.electricityReceived.tariff1 ? tx.metadata.metadata.electricityReceived.tariff1.toFixed(2) : 0 }}</span>
-        <small>Tariff2</small>
         <span>{{ tx.metadata.metadata.electricityReceived.tariff2 ? tx.metadata.metadata.electricityReceived.tariff2.toFixed(2) : 0 }}</span>
       </div>
 
       <div class="electricityDelivered">
-        <label>Electricity delivered</label>
-        <small>Total</small>
         <span>{{ tx.metadata.metadata.electricityDelivered.total ? tx.metadata.metadata.electricityDelivered.total.toFixed(2) : 0 }}</span>
-        <small>Tariff1</small>
         <span>{{ tx.metadata.metadata.electricityDelivered.tariff1 ? tx.metadata.metadata.electricityDelivered.tariff1.toFixed(2) : 0 }}</span>
-        <small>Tariff2</small>
         <span>{{ tx.metadata.metadata.electricityDelivered.tariff2 ? tx.metadata.metadata.electricityDelivered.tariff2.toFixed(2) : 0 }}</span>
       </div>
 
-      <div>
-        <label>Gas received</label>
+      <div class="gasReceived">
         {{ tx.metadata.metadata.gasReceived }}
+      </div>
+
+      <div class="deviceId" :title="tx.deviceId">
+        {{ tx.deviceId }}
       </div>
     </div>
   </div>
@@ -35,54 +51,45 @@
 
 <style scoped lang="scss">
 .device-data-list {
-  width: 81%;
+  max-width: 97%;
   margin: 0 auto;
+  overflow-x: auto;
 }
 .device-data-list_item {
-  max-width: 100vw;
-  overflow: auto;
-  margin-bottom: 30px;
-  transition: color 0.1s 0.8s;
-  padding: 2px;
-  text-align: center;
+  display: flex;
+  max-width:100%;
+  text-align: right;
+  padding: 4px 0;
 }
-@media(min-width: 1200px) {
-  .device-data-list_item {
-    max-width: 26vw;
-    padding: 15px;
-  }
-}
-.device-data-list_item:hover,
-.device-data-list_item:focus,
-.device-data-list_item.is-active {
-  background-color: #fff;
-  color: #000;
-  transition: color 0s, background 0s 0.8s;
-}
-label {
-  font-weight: bold;
-  color: #000;
-  display: block;
-  width: 100%;
-  margin-top: 15px;
-  border-radius: 15px;
-}
-small {
-  margin: 0 10px;
+.deviceId {
+  min-width: 80px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .lastUpdateFormatted {
-  font-size: 1.2em;
-  margin: 15px 0;
-  color: #000;
-  background: #fff;
-  padding: 1px 15px; 
+  min-width: 180px;
 }
-.lastUpdateFormatted label {
-  margin-top: 0;
+.electricityReceived {
+  min-width: 260px;
+}
+.electricityDelivered {
+  min-width: 260px;
+}
+.gasReceived {
+  min-width: 150px;
+}
+.electricityReceived span,
+.electricityDelivered span {
+  min-width: 80px;
+  display: inline-block;
 }
 
-.flex > div {
-  width: 100%;
+.table-header {
+  font-weight: bold;
+}
+.table-header span {
+  font-size: 0.8em;
 }
 </style>
 

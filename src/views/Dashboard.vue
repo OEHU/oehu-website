@@ -12,7 +12,7 @@
           <WeekChart days=31 dataType="kwh" title="KwH last month" />
         </b-tab-item>
         <b-tab-item label="Gas last week">
-          <WeekChart days=7 dataType="gas" title="Gas last month" />
+          <WeekChart days=7 dataType="gas" title="Gas last week" />
         </b-tab-item>
         <b-tab-item label="Gas last month">
           <WeekChart days=31 dataType="gas" title="Gas last month" />
@@ -170,7 +170,7 @@ export default {
 
   .container {
     padding: 0;
-    width: 50vw;
+    width: 620px;
     max-width: 100vw;
     margin: 0 auto;
     padding-bottom: 70px;

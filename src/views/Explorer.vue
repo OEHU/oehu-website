@@ -60,22 +60,6 @@
             FooterClosing
         },
         methods: {
-            start: async function () {
-                try {
-                    const response = await this.axios.get('http://oehu.local:8000/oehu/start');
-                    console.log('Start response: ', response);
-                } catch (error) {
-                    console.error(error);
-                }
-            },
-            stop: async function () {
-                try {
-                    const response = await this.axios.get('http://oehu.local:8000/oehu/stop');
-                    console.log('Stop response: ', response);
-                } catch (error) {
-                    console.error(error);
-                }
-            },
             async getDeviceData() {
                 try {
                     var self = this; 
@@ -108,15 +92,7 @@
         mounted() {
             this.deviceId = self.$cookies.get("devices");
 
-            // Redirect to login if not logged in
-            if(this.deviceId == undefined)
-              document.location = '/login';
-            else
-                this.getDeviceData();
-    
-            if (this.$cookies.get("devices")) {
-                this.isCookieSet = true;
-            }
+            this.getDeviceData();
         }
     }
 </script>
