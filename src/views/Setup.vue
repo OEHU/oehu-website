@@ -14,7 +14,7 @@
         :index="props.index"
       ></wizard-step>
 
-      <div v-if="activeIndex != 1" class="first_step">
+      <div v-if="activeIndex == 0" class="first_step">
         <div class="tab">
           <h1>Welcome to the OEHU setup</h1>
           <h2>Step 1: Enter your location</h2>
@@ -393,7 +393,7 @@ export default {
     getConfigurated() {
       let self = this;
       this.axios
-        .get("http://oehu.local:8000/oehu/GetConfigurated")
+        .get("http://localhost:8000/oehu/GetConfigurated")
         .then(function(response) {
           if (response.data.configurated !== true) {
             self.generateNewPhrase();
@@ -413,7 +413,7 @@ export default {
     generateNewPhrase() {
       let self = this;
       this.axios
-        .get("http://oehu.local:8000/oehu/GenerateNewPhrase")
+        .get("http://localhost:8000/oehu/GenerateNewPhrase")
         .then(function(response) {
           self.model.phrase = response.data.phrase;
         })
@@ -424,7 +424,7 @@ export default {
     },
     startRunning() {
       this.axios
-        .get("http://oehu.local:8000/oehu/start")
+        .get("http://localhost:8000/oehu/start")
         .then(function(response) {
           console.log("start response: ", response);
         })
@@ -437,7 +437,7 @@ export default {
       let self = this;
       this.axios
         .get(
-          "http://oehu.local:8000/oehu/registerDevice/" +
+          "http://localhost:8000/oehu/registerDevice/" +
             "OEHU" +
             "/" +
             this.model.lat +
