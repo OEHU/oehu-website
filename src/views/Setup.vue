@@ -1,117 +1,146 @@
 <template>
-    <div class="container">
-        <img class="logo" v-bind:class="{ hasScrolled: this.scrolled }" src="../assets/images/oehu-logo-small.svg" />
-        <form-wizard shape="tab" color="#26292d" ref="wizard">
-            <wizard-step 
-                slot-scope="props"
-                slot="step"
-                :tab="props.tab"
-                :transition="props.transition"
-                :index="props.index">
-            </wizard-step>
-            
-            <tab-content :before-change="validateLocationTab">
-                <div class="tab">
-                    <h1>Welcome to the OEHU setup</h1>
-                    <h2>Step 1: Enter your location</h2>
+  <div class="container">
+    <img
+      class="logo"
+      v-bind:class="{ hasScrolled: this.scrolled }"
+      src="../assets/images/oehu-logo-small.svg"
+    >
+    <form-wizard :start-index.sync="activeIndex" shape="tab" color="#26292d" ref="wizard">
+      <wizard-step
+        slot-scope="props"
+        slot="step"
+        :tab="props.tab"
+        :transition="props.transition"
+        :index="props.index"
+      ></wizard-step>
 
-                    <l-map
-                            class="oehu-map"
-                            :zoom="map.zoom"
-                            :center="map.center"
-                            :options="{zoomControl: true, touchZoom: true, scrollWheelZoom: true, doubleClickZoom: true, boxZoom: true}"
-                            @update:center="centerUpdate"
-                            @update:zoom="zoomUpdate"
-                            @click="markerClick">
-                        <l-tile-layer :url="map.url" :attribution="map.attribution"/>
-                        <l-marker
-                                key="mylocation"
-                                :icon="LIcon"
-                                :lat-lng="map.marker.position">
-                        </l-marker>
-                        <LCircle
-                                key="mylocation2"
-                                :radius="model.accuracy"
-                                :icon="LIcon"
-                                :lat-lng="map.marker.position">
-                        </LCircle>
-                    </l-map>
-                    <p class="permisson_text">                  
-                        <span>
-                             • Pin your location on the map<br/>
-                             • Select the accuracy for displaying and saving your data
-                        </span>
-                    </p>
-                    
-                    <vue-form-generator :model="model" :schema="locationAccuracy" :options="formOptions"
-                                          ref="locationAccuracy"></vue-form-generator>
+      <div v-if="activeIndex != 1" class="first_step">
+        <div class="tab">
+          <h1>Welcome to the OEHU setup</h1>
+          <h2>Step 1: Enter your location</h2>
 
-                    <div hidden>
-                      <vue-form-generator :model="model" :schema="selectLocation" :options="formOptions"
-                                        ref="selectLocation"></vue-form-generator>
-                    </div>
-                </div>
-            </tab-content>
+          <l-map
+            class="oehu-map"
+            :zoom="map.zoom"
+            :center="map.center"
+            :options="{zoomControl: true, touchZoom: true, scrollWheelZoom: true, doubleClickZoom: true, boxZoom: true}"
+            @update:center="centerUpdate"
+            @update:zoom="zoomUpdate"
+            @click="markerClick"
+          >
+            <l-tile-layer :url="map.url" :attribution="map.attribution"/>
+            <l-marker key="mylocation" :icon="LIcon" :lat-lng="map.marker.position"></l-marker>
+            <LCircle
+              key="mylocation2"
+              :radius="model.accuracy"
+              :icon="LIcon"
+              :lat-lng="map.marker.position"
+            ></LCircle>
+          </l-map>
+          <p class="permisson_text">
+            <span>• Pin your location on the map
+              <br>• Select the accuracy for displaying and saving your data
+            </span>
+          </p>
 
-            <tab-content  :before-change="validateHouseholdType">
-                <div v-if="error == ''" class="tab">
-                    <h1>Thank you! Just a few more steps</h1>
-                    <h2>Step 2: Enter your Building data</h2>
-                    <vue-form-generator :model="model" :schema="selectHouseholdType" :options="formOptions"
-                                        ref="selectHouseholdType"></vue-form-generator>
-                </div>
-                <div class="general-error" v-else>
-                    <span class="general-error-message">{{error}}</span>
-                </div>
-            </tab-content>
+          <vue-form-generator
+            :model="model"
+            :schema="locationAccuracy"
+            :options="formOptions"
+            ref="locationAccuracy"
+          ></vue-form-generator>
 
-            <tab-content  :before-change="validateCredentialsTab">
-                <div class="tab">
-                    <h1>Halfway there!</h1>
-                    <h2>Step 3: Enter your credentials</h2>
-                    <div v-if="errorMessage != ''">
-                        <p class="error-message"><span class="error-text">{{errorMessage}}</span></p>
-                    </div>
-                    <vue-form-generator :model="model" :schema="credentialsTab" :options="formOptions"
-                                        ref="credentialsTab"></vue-form-generator>
-                </div>
-            </tab-content>
+          <div hidden>
+            <vue-form-generator
+              :model="model"
+              :schema="selectLocation"
+              :options="formOptions"
+              ref="selectLocation"
+            ></vue-form-generator>
+          </div>
+        </div>
+      </div>
 
-            <tab-content  :before-change="validateBackupTab">
-                <div v-if="error == ''" class="tab">
-                    <h1>OEHU! Almost there!</h1>
-                    <h2>Step 4: Save your credentials</h2>
-                    <vue-form-generator :model="model" :schema="backupTab" :options="formOptions"
-                                        ref="backupTab"></vue-form-generator>
-                </div>
-                <div class="general-error" v-else>
-                    <span class="general-error-message">{{error}}</span>
-                </div>
-            </tab-content>
+      <tab-content :before-change="validateLocationTab"></tab-content>
 
-            <tab-content>
-                <div v-if="error == ''" class="tab lastTab">
-                    <h2>Step 5: Well done we're processing your request</h2>
-                    <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
-                    <img class="setup_finish_svg" src="../assets/images/oehu_setup_finish.svg" alt="" />
-                    <div class="loading"><div></div><div></div><div></div><div></div></div>
-                </div>
-                 <div class="general-error" v-else>
-                    <span class="general-error-message">{{error}}</span>
-                </div>
-            </tab-content>
+      <tab-content :before-change="validateHouseholdType">
+        <div v-if="error == ''" class="tab">
+          <h1>Thank you! Just a few more steps</h1>
+          <h2>Step 2: Enter your Building data</h2>
+          <vue-form-generator
+            :model="model"
+            :schema="selectHouseholdType"
+            :options="formOptions"
+            ref="selectHouseholdType"
+          ></vue-form-generator>
+        </div>
+        <div class="general-error" v-else>
+          <span class="general-error-message">{{error}}</span>
+        </div>
+      </tab-content>
 
-        <template slot="footer" slot-scope="props">
-            <div v-if="error == ''"> 
-                <div v-show="showNext">
-                    <div v-show="!props.isLastStep" class="wizard-footer-right">
-                        <wizard-button  @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
-                    </div>
-                </div>
-            </div>              
-       </template>            
-        </form-wizard>
-    </div>
+      <tab-content :before-change="validateCredentialsTab">
+        <div class="tab">
+          <h1>Halfway there!</h1>
+          <h2>Step 3: Enter your credentials</h2>
+          <div v-if="errorMessage != ''">
+            <p class="error-message">
+              <span class="error-text">{{errorMessage}}</span>
+            </p>
+          </div>
+          <vue-form-generator
+            :model="model"
+            :schema="credentialsTab"
+            :options="formOptions"
+            ref="credentialsTab"
+          ></vue-form-generator>
+        </div>
+      </tab-content>
+
+      <tab-content :before-change="validateBackupTab">
+        <div v-if="error == ''" class="tab">
+          <h1>OEHU! Almost there!</h1>
+          <h2>Step 4: Save your credentials</h2>
+          <vue-form-generator
+            :model="model"
+            :schema="backupTab"
+            :options="formOptions"
+            ref="backupTab"
+          ></vue-form-generator>
+        </div>
+        <div class="general-error" v-else>
+          <span class="general-error-message">{{error}}</span>
+        </div>
+      </tab-content>
+
+      <tab-content>
+        <div v-if="error == ''" class="tab lastTab">
+          <h2>Step 5: Well done we're processing your request</h2>
+          <p>Please do not refresh the page. Once its done you will get redirected to your dashboard</p>
+          <img class="setup_finish_svg" src="../assets/images/oehu_setup_finish.svg" alt>
+          <div class="loading">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="general-error" v-else>
+          <span class="general-error-message">{{error}}</span>
+        </div>
+      </tab-content>
+
+      <template slot="footer" slot-scope="props">
+        <div v-if="error == ''">
+          <div v-show="showNext">
+            <div v-show="!props.isLastStep" class="wizard-footer-right">
+              <wizard-button @click.native="props.nextTab()" class="wizard-footer-right">Next step</wizard-button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </form-wizard>
+  </div>
 </template>
 
 <script>
@@ -129,6 +158,7 @@ export default {
   },
   data: function() {
     return {
+      activeIndex: 0,
       deviceId: 0,
       showNext: false,
       error: "",
@@ -299,7 +329,6 @@ export default {
         } else if (newVal == "state") {
           this.model.accuracy = 28000;
         } else {
-          this.model.accuracy = 100000;
           this.model.lat = 52.31877224455515;
           this.model.long = 2.973580237523761;
           this.map.marker.position.lat = this.model.lat;
@@ -317,8 +346,10 @@ export default {
     }
   },
   mounted() {
-      setTimeout(function() { window.dispatchEvent(new Event('resize')) }, 250);
-  }, 
+    setTimeout(function() {
+      window.dispatchEvent(new Event("resize"));
+    }, 250);
+  },
   created() {
     document.body.addEventListener("scroll", this.handleScroll);
   },
@@ -375,7 +406,7 @@ export default {
           }
         })
         .catch(function(error) {
-          self.error = "Ooehuups, something went wrong!";
+          self.error = "Something went wrong!";
           console.log(error);
         });
     },
@@ -387,7 +418,7 @@ export default {
           self.model.phrase = response.data.phrase;
         })
         .catch(function(error) {
-          self.error = "Ooehuups, something went wrong!";
+          self.error = "Something went wrong!";
           console.log(error);
         });
     },
@@ -398,7 +429,7 @@ export default {
           console.log("start response: ", response);
         })
         .catch(function(error) {
-          self.error = "Ooehuups, something went wrong!";
+          self.error = "Something went wrong!";
           console.log(error);
         });
     },
