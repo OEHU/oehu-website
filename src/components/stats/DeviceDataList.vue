@@ -89,15 +89,24 @@ export default {
     async getTransactions() {
       try {
         var self = this;
+
         // Get transactions
         let transactions = await this.axios.get(getApiUrl(this.deviceId));
-        // Get formatted date
+
+        // Set formatted date
         for (var i = 0; i <= transactions.data.length - 1; i++) {
           transactions.data[i].metadata.metadata.lastUpdateFormatted = moment(
             transactions.data[i].metadata.metadata.lastUpdate
           ).format("YYYY-MM-DD HH:mm:ss");
         }
+
+        // Sort list
         self.transactions = transactions.data;
+        console.log(self.transactions)
+        self.transactions.sort(function(a, b) {
+          return b.metadata.metadata.lastUpdate - a.metadata.metadata.lastUpdate;
+        });
+
         // If no deviceId is set: show only 1 tx per device
         if (!this.deviceId) {
           self.transactions = onlyOneTransactionPerDevice(self.transactions);
@@ -146,13 +155,15 @@ export default {
   margin: 0 auto;
 }
 .deviceId {
-  min-width: 80px;
+  width: 80px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  padding-left: 20px;
 }
 .lastUpdateFormatted {
   width: 180px;
+  text-align: left;
 }
 .electricityReceived {
   width: 260px;
