@@ -10,7 +10,7 @@
             </a>
 
             <div v-if="isCookieSet">
-                <Button v-on:click.native="logout()" class="login" title="logout" />
+                <Button v-on:click.native="dashboard()" class="login" title="dashboard" />
             </div>
 
             <div v-else> 
@@ -87,6 +87,9 @@ export default {
       },
       openNav(){
         this.$refs.menu.style.display = "block"; 
+      },
+      dashboard(){
+        this.$router.push('/dashboard')
       },
       logout(){
         this.$cookies.remove("devices");
