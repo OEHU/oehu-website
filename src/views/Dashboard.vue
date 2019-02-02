@@ -4,15 +4,6 @@
     <div class="container">
       <Title align="center" title="Your Own Dashboard" class="Title"/>
 
-      <Title align="center" title="Current usage"/>
-      <div class="gauges">
-        <Gauges :value="currentElectricity" unit="KwH"/>
-        <Gauges :value="currentGas" unit="Gas"/>
-      </div>
-
-      <br>
-      <br>
-
       <b-tabs type="is-boxed" v-model="activeTab" expanded>
         <b-tab-item label="KwH last week">
           <WeekChart days="7" data-type="kwh" title="KwH last week"/>
@@ -59,6 +50,15 @@
     </div>
 
     <DeviceDataList :deviceId="this.deviceId"/>
+
+    <Title align="center" title="Current usage"/>
+    <div class="gauges">
+      <Gauges :value="currentElectricity" unit="KwH"/>
+      <Gauges :value="currentGas" unit="Gas"/>
+    </div>
+
+    <br>
+    <br>
 
     <Footer/>
     <FooterClosing/>
