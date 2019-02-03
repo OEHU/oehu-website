@@ -24,6 +24,11 @@
 
       <Map :markers="devices"></Map>
 
+      <br>
+      <br>
+
+      <Title align="center" title="Total usage"/>
+
       <div class="meters-wrapper">
         <Meter
           class="meter"
@@ -49,13 +54,23 @@
       </div>
     </div>
 
-    <DeviceDataList :deviceId="this.deviceId"/>
 
     <Title align="center" title="Current usage"/>
+
+    <br>
+
     <div class="gauges">
       <Gauges :value="currentElectricity" unit="KwH"/>
       <Gauges :value="currentGas" unit="Gas"/>
     </div>
+
+    <br>
+    <br>
+    <Title align="center" title="Latest readings"/>
+    <br>
+
+    <DeviceDataList :deviceId="this.deviceId"/>
+
 
     <br>
     <br>
@@ -184,7 +199,11 @@ export default {
   }
   .gauges {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+
+    .canvas-gauges {
+      margin: 0 30px;
+    }
 
     @include mobile() {
       display: unset;
