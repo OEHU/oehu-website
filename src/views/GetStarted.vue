@@ -24,7 +24,7 @@
                  alt="Mobile phone with OEHU dashboard data"/>
 
             <h2>
-                Part 1: get the right stuff
+                Part 1: Get the right stuff
             </h2>
 
             <p>
@@ -34,7 +34,7 @@
             <Button v-on:click.native="buyAtSosSolutions()" class="oehu-btn-primary" title="Buy full OEHU package" />
 
             <p>
-                To be able to use OEHU and read the data of your smart meter you need this equipment:
+                To be able to use OEHU and read the data from your smart meter, you need these equipments:
             </p>
 
             <ol>
@@ -62,7 +62,7 @@
             </ol>
 
             <p>
-                When you have the right stuff, continue with part 2.
+                When you got the right stuff, continue with part 2.
             </p>
 
             <h2>
@@ -90,7 +90,7 @@
             <h3>Step 3: Set your WiFi password</h3>
 
             <p>
-                If you have a WiFi network, set your WiFi password. Otherwise just connect an ethernet cable.
+                If you have a WiFi network, set your WiFi password. Otherwise just connect with an ethernet cable.
             </p>
 
             <p>
@@ -147,7 +147,7 @@
             <h3>Step 1</h3>
 
             <p>
-                To configure your Rpi go to <a href="http://oehu.local" target="_blank">oehu.local</a>
+                To configure your Rpi, go to <a href="http://oehu.local" target="_blank">oehu.local</a>
             </p>
 
             <h3>Step 2</h3>
